@@ -1,19 +1,66 @@
-.container {
+
+
+
+.login-container {
     width: 100vw;
     height: 100vh;
     display: flex;
-    background-color: #89e3e7;
+    background-color: #e7fcfc;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    gap: 25px;
 
-    img {
-        width: 250px;
-        height: 250px;
+    .sub-container {
+        height: 300px;
     }
 
-    form {
+    &__left {
+        img {
+            width: 250px;
+            height: 250px;
+        }
+    }
+
+    &__right {
         display: flex;
         flex-direction: column;
+        justify-content: flex-end;
+
+        label {
+            color: rgb(68, 78, 90);
+            margin-top: 5px;
+        }
+
+        input {
+            padding: 5px;
+            border: #bddbdb 1px solid;
+            border-radius: 2px;
+        }
+
+        button {
+            border: none;
+            margin-top: 10px;
+            padding: 8px;
+            color: white;
+            background-color: #0182fc;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: #2997ff;
+        }
+
+        .register-login-toggle {
+            font-size: .8rem;
+            text-align: right;
+            color: #002f5a;
+            margin-top: 5px;
+        }
+
+        .register-login-toggle:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
 }
