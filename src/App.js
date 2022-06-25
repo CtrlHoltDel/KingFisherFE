@@ -8,11 +8,13 @@ function App() {
 
   const [user, setUser] = useState({ username: "Ryan" })
 
+  const logoutUser = () => setUser(null)
+
   if(!user) return <LoginForm setUser={setUser}/>
 
   return (
     <div className="App">
-      <Header />
+      <Header logoutUser={logoutUser}/>
       <Tables />
     </div>
   );

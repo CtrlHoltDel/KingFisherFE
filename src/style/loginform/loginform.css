@@ -61,6 +61,12 @@
   background-color: #2997ff;
 }
 
+.login-container__right button:disabled {
+  color: rgba(255, 255, 255, 0.411);
+  background-color: #0183fc60;
+  cursor: not-allowed;
+}
+
 .login-container__right .register-login-toggle {
   font-size: .8rem;
   text-align: right;

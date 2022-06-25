@@ -13,11 +13,14 @@ const LoginForm = ({ setUser }) => {
   const [validatePassword, setValidatePassword] = useState("");
 
 
+  const [invalidData, setInvalidData] = useState(true)
+  const [error, setError] = useState("");
+
+
   const toggleType = () => setLoginRegisterType(loginRegisterType === "login" ? "register" : "login")
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-
 
     if(loginRegisterType === 'login'){
       // setUser({username: "test", password: "test"})
@@ -25,9 +28,19 @@ const LoginForm = ({ setUser }) => {
     } else {
       // setLoginRegisterType("login")
       //handle register
-      const response = await register(username, password)
+      const { user, error } = await register(username, password)
 
-      console.log(response)
+      if(error) 
+
+      console.log(error)
+    }
+  }
+
+  const checkFormValidity = () => {
+    if(loginRegisterType === "login"){
+      setInvalidData(!(username && password)) 
+    } else {
+      setInvalidData(!(username && password && validatePassword)) 
     }
   }
 
@@ -42,18 +55,21 @@ const LoginForm = ({ setUser }) => {
         <label htmlFor="">Username</label>
         <input type="text" value={username} onChange={(e) => {
           setUsername(e.target.value)
+          checkFormValidity()
         }}/>
         <label htmlFor="">Password</label>
         <input type="text" value={password} onChange={(e) => {
           setPassword(e.target.value)
+          checkFormValidity()
         }}/>
         {loginRegisterType === "register" &&  <>
         <label htmlFor="">Repeat password</label>
         <input type="text" value={validatePassword} onChange={(e) => {
           setValidatePassword(e.target.value)
+          checkFormValidity()
         }}/>
         </>}
-        <button>{loginRegisterType === "login" ? "Log in" : "Register"}</button>
+        <button disabled={invalidData}>{loginRegisterType === "login" ? "Log in" : "Register"}</button>
         <p onClick={toggleType} className="register-login-toggle">{loginRegisterType === "login" ? "Don't have an account? Register" : "Already have an account? Log in."}</p>
       </form>
     </div>
