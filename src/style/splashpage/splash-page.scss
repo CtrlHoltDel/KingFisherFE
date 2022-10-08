@@ -1,40 +1,78 @@
+$breakpoint-tablet: 768px;
+@media (min-width: $breakpoint-tablet) {
+    .login-container {
+        background: rgb(255,255,255);
+        background: linear-gradient(90deg, rgba(255,255,255,1) 1%, rgba(231,252,252,1) 38%);
+    
+        .sub-container {
+            height: 300px;
+        }
+    
+        &__image {
+            img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    
+    } 
+}
 
+@media (max-width: $breakpoint-tablet) {
+    .login-container {
+        flex-direction: column;
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 1%, rgba(231,252,252,1) 45%);
+    
+        &__image {
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
 
+        &__inputs {
+            height: 211px;
+        }
+    } 
+}
 
 .login-container {
     width: 100vw;
     height: 100vh;
     display: flex;
-    background-color: #e7fcfc;
     justify-content: center;
     align-items: center;
     gap: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(90, 90, 90);
 
-    .sub-container {
-        height: 300px;
-    }
-
-    &__left {
-        img {
-            width: 250px;
-            height: 250px;
-        }
-    }
-
-    &__right {
+    &__inputs {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
 
         label {
-            color: rgb(68, 78, 90);
             margin-top: 5px;
+            margin-left: 4px;
+            margin-bottom: 2px;
+            font-size: .8rem;
         }
 
         input {
             padding: 5px;
             border: #bddbdb 1px solid;
             border-radius: 2px;
+        }
+
+        input:disabled {
+            opacity: 50%;
+            background-color: white;
+        }
+
+        input:focus {
+            outline: none;
+            border: rgb(124, 124, 235) solid 1px;
         }
 
         button {
@@ -46,27 +84,35 @@
             border-radius: 5px;
         }
 
-        button:hover {
+        button:hover:enabled {
             cursor: pointer;
             background-color: #2997ff;
         }
 
         button:disabled {
-            color: rgba(255, 255, 255, 0.411);
-            background-color: #0183fc60;
+            opacity: 60%;
             cursor: not-allowed;
         }
 
         .register-login-toggle {
             font-size: .8rem;
-            text-align: right;
-            color: #002f5a;
+            text-align: inputs;
             margin-top: 5px;
         }
 
         .register-login-toggle:hover {
             cursor: pointer;
             text-decoration: underline;
+        }
+    }
+
+    .loading-icon-container {
+        position: absolute;
+        bottom: 50px;
+    
+        img {
+            width: 60px;
+            height: 60px;
         }
     }
 }

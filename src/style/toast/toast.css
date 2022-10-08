@@ -1,0 +1,57 @@
+@media (min-width: 768px) {
+  .toast-container {
+    width: 30%;
+  }
+}
+@media (max-width: 768px) {
+  .toast-container {
+    width: 80%;
+  }
+}
+.toast-container {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  border-radius: 3px;
+  -webkit-animation: fadeIn 0.5s;
+          animation: fadeIn 0.5s;
+}
+.toast-container .toast-message {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.toast-container .toast-message p {
+  margin-top: 2px;
+  font-size: 13px;
+}
+.toast-container .error {
+  background-color: rgb(255, 196, 196);
+  color: red;
+}
+.toast-container .error svg {
+  color: rgb(158, 33, 33);
+  min-width: 25px;
+  min-height: 25px;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}/*# sourceMappingURL=toast.css.map */

@@ -1,0 +1,49 @@
+$breakpoint-tablet: 768px;
+@media (min-width: $breakpoint-tablet) {
+    .toast-container {
+        width: 30%;
+    }
+}
+
+@media (max-width: $breakpoint-tablet) {
+    .toast-container {
+        width: 80%;
+    }
+}
+
+
+.toast-container {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    border-radius: 3px;
+    animation: fadeIn .5s;
+
+    .toast-message {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        border-radius: 5px;
+        padding: 10px;
+        p {
+            margin-top: 2px;
+            font-size: 13px;
+        }
+    }
+
+    .error {
+        background-color: rgb(255, 196, 196);
+        color: red;
+        svg {
+            color: rgb(158, 33, 33);
+            min-width: 25px;
+            min-height: 25px;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: .2; }
+    100% { opacity: 1; }
+}
