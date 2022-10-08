@@ -1,22 +1,30 @@
 import { useState } from "react";
+import MobileNav from "./components/MobileNav";
 import SplashPage from "./screens/SplashPage";
 import "./style/index.css"
 
+import { Routes, Route, Link } from "react-router-dom";
+import Players from "./screens/Players";
+import Admin from "./screens/Admin";
+import Account from "./screens/Account";
+import NotFound from "./screens/NotFound";
+import useUser from "./hooks/useUser";
+
+
 function App() {
 
-  const [user, setUser] = useState({
-    "username": "newuser",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfaWQiOjIwLCJ1c2VybmFtZSI6Im5ld3VzZXIiLCJwYXNzd29yZCI6IiQyYSQxMCQwVVZaQXBMRnQyNHdUc3NNNy9naVJPWkVmMEtnbWQyM1NaSXIuWEhWLmpaWTdaTVY0TE9sMiIsImFkbWluIjp0cnVlLCJ2YWxpZGF0ZWQiOnRydWUsInVfY3JlYXRlZF9hdCI6IjIwMjItMTAtMDhUMTc6MTg6MTAuNDMxWiJ9LCJpYXQiOjE2NjUyNTAxMDN9.7yK2ahvM-pXFTCTMiT66QGa2wXZrt1MdGIgn4Ouz_GU",
-    "admin": true,
-    "validated": true
-  })
-  const logoutUser = () => setUser(null)
+  const { user, logout, login } = useUser()
 
-  if(!user) return <SplashPage setUser={setUser}/>
+  if(!user) return <SplashPage login={login}/>
 
   return (
     <div className="App">
-      <button onClick={logoutUser}>Log Out</button>
+      <Routes>
+        <Route path="/account" element={<Account user={user} />} />
+        <Route path="/admin" element={<Admin user={user} />} />
+        <Route path="*" element={<Players user={user} />} />
+      </Routes>
+      <MobileNav user={user} isAdmin={user.admin} logout={logout}/>
     </div>
   );
 }

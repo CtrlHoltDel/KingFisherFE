@@ -1,10 +1,12 @@
+$breakpoint-tablet: 768px;
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-$breakpoint-tablet: 768px;
+// Full Size
 @media (min-width: $breakpoint-tablet) {
     .App {
         background: rgb(255,255,255);
@@ -14,10 +16,9 @@ $breakpoint-tablet: 768px;
     } 
 }
 
+// Mobile && Tablet
 @media (max-width: $breakpoint-tablet) {
     .App {
-        background: rgb(255,255,255);
-        background: linear-gradient(180deg, rgba(255,255,255,1) 1%, rgba(231,252,252,1) 45%);
         height: 100vh;
         width: 100vw;
     } 

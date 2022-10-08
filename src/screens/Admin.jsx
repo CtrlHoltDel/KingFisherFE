@@ -1,8 +1,9 @@
 import React from 'react'
+import '../style/mobile/mobile.css'
 
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div className="body-container">Admin</div>
   )
 }
 

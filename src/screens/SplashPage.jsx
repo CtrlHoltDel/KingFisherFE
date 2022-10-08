@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { DAC } from "../api/DataAccess";
 import logo from "../assets/images/logo.png";
 import loadingSVG from "../assets/images/loading.svg"
@@ -6,10 +6,7 @@ import Toast from "../components/Toast";
 import "../style/splashpage/splash-page.css";
 import { LS } from "../localStorage/local-storage";
 
-const TLD = process.env.REACT_APP_TLD;
-
-
-const LoginForm = ({ setUser }) => {
+const LoginForm = ({ login }) => {
 
   const [loginRegisterType, setLoginRegisterType] = useState("login")
 
@@ -39,7 +36,7 @@ const LoginForm = ({ setUser }) => {
     if(!response.validated) return handleError("Account is not activated. Contact the owner for access.")
     console.log(response)
     LS.setUser(response)
-    setUser(response)
+    login(response)
   }
 
   const handleRegister = async () => {
