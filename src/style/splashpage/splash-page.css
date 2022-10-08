@@ -1,52 +1,33 @@
 .login-container {
   width: 100vw;
   height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background-color: #e7fcfc;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   gap: 25px;
 }
-
 .login-container .sub-container {
   height: 300px;
 }
-
 .login-container__left img {
   width: 250px;
   height: 250px;
 }
-
 .login-container__right {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
 }
-
 .login-container__right label {
-  color: #444e5a;
+  color: rgb(68, 78, 90);
   margin-top: 5px;
 }
-
 .login-container__right input {
   padding: 5px;
   border: #bddbdb 1px solid;
   border-radius: 2px;
 }
-
 .login-container__right button {
   border: none;
   margin-top: 10px;
@@ -55,27 +36,22 @@
   background-color: #0182fc;
   border-radius: 5px;
 }
-
 .login-container__right button:hover {
   cursor: pointer;
   background-color: #2997ff;
 }
-
 .login-container__right button:disabled {
   color: rgba(255, 255, 255, 0.411);
-  background-color: #0183fc60;
+  background-color: rgba(1, 131, 252, 0.3764705882);
   cursor: not-allowed;
 }
-
 .login-container__right .register-login-toggle {
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-align: right;
   color: #002f5a;
   margin-top: 5px;
 }
-
 .login-container__right .register-login-toggle:hover {
   cursor: pointer;
   text-decoration: underline;
-}
-/*# sourceMappingURL=loginform.css.map */
+}/*# sourceMappingURL=splash-page.css.map */

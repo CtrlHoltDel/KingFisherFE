@@ -1,7 +1,8 @@
+import { current } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { register } from "../api/actions";
 import logo from "../assets/images/logo.png";
-import "../style/loginform/loginform.css";
+import "../style/splashpage/splash-page.css";
 
 
 
@@ -12,7 +13,7 @@ const LoginForm = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const [validatePassword, setValidatePassword] = useState("");
 
-
+  const [inputs, setInputs] = useState({ username: "", password: "", validatePassword: "" })
   const [invalidData, setInvalidData] = useState(true)
   const [error, setError] = useState("");
 
@@ -36,11 +37,16 @@ const LoginForm = ({ setUser }) => {
     }
   }
 
-  const checkFormValidity = () => {
+  const checkFormValidity = (currentInput) => {
+
+    console.log("test");
+    const { username, password, validatePassword } = currentInput;
+
+
     if(loginRegisterType === "login"){
-      setInvalidData(!(username && password)) 
+      setInvalidData(!username || !password) 
     } else {
-      setInvalidData(!(username && password && validatePassword)) 
+      setInvalidData(!username || !password || !validatePassword) 
     }
   }
 
@@ -53,20 +59,22 @@ const LoginForm = ({ setUser }) => {
       </div>
       <form onSubmit={handleSubmitForm} className="login-container__right sub-container">
         <label htmlFor="">Username</label>
-        <input type="text" value={username} onChange={(e) => {
-          setUsername(e.target.value)
-          checkFormValidity()
+        <input type="text" name="username" value={inputs.username} onChange={(e) => {
+
         }}/>
         <label htmlFor="">Password</label>
-        <input type="text" value={password} onChange={(e) => {
-          setPassword(e.target.value)
-          checkFormValidity()
+        <input type="text" name="password" onChange={(e) => {
+
         }}/>
         {loginRegisterType === "register" &&  <>
         <label htmlFor="">Repeat password</label>
-        <input type="text" value={validatePassword} onChange={(e) => {
-          setValidatePassword(e.target.value)
-          checkFormValidity()
+        <input type="text" name="validatePassword" value={inputs.validatePassword} onChange={(e) => {
+          console.log(e)
+          setInputs(currInput => {
+            const updatedInput =  { ...currInput, validatePassword: e.target.value };
+            checkFormValidity(updatedInput);
+            return updatedInput;
+          })
         }}/>
         </>}
         <button disabled={invalidData}>{loginRegisterType === "login" ? "Log in" : "Register"}</button>
