@@ -17,10 +17,12 @@ const MobileNav = ({ isAdmin, logout }) => {
           <p>Players</p>
         </button>
       </Link>
-      <button>
-        <GiPokerHand />
-        <p>Tables</p>
-      </button>
+      <Link to="/tables">
+        <button>
+          <GiPokerHand />
+          <p>Tables</p>
+        </button>
+      </Link>
       <Link to="/account">
         <button>
           <MdAccountCircle />

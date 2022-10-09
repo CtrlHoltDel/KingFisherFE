@@ -1,8 +1,60 @@
-import React from 'react'
+import  { useState } from 'react'
+import { DAC } from '../api/DataAccess';
 
-const usePlayers = () => {
-    
+const usePlayers = (user) => {
+    const [players, setPlayers] = useState(null);
 
+    // Search
+    const [searchVisible, setSearchVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState();
+    const [exactMatch, setExactMatch] = useState(null)
+
+    // Recent
+    const [recentSearches, setRecentSearches] = useState(null)
+
+    // Currently Selected
+    const [loadingCurrentlySelected, setLoadingCurrentlySelected] = useState(false)
+    const [selectedPlayer, setSelectedPlayer] = useState(null)
+
+  
+    const handleSearch = async (e) => {
+      setSearch(e.target.value);
+      if (!e.target.value) {
+        setSearchVisible(false);
+        setPlayers(null);
+        return;
+      }
+  
+      setLoading(true);
+      setSearchVisible(true);
+      const { count, exactMatch, players } = await DAC.getPlayers(user.token, e.target.value);
+      console.log(count)
+      setExactMatch(exactMatch)
+      setLoading(false);
+      setPlayers(!players.length ? null : players.reverse());
+    };
+
+    const closeSearch = () => {
+      setPlayers(null);
+      setSearchVisible(false);
+      setSearch("")
+    }
+  
+    const cancelSearch = (e) => { if(e.target.classList.contains('search-results-background')) closeSearch() };
+
+    const updateRecentSearches = () => {
+
+    }
+
+    const selectPlayer = async (player) => {
+      setLoadingCurrentlySelected(true)
+
+      closeSearch()
+      console.log(player)
+    }
+
+    return { players, searchVisible, loading, search, exactMatch, recentSearches, selectedPlayer, loadingCurrentlySelected, selectPlayer, handleSearch, cancelSearch, updateRecentSearches }
 
 }
 

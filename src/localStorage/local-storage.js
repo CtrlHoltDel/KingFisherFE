@@ -7,6 +7,7 @@ const getUser = () => {
     return JSON.parse(localStorage.getItem(USER))
 }
 
+const getConfig = () => {}
 
 
-export const LS = { setUser, getUser }
+export const LS = { setUser, getUser, getConfig }

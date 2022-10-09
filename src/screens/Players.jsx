@@ -1,81 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { DAC } from "../api/DataAccess";
-import { IoMdAddCircle } from 'react-icons/io'
+import React from "react";
+import SearchResults from "../components/SearchResults";
+import usePlayers from "../hooks/usePlayers";
 import "../style/mobile/mobile.css";
 
-const Players = ({ user }) => {
-  const [players, setPlayers] = useState(null);
-  const [searchVisible, setSearchVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState();
-  const [exactMatch, setExactMatch] = useState(null)
+import { AiOutlineHistory } from 'react-icons/ai'
+import CurrentPlayer from "../components/CurrentPlayer";
 
-  const handleSearch = async (e) => {
-    setSearch(e.target.value);
-    if (!e.target.value) {
-      setSearchVisible(false);
-      setPlayers(null);
-      return;
-    }
+const Players = ({ user, config }) => {
 
-    setLoading(true);
-    setSearchVisible(true);
-    const { count, exactMatch, players } = await DAC.getPlayers(user.token, e.target.value);
-    console.log(count)
-    setExactMatch(exactMatch)
-    setLoading(false);
-    setPlayers(!players.length ? null : players);
-  };
-
-  const cancelSearch = (e) => {
-    if(e.target.classList.contains('search-results-background')){
-        setPlayers(null);
-        setSearchVisible(false);
-        setSearch("")
-    }
-  };
+  const { players, searchVisible, loading, search, exactMatch, selectedPlayer, loadingCurrentlySelected,  selectPlayer, handleSearch, cancelSearch } = usePlayers(user)
 
   return (
-    <div className="body-container players">
-      <div className="content">
+    <div className="players">
+      <div className="players__content">
+        <CurrentPlayer loading={loadingCurrentlySelected} player={selectedPlayer}/>
         {searchVisible && (
           <div className="search-results-background" onClick={cancelSearch}>
-            <div className="search-results-container">
-              {loading ? (
-                <div className="search-loading">loading</div>
-              ) : players ? (
-                <div>
-                    {exactMatch && 
-                        <div className="search-result">
-                            <p className="search-result__name">
-                                {exactMatch.player_name}
-                            </p>
-                        <div className="search-result__type">{exactMatch.type}</div>
-                      </div>
-                    }
-                  {players.map((player) => {
-                    return (
-                      <div className="search-result">
-                        <p className="search-result__name">
-                          {player.player_name}
-                        </p>
-                        <div className="search-result__type">{player.type}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div></div>
-              )}
-              {!exactMatch && 
-                  <button class="add-player-button"><IoMdAddCircle /><p>Add {search}</p></button>
-              }
-            </div>
+            <SearchResults players={players} loading={loading} exactMatch={exactMatch} currentSearch={search} selectPlayer={selectPlayer} config={config}/>
           </div>
         )}
       </div>
-      <div class="input-container">
-        <input placeholder="Search" value={search} onChange={handleSearch} />
+      <div class="players__input-container">
+        <div class="controls">
+          <input placeholder="Search" value={search} onChange={handleSearch} />
+          <button>
+            <AiOutlineHistory />
+          </button>
+        </div>
       </div>
     </div>
   );

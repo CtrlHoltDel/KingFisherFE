@@ -1,88 +1,178 @@
 @media (max-width: 768px) {
-  .body-container {
-    height: 92vh;
-  }
-  .players .content {
-    height: 94%;
-  }
-  .players .content .search-results-background {
+  .body-container-mobile {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    background: rgba(0, 0, 0, 0.055);
-    width: 100%;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .body-container-mobile .body-container {
+    flex: 1;
+  }
+  .body-container-mobile .body-container .players {
+    display: flex;
+    flex-direction: column;
     height: 100%;
   }
-  .players .content .search-results-background .search-results-container {
+  .body-container-mobile .body-container .players__content {
+    position: relative;
+    flex: 1;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: flex-end;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.226);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    height: 100%;
+    padding-bottom: 45px;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     width: 300px;
-    padding: 15px;
     border-radius: 5px;
     background-color: white;
   }
-  .players .content .search-results-background .search-results-container .search-result {
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .search-result {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
+    height: 45px;
+    align-items: center;
+    padding: 0 10px;
   }
-  .players .content .search-results-background .search-results-container .add-player-button {
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .search-result__name {
+    width: 100%;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .search-result__icons {
     display: flex;
     gap: 10px;
-    padding: 8px 10px;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .search-result__icons .search-icon {
+    height: 25px;
+    width: 25px;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .search-result__icons .search-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .search-result__icons .exact-match {
+    color: gold;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .search-result:active {
+    background-color: rgb(221, 221, 221);
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .add-player-button {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
     border: 0;
     background-color: #222;
     color: white;
     border-radius: 5px;
   }
-  .players .content .search-results-background .search-results-container .add-player-button svg {
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .add-player-button svg {
     height: 15px;
     width: 15px;
   }
-  .players .input-container {
+  .body-container-mobile .body-container .players__content .loading-player {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 6%;
-    background-color: #222;
+    height: 100%;
+    flex-direction: column;
   }
-  .players .input-container input {
+  .body-container-mobile .body-container .players__content .loading-player img {
+    width: 75px;
+    height: 75px;
+  }
+  .body-container-mobile .body-container .players__content .loading-player p {
+    font-size: 0.8rem;
+    color: rgb(13, 13, 80);
+  }
+  .body-container-mobile .body-container .players__input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    background-color: #002547;
+  }
+  .body-container-mobile .body-container .players__input-container .controls {
     width: 90%;
+    display: flex;
+    gap: 10px;
     max-width: 400px;
+  }
+  .body-container-mobile .body-container .players__input-container .controls input {
+    flex-grow: 1;
     height: 30px;
     padding: 0 10px;
     border: transparent;
     border-radius: 5px;
   }
-  nav {
+  .body-container-mobile .body-container .players__input-container .controls button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    max-width: 50px;
+    background-color: white;
+    border-radius: 5px;
+    border: transparent;
+  }
+  .body-container-mobile .body-container .players__input-container .controls button svg {
+    height: 20px;
+    width: 20px;
+  }
+  .body-container-mobile .body-container .tables {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .body-container-mobile .body-container .admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .body-container-mobile .body-container .account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .body-container-mobile .mobile-nav {
     width: 100vw;
-    height: 8vh;
-    background-color: rgb(34, 34, 34);
+    height: 65px;
+    background-color: #002547;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 25px;
   }
-  nav button {
+  .body-container-mobile .mobile-nav button {
     border: none;
     background-color: transparent;
     color: white;
   }
-  nav button svg {
+  .body-container-mobile .mobile-nav button svg {
     height: 25px;
     width: 25px;
   }
-  nav button p {
+  .body-container-mobile .mobile-nav button p {
     font-size: 12px;
   }
-  nav button:active {
-    color: rgb(126, 126, 218);
+  .body-container-mobile .mobile-nav button:active {
+    color: #D7A31A;
   }
-  .not-found {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+@media (min-width: 768px) {
+  .body-container-mobile {
+    display: none;
   }
 }/*# sourceMappingURL=mobile.css.map */

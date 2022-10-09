@@ -3,8 +3,7 @@ import React from 'react'
 const Account = () => {
 
   return (
-    <div className="body-container">
-    </div>
+    <div className="account">Account</div>
   )
 }
 

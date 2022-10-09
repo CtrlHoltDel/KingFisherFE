@@ -34,7 +34,6 @@ const LoginForm = ({ login }) => {
     const { response, error } = await DAC.login(username, password)
     if(error) return handleError("Invalid Login Details")
     if(!response.validated) return handleError("Account is not activated. Contact the owner for access.")
-    console.log(response)
     LS.setUser(response)
     login(response)
   }

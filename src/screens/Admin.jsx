@@ -3,7 +3,7 @@ import '../style/mobile/mobile.css'
 
 const Admin = () => {
   return (
-    <div className="body-container">Admin</div>
+    <div className="admin">Admin</div>
   )
 }
 
