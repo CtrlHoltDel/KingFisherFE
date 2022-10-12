@@ -11,9 +11,9 @@ const Mobile = ({ user, config, logout }) => {
     <>
       <div className="body-container">
         <Routes>
-          <Route path="/account" element={<Account user={user} />} />
-          <Route path="/admin" element={<Admin user={user} />} />
-          <Route path="/tables" element={<Tables user={user} />} />
+          <Route path="/m-account" element={<Account user={user} />} />
+          <Route path="/m-admin" element={<Admin user={user} />} />
+          <Route path="/m-tables" element={<Tables user={user} />} />
           <Route path="*" element={<Players user={user} config={config}/>} />
         </Routes>
       </div>

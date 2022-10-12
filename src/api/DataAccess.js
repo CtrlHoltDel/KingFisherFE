@@ -14,7 +14,6 @@ const post = async (body, path) => {
 }
 
 const get = async (token, path) => {
-  console.log(path)
   const response = await fetch(`${TLD}${path}`, {
       method: "GET",
       mode: "cors",
@@ -43,4 +42,9 @@ const getPlayers = async (token, search) => {
   return response
 }
 
-export const DAC = { register, login, getPlayers }
+const getPlayer = async (token, playerName) => {
+  const response = await get(token, `/players/${playerName}`)
+  return response
+}
+
+export const DAC = { register, login, getPlayers, getPlayer }

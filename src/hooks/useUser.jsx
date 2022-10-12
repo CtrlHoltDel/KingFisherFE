@@ -6,10 +6,11 @@ const useUser = () => {
     const [user, setUser] = useState()
     const [config, setConfig] = useState({
       types: {
-        fish: "green",
-        whale: "purple",
-        reg: "red",
-        nit: ""
+        fish: { color: "green" },
+        whale: { color: "purple" },
+        reg: { color: "red"},
+        nit: { color: "" },
+        known: { color: "" }
       }
     })
 

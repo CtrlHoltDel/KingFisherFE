@@ -2,16 +2,16 @@ import  { useState } from 'react'
 import { DAC } from '../api/DataAccess';
 
 const usePlayers = (user) => {
-    const [players, setPlayers] = useState(null);
+    const [players, setPlayers] = useState([]);
 
     // Search
     const [searchVisible, setSearchVisible] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [search, setSearch] = useState();
-    const [exactMatch, setExactMatch] = useState(null)
+    const [search, setSearch] = useState("");
+    const [exactMatch, setExactMatch] = useState([])
 
     // Recent
-    const [recentSearches, setRecentSearches] = useState(null)
+    const [recentSearches, setRecentSearches] = useState([])
 
     // Currently Selected
     const [loadingCurrentlySelected, setLoadingCurrentlySelected] = useState(false)
@@ -48,10 +48,15 @@ const usePlayers = (user) => {
     }
 
     const selectPlayer = async (player) => {
-      setLoadingCurrentlySelected(true)
+
+      // add to recently selected
+      setRecentSearches(curr => [...curr, player])
 
       closeSearch()
-      console.log(player)
+      setLoadingCurrentlySelected(true)
+      const response = await DAC.getPlayer(user.token, player.player_name)
+      setSelectedPlayer(response)
+      setLoadingCurrentlySelected(false)
     }
 
     return { players, searchVisible, loading, search, exactMatch, recentSearches, selectedPlayer, loadingCurrentlySelected, selectPlayer, handleSearch, cancelSearch, updateRecentSearches }

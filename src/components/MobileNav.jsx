@@ -11,26 +11,26 @@ const MobileNav = ({ isAdmin, logout }) => {
   
   return (
     <nav className="mobile-nav">
-      <Link to="/players">
+      <Link to="/m-players">
         <button>
           <GiFishing />
           <p>Players</p>
         </button>
       </Link>
-      <Link to="/tables">
+      <Link to="/m-tables">
         <button>
           <GiPokerHand />
           <p>Tables</p>
         </button>
       </Link>
-      <Link to="/account">
+      <Link to="/m-account">
         <button>
           <MdAccountCircle />
           <p>Account</p>
         </button>
       </Link>
       {isAdmin &&       
-        <Link to="/admin">
+        <Link to="/m-admin">
           <button>
             <MdAdminPanelSettings />
             <p>Admin</p>

@@ -18,7 +18,7 @@ const SearchResults = ({ players, loading, exactMatch, currentSearch, config, se
         <div>
           {players.map((player) => {
             return (
-              <div className="search-result" key={player.name} onClick={() => { selectPlayer(player) }}>
+              <div className="search-result" key={player.player_name} onClick={() => { selectPlayer(player) }}>
                 <p className="search-result__name">{player.player_name}</p>
                 <div className="search-result__icons">
                 {generateIconType(player.type)}
@@ -30,7 +30,7 @@ const SearchResults = ({ players, loading, exactMatch, currentSearch, config, se
             <div className="search-result exact" onClick={() => { selectPlayer(exactMatch) }}>
               <p className="search-result__name">{exactMatch.player_name}</p>
               <div className="search-result__icons">
-                <div class="exact-match search-icon">
+                <div className="exact-match search-icon">
                     <GiMatchHead />
                 </div>
                 {generateIconType(exactMatch.type)}

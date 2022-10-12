@@ -1,5 +1,6 @@
 $breakpoint-tablet: 768px;
 $primary-color: #002547;
+$cta-color: rgb(69, 69, 207);
 $active-color: #D7A31A;
 
 
@@ -21,6 +22,10 @@ $active-color: #D7A31A;
                     position: relative;
                     flex: 1;
         
+                    .header {
+                        padding: 20px;
+                    }
+
                     .search-results-background {
                         display: flex;
                         position: absolute;
@@ -81,7 +86,7 @@ $active-color: #D7A31A;
                                 gap: 10px;
                                 padding: 15px;
                                 border: 0;
-                                background-color: #222;
+                                background-color: $primary-color;
                                 color: white;
                                 border-radius: 5px;
         
@@ -89,6 +94,10 @@ $active-color: #D7A31A;
                                     height: 15px;
                                     width: 15px;
                                 }
+                            }
+
+                            .add-player-button:active {
+                                background-color: $active-color;
                             }
                         }
                     }
@@ -110,13 +119,71 @@ $active-color: #D7A31A;
                             color: rgb(13, 13, 80);
                         }
                     }
+
+                    .player-info {
+                        height: 100%;
+                        position: relative;
+                        .list-header {
+                            font-weight: bold;
+                        }
+
+                        &__header {
+                            padding: 20px;
+                            display: flex;
+                            justify-content: space-between;
+
+                            &__name {
+                                font-size: 1.6rem;
+                            }
+
+                            &__info {
+                                color: rgb(61, 61, 61);
+                            }
+                        }
+
+                        &__records {
+                            padding: 20px;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 20px;
+                            overflow: scroll;
+
+                            &__list-view {
+                                flex: 1;
+                            }
+                        }
+
+                        &__add {
+                            position: absolute;
+                            bottom: 20px;
+                            right: 20px;
+                            button {
+                                height: 55px;
+                                width: 55px;
+                                color: black;
+                                border-radius: 50%;
+                                border: none;
+                                background-color: $cta-color;
+                                color: white;
+
+                                svg {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+
+                            button:active {
+                                background-color: rgb(117, 117, 201);
+                            }
+                        }
+                    }
                 }
     
                 &__input-container {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    height: 40px;
+                    height: 60px;
                     background-color: $primary-color;
         
                     .controls {
@@ -127,7 +194,7 @@ $active-color: #D7A31A;
         
                         input {
                             flex-grow: 1;
-                            height: 30px;
+                            height: 35px;
                             padding: 0 10px;
                             border: transparent;
                             border-radius: 5px;

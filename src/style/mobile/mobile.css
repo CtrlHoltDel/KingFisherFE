@@ -16,6 +16,9 @@
     position: relative;
     flex: 1;
   }
+  .body-container-mobile .body-container .players__content .header {
+    padding: 20px;
+  }
   .body-container-mobile .body-container .players__content .search-results-background {
     display: flex;
     position: absolute;
@@ -71,13 +74,16 @@
     gap: 10px;
     padding: 15px;
     border: 0;
-    background-color: #222;
+    background-color: #002547;
     color: white;
     border-radius: 5px;
   }
   .body-container-mobile .body-container .players__content .search-results-background .search-results-container .add-player-button svg {
     height: 15px;
     width: 15px;
+  }
+  .body-container-mobile .body-container .players__content .search-results-background .search-results-container .add-player-button:active {
+    background-color: #D7A31A;
   }
   .body-container-mobile .body-container .players__content .loading-player {
     display: flex;
@@ -94,11 +100,60 @@
     font-size: 0.8rem;
     color: rgb(13, 13, 80);
   }
+  .body-container-mobile .body-container .players__content .player-info {
+    height: 100%;
+    position: relative;
+  }
+  .body-container-mobile .body-container .players__content .player-info .list-header {
+    font-weight: bold;
+  }
+  .body-container-mobile .body-container .players__content .player-info__header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .body-container-mobile .body-container .players__content .player-info__header__name {
+    font-size: 1.6rem;
+  }
+  .body-container-mobile .body-container .players__content .player-info__header__info {
+    color: rgb(61, 61, 61);
+  }
+  .body-container-mobile .body-container .players__content .player-info__records {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: scroll;
+  }
+  .body-container-mobile .body-container .players__content .player-info__records__list-view {
+    flex: 1;
+  }
+  .body-container-mobile .body-container .players__content .player-info__add {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  .body-container-mobile .body-container .players__content .player-info__add button {
+    height: 55px;
+    width: 55px;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(69, 69, 207);
+    color: white;
+  }
+  .body-container-mobile .body-container .players__content .player-info__add button svg {
+    width: 30px;
+    height: 30px;
+  }
+  .body-container-mobile .body-container .players__content .player-info__add button:active {
+    background-color: rgb(117, 117, 201);
+  }
   .body-container-mobile .body-container .players__input-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 60px;
     background-color: #002547;
   }
   .body-container-mobile .body-container .players__input-container .controls {
@@ -109,7 +164,7 @@
   }
   .body-container-mobile .body-container .players__input-container .controls input {
     flex-grow: 1;
-    height: 30px;
+    height: 35px;
     padding: 0 10px;
     border: transparent;
     border-radius: 5px;
