@@ -1,53 +1,32 @@
 import React, { useState } from "react";
 import SearchResults from "../components/SearchResults";
-import usePlayers from "../hooks/usePlayers";
 import "../style/mobile/mobile.css";
 
 import { AiOutlineHistory } from "react-icons/ai";
 import CurrentPlayer from "../components/CurrentPlayer";
-import MobileNoteModal from "../components/MobileNoteModal";
+import useSearch from "../hooks/useSearch";
 
-const Players = ({ user, config }) => {
+const Players = ({
+  user,
+  config,
+  loadingCurrentlySelected,
+  selectedPlayer,
+  notes,
+  tendencies,
+  updateSelectedPlayer,
+  recentSearches,
+}) => {
+  const [recentSearchesOpen, setRecentSearchesOpen] = useState(false);
+  const closeRecentSearches = () => setRecentSearchesOpen(false);
 
-  const [recentSearchesOpen, setRecentSearchesOpen] = useState(false)
-  
   const {
-    players,
-    searchVisible,
-    loading,
-    search,
+    currentSearchText,
+    playersSearchResults,
+    playerSearchLoading,
     exactMatch,
-    selectedPlayer,
-    loadingCurrentlySelected,
-    notes,
-    tendencies,
-    recentSearches,
-    selectPlayer,
-    handleSearch,
-    cancelSearch,
-    addNewNote,
-    updateNote
-  } = usePlayers(user, setRecentSearchesOpen);
-
-  const [mobileNoteModalOpen, setMobileNoteModalOpen] = useState(false);
-  const [selectedRecord, setSelectedRecord] = useState(null);
-  const selectRecord = (record) => {
-    setSelectedRecord(record);
-    setMobileNoteModalOpen(true);
-  };
-
-  const toggleAddingRecord = () => setMobileNoteModalOpen((curr) => !curr);
-  const closeAddRecordModal = (e) => {
-    if (e.target.classList.contains("mobile-modal")) {
-      setMobileNoteModalOpen(false);
-      setSelectedRecord(null);
-    }
-  };
-
-  const loadRecentSearches = () => setRecentSearchesOpen(true)
-  const closeRecentSearches = (e) => { 
-    if(e.target.classList.contains("mobile-modal")) setRecentSearchesOpen(false)
-  }
+    updateCurrentSearchText,
+    clearSearches,
+  } = useSearch(user);
 
   return (
     <div className="players">
@@ -56,51 +35,59 @@ const Players = ({ user, config }) => {
           loading={loadingCurrentlySelected}
           selectedPlayer={selectedPlayer}
           config={config}
-          toggleAddingRecord={toggleAddingRecord}
-          selectRecord={selectRecord}
           notes={notes}
           tendencies={tendencies}
         />
-        {/* Search Modal */}
-        {searchVisible && (
-          <div className="mobile-modal" onClick={cancelSearch}>
+        {(!!playersSearchResults.length || !!currentSearchText)&& (
+          <div className="mobile-modal" onClick={clearSearches}>
             <SearchResults
-              players={players}
-              loading={loading}
+              searchResults={playersSearchResults}
+              loading={playerSearchLoading}
               exactMatch={exactMatch}
-              currentSearch={search}
-              selectPlayer={selectPlayer}
+              currentSearch={currentSearchText}
               config={config}
+              handleClickSearchResult={updateSelectedPlayer}
             />
           </div>
         )}
         {recentSearchesOpen && (
           <div className="mobile-modal" onClick={closeRecentSearches}>
             <SearchResults
-              players={recentSearches}
-              selectPlayer={selectPlayer}
+              searchResults={recentSearches}
               config={config}
               recentSearch={true}
+              handleClickSearchResult={updateSelectedPlayer}
             />
           </div>
         )}
         {/* Adding Record Modal */}
-        {mobileNoteModalOpen && (
+        {/* {mobileNoteModalOpen && (
           <div className="mobile-modal" onClick={closeAddRecordModal}>
-            <MobileNoteModal
+            <UpdateNoteModal
               selectedRecord={selectedRecord}
               toggleAddingRecord={toggleAddingRecord}
               addNewNote={addNewNote}
               updateNote={updateNote}
             />
           </div>
-        )}
+        )} */}
       </div>
       <div className="players__input-container">
         <div className="controls">
-          <input placeholder="Search" value={search} onChange={handleSearch} />
-          <button style={{ opacity: !recentSearches.length ? "40%" : "100%" }}>
-            <AiOutlineHistory onClick={loadRecentSearches}/>
+          <input
+            placeholder="Search"
+            value={currentSearchText}
+            onChange={updateCurrentSearchText}
+            onFocus={() => setRecentSearchesOpen(false)}
+          />
+          <button
+            disabled={!recentSearches.length}
+            onClick={() => {
+              clearSearches();
+              setRecentSearchesOpen((curr) => !curr);
+            }}
+          >
+            <AiOutlineHistory />
           </button>
         </div>
       </div>

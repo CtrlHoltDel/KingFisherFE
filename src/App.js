@@ -1,4 +1,3 @@
-import MobileNav from "./components/MobileNav";
 import SplashPage from "./screens/SplashPage";
 import "./style/index.css"
 

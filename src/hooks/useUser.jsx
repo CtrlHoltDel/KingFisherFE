@@ -8,7 +8,7 @@ const useUser = () => {
       types: {
         fish: { color: "green" },
         whale: { color: "purple" },
-        reg: { color: "red"},
+        reg: { color: "red" },
         nit: { color: "" },
         known: { color: "" }
       }

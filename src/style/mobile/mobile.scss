@@ -1,6 +1,6 @@
 $breakpoint-tablet: 830px;
-$primary-color: #002547;
-$cta-color: rgb(69, 69, 207);
+$primary-color: #112c44;
+$cta-color: #4545cf;
 $active-color: #D7A31A;
 
 
@@ -23,6 +23,7 @@ $active-color: #D7A31A;
         display: flex;
         flex-direction: column;
         height: 100vh;
+        width: 100vw;
 
         .body-container {
             flex: 1;
@@ -37,69 +38,6 @@ $active-color: #D7A31A;
                     flex: 1;
                     display: flex;
                     flex-direction: column;
-
-                    .search-results-container {
-                        display: flex;
-                        justify-content: space-between;
-                        flex-direction: column;
-                        width: 300px;
-                        border-radius: 5px;
-                        background-color: white;
-    
-                        .search-result {
-                            display: flex;
-                            justify-content: space-between;
-                            height: 45px;
-                            align-items: center;
-                            padding: 0 10px;
-    
-                            &__name {
-                                width: 100%;
-                                text-overflow: ellipsis;
-                                margin-right: 10px;
-                            }
-    
-                            &__icons {
-                                display: flex;
-                                gap: 10px;
-    
-                                .search-icon {
-                                    height: 25px;
-                                    width: 25px;
-    
-                                    svg {
-                                        width: 100%;
-                                        height: 100%;
-                                    }
-                                }
-    
-                                .exact-match { color: gold; }
-                            }
-                        }
-    
-                        .search-result:active {
-                            background-color: rgb(221, 221, 221);
-                        }
-    
-                        .add-player-button {
-                            display: flex;
-                            gap: 10px;
-                            padding: 15px;
-                            border: 0;
-                            background-color: $primary-color;
-                            color: white;
-                            border-radius: 5px;
-    
-                            svg {
-                                height: 15px;
-                                width: 15px;
-                            }
-                        }
-
-                        .add-player-button:active {
-                            background-color: $active-color;
-                        }
-                    }
 
                     .add-note-container {
                         height: 400px;
@@ -148,7 +86,7 @@ $active-color: #D7A31A;
                             width: 100%;
                             outline: none;
                             border: rgba(0, 0, 0, 0) 1px solid;
-                            border-radius: 5px;
+                            border-radius: 6px;
                             background-color: rgb(231, 231, 231);
                         }
 
@@ -316,6 +254,10 @@ $active-color: #D7A31A;
                                 height: 20px;
                                 width: 20px;
                             }
+                        }
+
+                        button:disabled {
+                            opacity: 40%;
                         }
                     }
                     
