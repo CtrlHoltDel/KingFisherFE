@@ -1,8 +1,17 @@
 import React from "react";
 import loadingIcon from "../assets/images/loading.svg";
-import { BiNotepad } from 'react-icons/bi'
+import { BiMessageSquareAdd } from "react-icons/bi";
+import { BsFillArrowDownSquareFill } from "react-icons/bs";
 
-const CurrentPlayer = ({ selectedPlayer, loading, config }) => {
+const CurrentPlayer = ({
+  selectedPlayer,
+  loading,
+  config,
+  toggleAddingRecord,
+  selectRecord, 
+  notes,
+  tendencies
+}) => {
   if (loading)
     return (
       <div className="loading-player">
@@ -11,9 +20,18 @@ const CurrentPlayer = ({ selectedPlayer, loading, config }) => {
       </div>
     );
 
-  if (!selectedPlayer) return <div>No player selected</div>;
+  if (!selectedPlayer)
+    return (
+      <div className="no-player-container">
+        <div>No Player Selected</div>
+        <div className="search-here">
+          <p>Search here</p>
+          <BsFillArrowDownSquareFill />
+        </div>
+      </div>
+    );
 
-  const { player, notes, tendencies } = selectedPlayer;
+  const { player } = selectedPlayer;
 
   return (
     <div className="player-info">
@@ -23,10 +41,10 @@ const CurrentPlayer = ({ selectedPlayer, loading, config }) => {
       </div>
       <div className="player-info__records">
         <div className="player-info__records__list-view">
-          <p class="list-header">Notes</p>
+          <p className="list-header">Notes</p>
           {notes.length ? (
             notes.map((note) => (
-              <div className="player-info__list-view__item" key={note.note_id}>
+              <div className="player-info__list-view__item" key={note.note_id} onClick={() => selectRecord(note)}>
                 {note.note}
               </div>
             ))
@@ -35,12 +53,12 @@ const CurrentPlayer = ({ selectedPlayer, loading, config }) => {
           )}
         </div>
         <div className="player-info__records__list-view">
-          <p class="list-header">Tendencies</p>
+          <p className="list-header">Tendencies</p>
           {tendencies.length ? (
             tendencies.map((tendency) => (
               <div
                 className="player-info__list-view__item"
-                key={tendency.tendency_id}
+                key={tendency.tendency_id} onClick={() => selectRecord(tendency)}
               >
                 {tendency.tendency}
               </div>
@@ -51,8 +69,8 @@ const CurrentPlayer = ({ selectedPlayer, loading, config }) => {
         </div>
       </div>
       <div className="player-info__add">
-        <button>
-          <BiNotepad />
+        <button onClick={toggleAddingRecord}>
+          <BiMessageSquareAdd />
         </button>
       </div>
     </div>

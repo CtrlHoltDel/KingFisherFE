@@ -1,10 +1,24 @@
-$breakpoint-tablet: 768px;
+$breakpoint-tablet: 830px;
 $primary-color: #002547;
 $cta-color: rgb(69, 69, 207);
 $active-color: #D7A31A;
 
 
 @media (max-width: $breakpoint-tablet) {
+
+    .mobile-modal {
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: flex-end;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.226);
+        border: 1px solid rgba(255, 255, 255, 0.3);                
+        width: 100%;
+        height: 100%;
+        padding-bottom: 45px;
+    }
+
     .body-container-mobile {
         display: flex;
         flex-direction: column;
@@ -21,83 +35,146 @@ $active-color: #D7A31A;
                 &__content {
                     position: relative;
                     flex: 1;
-        
-                    .header {
-                        padding: 20px;
-                    }
+                    display: flex;
+                    flex-direction: column;
 
-                    .search-results-background {
+                    .search-results-container {
                         display: flex;
-                        position: absolute;
-                        justify-content: center;
-                        align-items: flex-end;
-                        top: 0;
-                        background-color: rgba(0, 0, 0, 0.226);
-                        border: 1px solid rgba(255, 255, 255, 0.3);                
-                        width: 100%;
-                        height: 100%;
-                        padding-bottom: 45px;
-        
-                        .search-results-container {
+                        justify-content: space-between;
+                        flex-direction: column;
+                        width: 300px;
+                        border-radius: 5px;
+                        background-color: white;
+    
+                        .search-result {
                             display: flex;
                             justify-content: space-between;
-                            flex-direction: column;
-                            width: 300px;
-                            border-radius: 5px;
-                            background-color: white;
-        
-                            .search-result {
-                                display: flex;
-                                justify-content: space-between;
-                                height: 45px;
-                                align-items: center;
-                                padding: 0 10px;
-        
-                                &__name {
-                                    width: 100%;
-                                    text-overflow: ellipsis;
-                                    margin-right: 10px;
-                                }
-        
-                                &__icons {
-                                    display: flex;
-                                    gap: 10px;
-        
-                                    .search-icon {
-                                        height: 25px;
-                                        width: 25px;
-        
-                                        svg {
-                                            width: 100%;
-                                            height: 100%;
-                                        }
-                                    }
-        
-                                    .exact-match { color: gold; }
-                                }
+                            height: 45px;
+                            align-items: center;
+                            padding: 0 10px;
+    
+                            &__name {
+                                width: 100%;
+                                text-overflow: ellipsis;
+                                margin-right: 10px;
                             }
-        
-                            .search-result:active {
-                                background-color: rgb(221, 221, 221);
-                            }
-        
-                            .add-player-button {
+    
+                            &__icons {
                                 display: flex;
                                 gap: 10px;
-                                padding: 15px;
-                                border: 0;
+    
+                                .search-icon {
+                                    height: 25px;
+                                    width: 25px;
+    
+                                    svg {
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                }
+    
+                                .exact-match { color: gold; }
+                            }
+                        }
+    
+                        .search-result:active {
+                            background-color: rgb(221, 221, 221);
+                        }
+    
+                        .add-player-button {
+                            display: flex;
+                            gap: 10px;
+                            padding: 15px;
+                            border: 0;
+                            background-color: $primary-color;
+                            color: white;
+                            border-radius: 5px;
+    
+                            svg {
+                                height: 15px;
+                                width: 15px;
+                            }
+                        }
+
+                        .add-player-button:active {
+                            background-color: $active-color;
+                        }
+                    }
+
+                    .add-note-container {
+                        height: 400px;
+                        width: 80%;
+                        border-radius: 5px;
+                        background-color: white;
+                        padding: 15px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+
+                        &__note-tendency-toggle {
+                            display: flex;
+                            button {
+                                width: 50%;
+                                padding: 5px;
+                                background-color: white;
+                                border: $primary-color 1px solid;
+                                color: $primary-color;
+                            }
+                            
+                            .selected {
                                 background-color: $primary-color;
                                 color: white;
-                                border-radius: 5px;
-        
-                                svg {
-                                    height: 15px;
-                                    width: 15px;
-                                }
+                                border: $primary-color;
                             }
 
-                            .add-player-button:active {
-                                background-color: $active-color;
+                            button:disabled {
+                                opacity: 55%;
+                            }
+
+                            .first-button {
+                                border-radius: 3px 0 0 3px;
+                            }
+
+                            .last-button {
+                                border-radius: 0 3px 3px 0;
+                            }
+                        }
+
+
+                        textarea {
+                            flex: 1;
+                            resize: none;
+                            padding: 10px;
+                            width: 100%;
+                            outline: none;
+                            border: rgba(0, 0, 0, 0) 1px solid;
+                            border-radius: 5px;
+                            background-color: rgb(231, 231, 231);
+                        }
+
+                        textarea:focus {
+                            border: $primary-color 1px solid;
+                            background-color: rgb(220, 220, 250);
+                        }
+
+                        &__buttons {
+                            display: flex;
+                            justify-content: space-between;
+
+                            button {
+                                padding: 6px 12px;
+                                border: transparent;
+                                border-radius: 3px;
+                            }
+
+                            &__delete {
+                                background-color: rgb(238, 150, 150);
+                                color: white;
+                            }
+
+                            &__add-update {
+                                background-color: $primary-color;
+                                color: white;
                             }
                         }
                     }
@@ -122,7 +199,8 @@ $active-color: #D7A31A;
 
                     .player-info {
                         height: 100%;
-                        position: relative;
+                        display: flex;
+                        flex-direction: column;
                         .list-header {
                             font-weight: bold;
                         }
@@ -131,6 +209,7 @@ $active-color: #D7A31A;
                             padding: 20px;
                             display: flex;
                             justify-content: space-between;
+
 
                             &__name {
                                 font-size: 1.6rem;
@@ -146,10 +225,11 @@ $active-color: #D7A31A;
                             display: flex;
                             flex-direction: column;
                             gap: 20px;
-                            overflow: scroll;
+                            flex: 1;
 
                             &__list-view {
                                 flex: 1;
+                                overflow: auto;
                             }
                         }
 
@@ -163,7 +243,7 @@ $active-color: #D7A31A;
                                 color: black;
                                 border-radius: 50%;
                                 border: none;
-                                background-color: $cta-color;
+                                background-color: $primary-color;
                                 color: white;
 
                                 svg {
@@ -174,6 +254,28 @@ $active-color: #D7A31A;
 
                             button:active {
                                 background-color: rgb(117, 117, 201);
+                            }
+                        }
+                    }
+
+                    .no-player-container {
+                        padding: 20px;
+                        display: flex;
+                        flex: 1;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        .search-here {
+                            align-self: center;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 12px;
+                            justify-content: center;
+
+                            svg {
+                                height: 40px;
+                                width: 40px;
+                                color: $primary-color;
                             }
                         }
                     }
