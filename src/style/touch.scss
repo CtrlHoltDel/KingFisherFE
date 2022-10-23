@@ -1,0 +1,21 @@
+.touch-container {
+    height: 100%;
+    width: 100%;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        flex-grow: 1;
+        background-color: black;
+    }
+
+    &__nav {
+        background-color: blue;
+        height: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+}

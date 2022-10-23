@@ -1,0 +1,19 @@
+.touch-container {
+  height: 100%;
+  width: 100%;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+}
+.touch-container__content {
+  flex-grow: 1;
+  background-color: black;
+}
+.touch-container__nav {
+  background-color: blue;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}/*# sourceMappingURL=touch.css.map */

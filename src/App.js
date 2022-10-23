@@ -1,22 +1,18 @@
-import SplashPage from "./screens/SplashPage";
-import "./style/index.css"
-
+import LoginForm from "./components/LoginForm";
+import Desktop from "./Desktop";
+import useHandleWindow from "./hooks/useHandleWindow";
 import useUser from "./hooks/useUser";
-
-import Mobile from "./Mobile";
-
+import Touch from "./Touch";
 
 function App() {
+  const { user, handleLogin } = useUser();
+  const { windowType, TOUCH_SIZE } = useHandleWindow();
 
-  const { user, logout, login, config } = useUser()
-
-  if(!user) return <SplashPage login={login}/>
+  if (!user) return <LoginForm handleLogin={handleLogin} />;
 
   return (
     <div className="App">
-      <div className="body-container-mobile">
-        <Mobile user={user} logout={logout} login={login} config={config}/>
-      </div>
+      {windowType === TOUCH_SIZE ? <Touch /> : <Desktop />}
     </div>
   );
 }

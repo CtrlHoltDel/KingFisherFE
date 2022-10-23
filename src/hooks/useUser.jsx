@@ -1,32 +1,13 @@
-import { useEffect, useState } from "react";
-import { LS } from "../localStorage/local-storage";
+import { useState } from "react"
 
 const useUser = () => {
+    const [user, setUser] = useState(null)
 
-    const [user, setUser] = useState()
-    const [config, setConfig] = useState({
-      types: {
-        fish: { color: "green" },
-        whale: { color: "purple" },
-        reg: { color: "red" },
-        nit: { color: "" },
-        known: { color: "" }
-      }
-    })
+    const handleLogin = async (user) => setUser(user);
 
-    useEffect(() => {
-      const LSuser = LS.getUser()
-      const LSconfig = LS.getConfig()
+    const logoutUser = () => setUser(null)
 
-      if(LSuser) setUser(LSuser)
-      if(LSconfig) setConfig(LSconfig)
-
-    }, [])
-
-    const login = (user) => setUser(user)
-    const logout = () => setUser(null)
-
-    return { user, logout, login, config }
+    return { user, handleLogin, logoutUser }
 
 }
 
