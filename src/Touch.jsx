@@ -14,7 +14,7 @@ const Touch = ({ user, logoutUser, selectGroup, currentlySelectedGroup }) => {
     <div className="touch-container">
       <div className="touch-container__content">
         <Routes>
-          <Route path="*" element={<Players currentlySelectedGroup={currentlySelectedGroup}/>} />
+          <Route path="*" element={<Players currentlySelectedGroup={currentlySelectedGroup} user={user}/>} />
           <Route path="/m/groups" element={<Groups user={user} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup}/>} />
           <Route path="/m/account" element={<Account user={user} logoutUser={logoutUser}/>} />
         </Routes>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { APIAddUserToGroup, APIGetList } from "../../api/actions";
+import { APIAddGroup, APIAddUserToGroup, APIGetList } from "../../api/actions";
 import GroupCard from "./GroupCard";
 
 const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
@@ -9,11 +9,22 @@ const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
   const [addUserLoading, setAddUserLoading] = useState(false);
   const [addedUser, setAddedUser] = useState("");
 
+  const [addedGroup, setAddedGroup] = useState("")
+
+  const [groupError, setGroupError] = useState("")
+  const [error, setError] = useState("");
+
   useEffect(() => {
     const loadGroups = async () => {
       setLoading(true);
-      const response = await APIGetList("/groups", user.token);
-      setGroups(response.groups);
+      const { success, error } = await APIGetList("/groups", user.token);
+
+      if(error){
+        //handle error
+        console.log(error);
+      }
+
+      setGroups(success.data.groups);
       setLoading(false);
     };
     loadGroups();
@@ -24,15 +35,33 @@ const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
   const addUserToGroup = async (e) => {
     e.preventDefault();
     setAddUserLoading(true);
-    await APIAddUserToGroup(user.token, currentlySelectedGroup.id, addedUser);
+    const { success, error } = await APIAddUserToGroup(
+      user.token,
+      currentlySelectedGroup.id,
+      addedUser
+    );
+    if (error) {
+      setError(JSON.stringify(error));
+      return;
+    }
+    console.log(success);
+    setError(success.message)
+
     setAddUserLoading(false);
-    setAddedUser("");
   };
 
+  const createGroup = async (e) => {
+    e.preventDefault()
+    const { success, error } = await APIAddGroup(user.token, addedGroup);
+    if(error) return setGroupError(JSON.stringify(error))
+    
+    setGroupError(JSON.stringify(success))
+  }
+
   return (
-    <div class="groups">
+    <div className="groups">
       <div className="groups__list">
-        {!!groups.length ? (
+        {!!groups ? (
           groups.map((group) => (
             <GroupCard
               key={group.id}
@@ -51,12 +80,25 @@ const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
             <form disabled={addUserLoading} onSubmit={addUserToGroup}>
               <input
                 placeholder="Add User"
-                onChange={(e) => setAddedUser(e.target.value)}
+                onChange={(e) => {
+                  setAddedUser(e.target.value);
+                  if (error) {
+                    setError("");
+                  }
+                }}
               />
               <button>Add User</button>
+              {error}
             </form>
           </div>
         )}
+        <div>
+          <form action="" onSubmit={createGroup}>
+            <input type="text" placeholder="Create Group" value={addedGroup} onChange={(e) => setAddedGroup(e.target.value)}/>
+            <button>Add Group</button>
+            {groupError}
+          </form>
+        </div>
     </div>
   );
 };

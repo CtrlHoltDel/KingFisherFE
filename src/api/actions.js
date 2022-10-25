@@ -32,7 +32,7 @@ export const APIHandleRegister = async (username, password) => {
 export const APIGetList = async (endpoint, token) => {
     try {
         const { data } = await api.get(endpoint, { headers: { authorization: `Bearer ${token}` } })
-        return data.data
+        return { success: data }
     } catch (error) {
         if(error.code === BAD_REQUEST) return { error: error.response.data.message }
         if(error.code === ERR_NETWORK) return { error: error.message }
@@ -41,16 +41,28 @@ export const APIGetList = async (endpoint, token) => {
 }
 
 export const APIAddUserToGroup = async (token, groupId, username) => {
-    console.log(token, groupId, username)
     try {
-        const { data } = await api.post(
-            `/groups/handle-request/${groupId}`,
-            { params: { username }, body: { action: "Add" } },
+        const { data: { data } } = await api.post(
+            `/groups/handle-request/${groupId}?username=${username}`,
+            { action: "Add" },
             { headers: { authorization: `Bearer ${token}` } }
           );
-        console.log(data)
+        return { success: data }
     } catch (error) {
-        console.warn(error, "<<")
+        return { error: error.response.data }
+    }
+}
+
+export const APIAddGroup = async (token, groupName) => {
+    try {
+        const { data: { data } } = await api.post(
+            `/groups`,
+            { name: groupName },
+            { headers: { authorization: `Bearer ${token}` } }
+          );
+        return { success: data }
+    } catch (error) {
+        return { error: error.response.data }        
     }
 }
 
