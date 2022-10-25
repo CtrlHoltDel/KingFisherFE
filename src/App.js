@@ -1,19 +1,26 @@
-import LoginForm from "./components/LoginForm";
+import { BrowserRouter } from "react-router-dom";
+import LoginForm from "./components/common/LoginForm";
 import Desktop from "./Desktop";
 import useHandleWindow from "./hooks/useHandleWindow";
 import useUser from "./hooks/useUser";
 import Touch from "./Touch";
 
 function App() {
-  const { user, handleLogin } = useUser();
+  const { user, handleLogin, logoutUser, selectGroup, currentlySelectedGroup } = useUser();
   const { windowType, TOUCH_SIZE } = useHandleWindow();
 
-  if (!user) return <LoginForm handleLogin={handleLogin} />;
+  if (!user) return <LoginForm handleSetUser={handleLogin} />;
 
   return (
-    <div className="App">
-      {windowType === TOUCH_SIZE ? <Touch /> : <Desktop />}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        {windowType === TOUCH_SIZE ? (
+          <Touch user={user} logoutUser={logoutUser} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup}/>
+        ) : (
+          <Desktop user={user} logoutUser={logoutUser} />
+        )}
+      </div>
+    </BrowserRouter>
   );
 }
 

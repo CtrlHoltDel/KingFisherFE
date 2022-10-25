@@ -7,7 +7,34 @@
 }
 .touch-container__content {
   flex-grow: 1;
-  background-color: black;
+  background-color: rgb(201, 176, 176);
+}
+.touch-container__content .groups {
+  padding: 20px;
+  height: 80%;
+}
+.touch-container__content .groups__list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.171);
+  gap: 5px;
+}
+.touch-container__content .groups__list__group-card {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  padding: 10px;
+}
+.touch-container__content .groups__list__group-card__main {
+  display: flex;
+  justify-content: space-between;
+}
+.touch-container__content .groups__list__group-card__main__selected {
+  padding: 3px 10px;
+  color: white;
+  background-color: rgba(54, 121, 54, 0.904);
+  border-radius: 15px;
 }
 .touch-container__nav {
   background-color: blue;

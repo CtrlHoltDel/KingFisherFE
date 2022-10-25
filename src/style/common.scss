@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 .App {
@@ -10,4 +13,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.pill {
+    padding: 5px 20px;
+    border-radius: 15px;
+}
+
+.positive {
+    background-color: green;
+    color: white;
+}
+
+.negative { 
+    background-color: black;
+    color: white;
 }
