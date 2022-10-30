@@ -12,9 +12,9 @@ export const APIHandleLogin = async (username, password) => {
         const { data: { data } } = await api.post('/auth/login', {username, password})
         return { user: data }
     } catch (error) {
+        logErrors(error);
         if(error.code === BAD_REQUEST) return { error: error.response.data.message }
-        if(error.code === ERR_NETWORK) return { error: error.message }
-        handleUncaughtError(error);
+        if(error.code === ERR_NETWORK) return handleNetworkError({ error: error.message })
     }
 }
 
@@ -22,9 +22,9 @@ export const APIHandleRegister = async (username, password) => {
     try {
         await api.post('/auth/register', { username, password })
     } catch (error) {
+        logErrors(error)
         if(error.code === BAD_REQUEST) return { error: error.response.data.message }
-        if(error.code === ERR_NETWORK) return { error: error.message }
-        handleUncaughtError(error)
+        if(error.code === ERR_NETWORK) return handleNetworkError({ error: error.message })
     }
 
 }
@@ -34,9 +34,9 @@ export const APIGetList = async (endpoint, token) => {
         const { data } = await api.get(endpoint, { headers: { authorization: `Bearer ${token}` } })
         return { success: data }
     } catch (error) {
+        logErrors(error);
         if(error.code === BAD_REQUEST) return { error: error.response.data.message }
-        if(error.code === ERR_NETWORK) return { error: error.message }
-        handleUncaughtError(error);
+        if(error.code === ERR_NETWORK) return handleNetworkError({ error: error.message })
     }
 }
 
@@ -66,4 +66,19 @@ export const APIAddGroup = async (token, groupName) => {
     }
 }
 
-const handleUncaughtError = (err) => console.warn(`Uncaught Error`, err)
+export const APIAddPlayer = async (token, playerName, groupId) => {
+
+    try {
+        const { data: { data } } = await api.post(`/players/${groupId}`, { playerName }, { headers: { authorization: `Bearer ${token}` } })
+        return { success: data }
+    } catch (error) {
+        logErrors(error)
+        return { error: error.response.data }
+    }
+}
+
+const handleNetworkError = (error) => {
+    return error
+}
+
+const logErrors = (err) => console.warn(`Uncaught Error`, err)

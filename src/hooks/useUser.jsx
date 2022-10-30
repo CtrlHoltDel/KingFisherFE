@@ -13,6 +13,8 @@ const useUser = () => {
     useEffect(() => {
         const cookieUser = cookies.get(KINGFISHER_USER_COOKIE);
         const cookieGroup = cookies.get(KINGFISHER_GROUP_COOKIE);
+
+        console.log(cookieUser, cookieGroup)
         setUser(cookieUser)
         setCurrentlySelectedGroup(cookieGroup)
     }, [])
