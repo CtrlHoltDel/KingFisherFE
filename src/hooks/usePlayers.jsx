@@ -4,35 +4,42 @@ import { APIGetPlayers } from "../api/actions";
 const usePlayers = (user, currentlySelectedGroup) => {
 
     const [players, setPlayers] = useState(null)
-    const [loadingPlayers, setLoadingPlayers] = useState(false)
+    const [loadingPlayers, setLoadingPlayers] = useState(true)
+    const [hasExactMatch, setHasExactMatch] = useState(false)
+
+    const [noResults, setNoResults] = useState(false)
 
     const handleSearch = async (search) => {
-
-        console.log(search);
-
         if(!search) return setPlayers(null)
+
+        if(noResults) {
+            if(search.startsWith(noResults)) {
+                return
+            } else {
+                setNoResults(null)
+            }
+        }
 
         setLoadingPlayers(true);
         const { success, error } = await APIGetPlayers(user.token, currentlySelectedGroup.id, search);
 
-        if(error){
-            console.log("handle error", error);
-            return
-        }
+        if(error) return console.log("handle error", error);
 
-        console.log(success);
+        const { players } = success.data
 
-        setPlayers(success.data.players);
+        if(!players.length) setNoResults(search) 
+
+        setHasExactMatch(players.length ? players[0].exactMatch : false)
+        setPlayers(players.reverse());
+        
         setLoadingPlayers(false);
     } 
 
     const handleAddPlayer = (e) => {
         e.preventDefault()
-
-
     }
 
-    return { players, loadingPlayers, handleSearch, handleAddPlayer }
+    return { players, loadingPlayers, hasExactMatch, handleSearch, handleAddPlayer }
     
 }
 

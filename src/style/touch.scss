@@ -1,14 +1,6 @@
 $primary-color: rgb(29, 29, 29);
 $secondary-color: rgb(157, 157, 231);
 
-.touch-modal-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.185);
-    top: 0;
-}
-
 .touch-container {
     height: 100%;
     width: 100%;
@@ -69,16 +61,56 @@ $secondary-color: rgb(157, 157, 231);
                 flex-grow: 1;
                 position: relative;
 
-                .list-item {
-                    display: flex;
+                .touch-modal-container {
+                    position: absolute;
                     width: 100%;
-                    justify-content: space-between;
-                    padding: 15px;
-                }
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.185);
+                    top: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    padding-bottom: 10%;
+                    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-                .list-item:active {
-                    background-color: red;
+                    .players-list {
+                        max-height: 80%;
+                        width: 75%;
+                        max-width: 350px;
+                        min-width: 250px;
+                        background-color: white;
+
+                        &__item {
+                            display: flex;
+                            padding: 15px;
+                        }
+
+                        &__player {
+                            justify-content: space-between;
+                        }
+
+                        &__add {
+                            gap: 15px;
+
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+
+                        &__loading {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                    }
                 }
+                
             }
 
             &__footer {
