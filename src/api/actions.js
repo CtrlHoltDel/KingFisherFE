@@ -29,9 +29,21 @@ export const APIHandleRegister = async (username, password) => {
 
 }
 
-export const APIGetList = async (endpoint, token) => {
+export const APIGetPlayers = async (token, groupId, search) => {
     try {
-        const { data } = await api.get(endpoint, { headers: { authorization: `Bearer ${token}` } })
+        const { data } = await api.get(`players/${groupId}?search=${search}`, { headers: { authorization: `Bearer ${token}` } })
+        return { success: data }
+    } catch (error) {
+        logErrors(error);
+        if(error.code === BAD_REQUEST) return { error: error.response.data.message }
+        if(error.code === ERR_NETWORK) return handleNetworkError({ error: error.message })
+    }
+}
+
+export const APIGetGroups = async (token) => {
+
+    try {
+        const { data } = await api.get(`/groups`, { headers: { authorization: `Bearer ${token} ` } })
         return { success: data }
     } catch (error) {
         logErrors(error);

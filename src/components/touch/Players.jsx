@@ -1,55 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { APIAddPlayer, APIGetList } from "../../api/actions";
-import ListView from "../common/ListView";
+import usePlayers from "../../hooks/usePlayers";
+import PlayersListView from "../common/PlayersListView";
+
+import { RiChatHistoryLine } from 'react-icons/ri'
 
 const Players = ({ currentlySelectedGroup, user }) => {
-  const [players, setPlayers] = useState(null);
-  const [addingPlayer, setAddingPlayer] = useState("");
-
-  const handleSearch = async (e) => {
-    if (!e.target.value) return setPlayers(null);
-
-    const { success, error } = await APIGetList(
-      `players/${currentlySelectedGroup.id}?search=${e.target.value}`,
-      user.token
-    );
-
-    console.log(success.data.players);
-    setPlayers(success.data.players);
-  };
-
-  const handleAddPlayer = async (e) => {
-    e.preventDefault();
-    const { success, error } = await APIAddPlayer(
-      user.token,
-      addingPlayer,
-      currentlySelectedGroup.id
-    );
-
-    if (success) console.log(success, "<< Success!");
-    if (error) console.log(error, "<< Error");
-  };
+  const { players, loadingPlayers, handleSearch, handleAddPlayer } = usePlayers(user, currentlySelectedGroup)
 
   return (
     <div className="players">
-      <div className="players__header">
-        <p>
-          {currentlySelectedGroup
-            ? currentlySelectedGroup.name
-            : "No Group Selected"}
-        </p>
-        <Link to="/m/groups">Swap Here.</Link>
-      </div>
       <div className="players__body">
         {players && (
           <div className="touch-modal-container">
-            <ListView list={players} type="players" />
+            <PlayersListView list={players} loading={loadingPlayers} />
           </div>
         )}
       </div>
       <div className="players__footer">
-        <input placeholder="search" onChange={handleSearch} />
+        <input placeholder="search" onChange={(e) => handleSearch(e.target.value)} />
+        <button>
+          <RiChatHistoryLine />
+        </button>
       </div>
     </div>
   );

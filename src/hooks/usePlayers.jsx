@@ -1,22 +1,39 @@
 import { useState } from "react"
-import { APIGetList } from "../api/actions";
+import { APIGetPlayers } from "../api/actions";
 
-const usePlayers = (user) => {
+const usePlayers = (user, currentlySelectedGroup) => {
 
-    const [players, setPlayers] = useState([])
+    const [players, setPlayers] = useState(null)
+    const [loadingPlayers, setLoadingPlayers] = useState(false)
+
+    const handleSearch = async (search) => {
+
+        console.log(search);
+
+        if(!search) return setPlayers(null)
+
+        setLoadingPlayers(true);
+        const { success, error } = await APIGetPlayers(user.token, currentlySelectedGroup.id, search);
+
+        if(error){
+            console.log("handle error", error);
+            return
+        }
+
+        console.log(success);
+
+        setPlayers(success.data.players);
+        setLoadingPlayers(false);
+    } 
+
+    const handleAddPlayer = (e) => {
+        e.preventDefault()
 
 
-    const selectPlayers = async (group) => {
-        const { id: groupId } = group;
-
-        console.log(groupId)
-        const { players } = await APIGetList(`/players/${groupId}`, user.token) 
-        console.log(players)
-        setPlayers(players)
     }
 
-    return { players, selectPlayers }
-
+    return { players, loadingPlayers, handleSearch, handleAddPlayer }
+    
 }
 
 export default usePlayers

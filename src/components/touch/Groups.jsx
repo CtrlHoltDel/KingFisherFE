@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { APIAddGroup, APIAddUserToGroup, APIGetList } from "../../api/actions";
+import { APIAddGroup, APIAddUserToGroup, APIGetGroups } from "../../api/actions";
 import GroupCard from "./GroupCard";
 
 const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
@@ -17,7 +17,7 @@ const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
   useEffect(() => {
     const loadGroups = async () => {
       setLoading(true);
-      const { success, error } = await APIGetList("/groups", user.token);
+      const { success, error } = await APIGetGroups(user.token);
 
       if(error){
         //handle error
