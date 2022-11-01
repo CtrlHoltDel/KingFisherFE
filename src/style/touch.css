@@ -47,8 +47,53 @@
   justify-content: space-between;
 }
 .touch-container__content .players__body {
-  flex-grow: 1;
+  flex: 1;
   position: relative;
+}
+.touch-container__content .players__body .player-info {
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.touch-container__content .players__body .player-info__header {
+  padding: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.touch-container__content .players__body .player-info__content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.touch-container__content .players__body .player-info__content__list {
+  padding: 5px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.touch-container__content .players__body .player-info__content__list__header {
+  font-weight: bold;
+  height: 20px;
+  margin-left: 15px;
+}
+.touch-container__content .players__body .player-info__content__list__item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: auto;
+  flex: 1 1 1px;
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px;
+  padding: 15px;
+}
+.touch-container__content .players__body .player-info__content .notes {
+  flex: 1 1 1px;
+}
+.touch-container__content .players__body .player-info__content .tendency {
+  flex: 0.4 1 1px;
 }
 .touch-container__content .players__body .touch-modal-container {
   position: absolute;
@@ -76,6 +121,9 @@
 .touch-container__content .players__body .touch-modal-container .players-list__player {
   justify-content: space-between;
 }
+.touch-container__content .players__body .touch-modal-container .players-list__player:active {
+  color: green;
+}
 .touch-container__content .players__body .touch-modal-container .players-list__add {
   gap: 15px;
 }
@@ -96,12 +144,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(29, 29, 29);
+  background-color: rgb(49, 49, 49);
   gap: 10px;
   padding: 10px 0 5px 0;
 }
 .touch-container__content .players__footer input {
   width: 80%;
+  max-width: 350px;
   height: 100%;
   border-radius: 5px;
   border: none;
@@ -120,7 +169,7 @@
   width: 30px;
 }
 .touch-container__nav {
-  background-color: rgb(29, 29, 29);
+  background-color: rgb(49, 49, 49);
   height: 65px;
   display: flex;
   justify-content: center;

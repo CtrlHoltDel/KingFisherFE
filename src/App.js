@@ -6,7 +6,7 @@ import useUser from "./hooks/useUser";
 import Touch from "./Touch";
 
 function App() {
-  const { user, handleLogin, logoutUser, selectGroup, currentlySelectedGroup } = useUser();
+  const { user, handleLogin, logoutUser, selectGroup, currentlySelectedGroup, selectedPlayer, selectPlayer } = useUser();
   const { windowType, TOUCH_SIZE } = useHandleWindow();
 
   if (!user) return <LoginForm handleSetUser={handleLogin} />;
@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         {windowType === TOUCH_SIZE ? (
-          <Touch user={user} logoutUser={logoutUser} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup}/>
+          <Touch user={user} logoutUser={logoutUser} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup} selectPlayer={selectPlayer} selectedPlayer={selectedPlayer}/>
         ) : (
           <Desktop user={user} logoutUser={logoutUser} />
         )}

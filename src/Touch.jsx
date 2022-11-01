@@ -9,12 +9,12 @@ import Players from "./components/touch/Players";
 
 import "./style/touch.css";
 
-const Touch = ({ user, logoutUser, selectGroup, currentlySelectedGroup }) => {
+const Touch = ({ user, logoutUser, selectGroup, currentlySelectedGroup, selectedPlayer, selectPlayer }) => {
   return (
     <div className="touch-container">
       <div className="touch-container__content">
         <Routes>
-          <Route path="*" element={<Players currentlySelectedGroup={currentlySelectedGroup} user={user}/>} />
+          <Route path="*" element={<Players currentlySelectedGroup={currentlySelectedGroup} user={user} selectedPlayer={selectedPlayer} selectPlayer={selectPlayer}/>} />
           <Route path="/m/groups" element={<Groups user={user} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup}/>} />
           <Route path="/m/account" element={<Account user={user} logoutUser={logoutUser}/>} />
         </Routes>

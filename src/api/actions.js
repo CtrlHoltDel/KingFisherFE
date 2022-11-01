@@ -31,7 +31,7 @@ export const APIHandleRegister = async (username, password) => {
 
 export const APIGetPlayers = async (token, groupId, search) => {
     try {
-        const { data } = await api.get(`players/${groupId}?search=${search}`, { headers: { authorization: `Bearer ${token}` } })
+        const { data } = await api.get(`players/${groupId}?search=${search}`, setAuthHeader(token))
         return { success: data }
     } catch (error) {
         logErrors(error);
@@ -43,7 +43,7 @@ export const APIGetPlayers = async (token, groupId, search) => {
 export const APIGetGroups = async (token) => {
 
     try {
-        const { data } = await api.get(`/groups`, { headers: { authorization: `Bearer ${token} ` } })
+        const { data } = await api.get(`/groups`, setAuthHeader(token))
         return { success: data }
     } catch (error) {
         logErrors(error);
@@ -57,7 +57,7 @@ export const APIAddUserToGroup = async (token, groupId, username) => {
         const { data: { data } } = await api.post(
             `/groups/handle-request/${groupId}?username=${username}`,
             { action: "Add" },
-            { headers: { authorization: `Bearer ${token}` } }
+            setAuthHeader(token)
           );
         return { success: data }
     } catch (error) {
@@ -70,7 +70,7 @@ export const APIAddGroup = async (token, groupName) => {
         const { data: { data } } = await api.post(
             `/groups`,
             { name: groupName },
-            { headers: { authorization: `Bearer ${token}` } }
+            setAuthHeader(token)
           );
         return { success: data }
     } catch (error) {
@@ -81,7 +81,7 @@ export const APIAddGroup = async (token, groupName) => {
 export const APIAddPlayer = async (token, playerName, groupId) => {
 
     try {
-        const { data: { data } } = await api.post(`/players/${groupId}`, { playerName }, { headers: { authorization: `Bearer ${token}` } })
+        const { data: { data } } = await api.post(`/players/${groupId}`, { playerName }, setAuthHeader(token))
         return { success: data }
     } catch (error) {
         logErrors(error)
@@ -89,8 +89,19 @@ export const APIAddPlayer = async (token, playerName, groupId) => {
     }
 }
 
+
+export const APIGetNotes = async (token, playerId) => {
+    try {
+        const { data: { data }} = await api.get(`/notes/${playerId}`, setAuthHeader(token))
+        return { success: data }
+    } catch (error) {
+        logErrors(error)
+        return { error: error.response.data }
+    }
+}
 const handleNetworkError = (error) => {
     return error
 }
 
 const logErrors = (err) => console.warn(`Uncaught Error`, err)
+const setAuthHeader = (token) => ({ headers: { authorization: `Bearer ${token}` }} )

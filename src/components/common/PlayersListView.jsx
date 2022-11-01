@@ -1,22 +1,35 @@
 import React from "react";
 import { MdPersonAddAlt } from "react-icons/md";
-import { ImSearch } from 'react-icons/im'
+import { ImSearch } from "react-icons/im";
 
-const PlayersListView = ({ list, exactMatch, search, loading }) => {
+const PlayersListView = ({
+  list,
+  exactMatch,
+  search,
+  loading,
+  handleClickPlayer,
+  handleAddPlayer
+}) => {
   return (
-    <div class="players-list">
+    <div className="players-list">
       {loading ? (
-        <div className="players-list__item players-list__loading"><ImSearch /></div>
+        <div className="players-list__item players-list__loading">
+          <ImSearch />
+        </div>
       ) : (
         <>
           {list.map((item) => (
-            <div className="players-list__player players-list__item">
+            <div
+              className="players-list__player players-list__item"
+              key={item.id}
+              onClick={() => handleClickPlayer(item)}
+            >
               <p>{item.name}</p>
               <p>{item.type || "no type"}</p>
             </div>
           ))}
           {!exactMatch && (
-            <div className="players-list__add players-list__item">
+            <div className="players-list__add players-list__item" onClick={handleAddPlayer}>
               <MdPersonAddAlt /> <p>Add {search}</p>
             </div>
           )}

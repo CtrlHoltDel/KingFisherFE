@@ -1,42 +1,56 @@
-import { useEffect, useState } from "react"
-import Cookies from "universal-cookie"
+import { useEffect, useState } from "react";
+import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const KINGFISHER_USER_COOKIE = 'Kingfisher_User_Cookie'
-const KINGFISHER_GROUP_COOKIE = 'Kingfisher_Group_Cookie'
+const KINGFISHER_USER_COOKIE = "Kingfisher_User_Cookie";
+const KINGFISHER_GROUP_COOKIE = "Kingfisher_Group_Cookie";
+const KINGFISHER_PLAYER_COOKIE = "Kingfisher_Player_Cookie";
 
 const useUser = () => {
-    const [user, setUser] = useState(null)
-    const [currentlySelectedGroup, setCurrentlySelectedGroup] = useState(null)
+  const [user, setUser] = useState(null);
+  const [currentlySelectedGroup, setCurrentlySelectedGroup] = useState(null);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
-    // User
-    useEffect(() => {
-        const cookieUser = cookies.get(KINGFISHER_USER_COOKIE);
-        const cookieGroup = cookies.get(KINGFISHER_GROUP_COOKIE);
+  // User
+  useEffect(() => {
 
-        console.log(cookieUser, cookieGroup)
-        setUser(cookieUser)
-        setCurrentlySelectedGroup(cookieGroup)
-    }, [])
+  }, []);
 
-    const handleLogin = (user) => {
-        cookies.set(KINGFISHER_USER_COOKIE, user)
-        setUser(user)
-    };
+  const handleLogin = (user) => {
 
-    const logoutUser = () => {
-        cookies.set(KINGFISHER_USER_COOKIE, null)
-        setUser(null)
-    }
+    setUser(user);
+  };
 
-    // Current Group
-    const selectGroup = (group) => {
-        cookies.set(KINGFISHER_GROUP_COOKIE, group)
-        setCurrentlySelectedGroup(group)
-    }
+  const logoutUser = () => {
+    setUser(null);
+    setCurrentlySelectedGroup(null);
+    setSelectedPlayer(null);
+  };
 
-    return { user, handleLogin, logoutUser, selectGroup, currentlySelectedGroup }
+  // Current Group
+  const selectGroup = (group) => {
+    resetPlayerState();
+    setCurrentlySelectedGroup(group);
+  };
 
-}
+  // Current Player
+  const selectPlayer = (player) => {
+    setSelectedPlayer(player);
+  };
 
-export default useUser
+  const resetPlayerState = () => {
+    setSelectedPlayer(null);
+  };
+
+  return {
+    user,
+    handleLogin,
+    logoutUser,
+    selectGroup,
+    currentlySelectedGroup,
+    selectedPlayer,
+    selectPlayer,
+  };
+};
+
+export default useUser;

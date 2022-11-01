@@ -5,12 +5,16 @@ const usePlayers = (user, currentlySelectedGroup) => {
 
     const [players, setPlayers] = useState(null)
     const [loadingPlayers, setLoadingPlayers] = useState(true)
-    const [hasExactMatch, setHasExactMatch] = useState(false)
+    const [hasExactMatch, setHasExactMatch] = useState(null)
 
     const [noResults, setNoResults] = useState(false)
 
     const handleSearch = async (search) => {
-        if(!search) return setPlayers(null)
+        if(!search){
+            setNoResults(null)
+            setPlayers(null)
+            return
+        } 
 
         if(noResults) {
             if(search.startsWith(noResults)) {
@@ -21,7 +25,9 @@ const usePlayers = (user, currentlySelectedGroup) => {
         }
 
         setLoadingPlayers(true);
+        console.log("1");
         const { success, error } = await APIGetPlayers(user.token, currentlySelectedGroup.id, search);
+        console.log("1");
 
         if(error) return console.log("handle error", error);
 

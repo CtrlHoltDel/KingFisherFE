@@ -1,4 +1,4 @@
-$primary-color: rgb(29, 29, 29);
+$primary-color: rgb(49, 49, 49);
 $secondary-color: rgb(157, 157, 231);
 
 .touch-container {
@@ -38,10 +38,6 @@ $secondary-color: rgb(157, 157, 231);
                             border-radius: 15px;
                         }
                     }
-
-                    &__show-more {
-
-                    }
                 }
             }
         }
@@ -58,8 +54,60 @@ $secondary-color: rgb(157, 157, 231);
             }
 
             &__body {
-                flex-grow: 1;
+                flex: 1;
                 position: relative;
+                .player-info {
+                    height: 100%;
+                    overflow: auto;
+                    display: flex;
+                    flex-direction: column;
+                    
+                    &__header {
+                        padding: 20px;
+                        font-size: 22px;
+                        font-weight: bold;
+                    }
+
+                    &__content {
+                        display: flex;
+                        height: 100%;
+                        flex-direction: column;
+                        overflow: hidden;
+                        margin-bottom: 20px;
+
+                        &__list {
+                            padding: 5px 20px;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+
+                            &__header {
+                                font-weight: bold;
+                                height: 20px;
+                                margin-left: 15px;
+                            }
+
+                            &__item-container {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                                overflow: auto;
+                                flex: 1 1 1px;
+                                background-color: rgb(245, 245, 245);
+                                border-radius: 5px;
+                                padding: 15px;
+                            }
+                        }
+
+                        .notes {
+                            flex: 1 1 1px;
+                        }
+
+                        .tendency {
+                            flex: .4 1 1px;
+                        }
+                    }
+                }
 
                 .touch-modal-container {
                     position: absolute;
@@ -87,6 +135,10 @@ $secondary-color: rgb(157, 157, 231);
 
                         &__player {
                             justify-content: space-between;
+                        }
+
+                        &__player:active {
+                            color: green;
                         }
 
                         &__add {
@@ -117,13 +169,13 @@ $secondary-color: rgb(157, 157, 231);
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                // height: 30px;
                 background-color: $primary-color;
                 gap: 10px;
                 padding: 10px 0 5px 0;
 
                 input {
                     width: 80%;
+                    max-width: 350px;
                     height: 100%;
                     border-radius: 5px;
                     border: none;
