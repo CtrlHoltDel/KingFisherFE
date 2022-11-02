@@ -17,10 +17,12 @@ const Players = ({
   user,
   selectedPlayer,
   selectPlayer,
+  hideNavBar
 }) => {
   const [search, setSearch] = useState("");
   const [loadingPlayer, setLoadingPlayer] = useState(false);
   const [addingNote, setAddingNote] = useState(false);
+  const [hideSearchButtons, setHideSearchButtons] = useState(false)
 
   const {
     players,
@@ -49,6 +51,7 @@ const Players = ({
     selectPlayer({ ...success, ...formatNotes(success.notes) });
     setLoadingPlayer(false);
     handleSearch("");
+    handleOpenUIOnSearch(false)
     setSearch("");
   };
 
@@ -71,6 +74,14 @@ const Players = ({
   };
 
   const handleAddNote = () => setAddingNote((curr) => !curr);
+
+  const handleMinifyUIOnSearch = () => handleMiniUi(true)
+  const handleOpenUIOnSearch = () => handleMiniUi(false)
+  
+  const handleMiniUi = (bool) => {
+    setHideSearchButtons(bool)
+    hideNavBar(bool)
+  }
 
   // TODO: Remove handle add player from here
   return (
@@ -105,13 +116,13 @@ const Players = ({
         )}
       </div>
       <div className="players__footer">
-        <input placeholder="search" value={search} onChange={updateSearch} />
-        <button className="standard-button">
+        <input placeholder="search" value={search} onChange={updateSearch} onFocus={handleMinifyUIOnSearch}/>
+        {!hideSearchButtons && <><button className="standard-button">
           <RiChatHistoryLine />
         </button>
         <button onClick={handleAddNote} disabled={!selectedPlayer}>
           {addingNote ? <div className="standard-button-cancel"><ImCancelCircle /></div> : <div className="standard-button"><MdOutlineAddCircle /></div>}
-        </button>
+        </button></>}
       </div>
     </div>
   );
