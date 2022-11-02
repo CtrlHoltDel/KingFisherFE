@@ -109,19 +109,16 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding-bottom: 10%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .touch-container__content .players__body .touch-modal-container .players-list {
-  max-height: 80%;
-  width: 75%;
-  max-width: 350px;
-  min-width: 250px;
+  width: 100vw;
   background-color: white;
 }
 .touch-container__content .players__body .touch-modal-container .players-list__item {
   display: flex;
-  padding: 15px;
+  padding: 8px 15px;
+  border-bottom: solid rgb(230, 230, 230) 1px;
 }
 .touch-container__content .players__body .touch-modal-container .players-list__player {
   justify-content: space-between;
@@ -148,7 +145,7 @@
 .touch-container__content .players__body .touch-modal-container .add-note-modal {
   background-color: white;
   width: 80%;
-  height: 300px;
+  height: 175px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -158,6 +155,9 @@
 .touch-container__content .players__body .touch-modal-container .add-note-modal textarea {
   flex: 1;
   resize: none;
+  padding: 10px;
+  border: solid rgb(194, 194, 194) 1px;
+  border-radius: 3px;
 }
 .touch-container__content .players__body .touch-modal-container .add-note-modal__buttons {
   display: flex;
