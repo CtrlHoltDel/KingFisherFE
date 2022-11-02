@@ -72,8 +72,9 @@ const Players = ({
 
   const handleAddNote = () => setAddingNote((curr) => !curr);
 
+  // TODO: Remove handle add player from here
   return (
-    <div className="players">
+    <div className="players" onClick={handleAddPlayer}>
       <div className="players__body">
         <PlayerInfo
           player={selectedPlayer}

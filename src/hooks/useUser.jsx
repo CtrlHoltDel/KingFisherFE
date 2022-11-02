@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+// import Cookies from "universal-cookie";
+// const cookies = new Cookies();
 
-const KINGFISHER_USER_COOKIE = "Kingfisher_User_Cookie";
-const KINGFISHER_GROUP_COOKIE = "Kingfisher_Group_Cookie";
-const KINGFISHER_PLAYER_COOKIE = "Kingfisher_Player_Cookie";
+// const KINGFISHER_USER_COOKIE = "Kingfisher_User_Cookie";
+// const KINGFISHER_GROUP_COOKIE = "Kingfisher_Group_Cookie";
+// const KINGFISHER_PLAYER_COOKIE = "Kingfisher_Player_Cookie";
 
 const useUser = () => {
   const [user, setUser] = useState(null);
