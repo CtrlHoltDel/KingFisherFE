@@ -1,75 +1,115 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
 import usePlayers from "../../hooks/usePlayers";
 import PlayersListView from "../common/PlayersListView";
 
-import { RiChatHistoryLine } from 'react-icons/ri'
+import { RiChatHistoryLine } from "react-icons/ri";
+import { MdOutlineAddCircle } from "react-icons/md";
+import { ImCancelCircle } from "react-icons/im";
+
 import { APIGetNotes } from "../../api/actions";
 import PlayerInfo from "./PlayerInfo";
+import AddNote from "./AddNote";
 
-const MODAL_CONTAINER_CLASS = 'touch-modal-container'
+const MODAL_CONTAINER_CLASS = "touch-modal-container";
 
-const Players = ({ currentlySelectedGroup, user, selectedPlayer, selectPlayer }) => {
-  const [search, setSearch] = useState('')
-  const [loadingPlayer, setLoadingPlayer] = useState(false)
-  
-  const { players, loadingPlayers, handleSearch, hasExactMatch, handleAddPlayer } = usePlayers(user, currentlySelectedGroup)
+const Players = ({
+  currentlySelectedGroup,
+  user,
+  selectedPlayer,
+  selectPlayer,
+}) => {
+  const [search, setSearch] = useState("");
+  const [loadingPlayer, setLoadingPlayer] = useState(false);
+  const [addingNote, setAddingNote] = useState(false);
 
-  if(!currentlySelectedGroup) return <Navigate to='/m/groups'/>
+  const {
+    players,
+    loadingPlayers,
+    handleSearch,
+    hasExactMatch,
+    handleAddPlayer,
+  } = usePlayers(user, currentlySelectedGroup);
 
+  if (!currentlySelectedGroup) return <div>No Group Selected</div>;
 
   const updateSearch = (e) => {
-    handleSearch(e.target.value)
-    setSearch(e.target.value)
-  } 
+    handleSearch(e.target.value);
+    setSearch(e.target.value);
+  };
 
   const handleClickPlayer = async (value) => {
-    setLoadingPlayer(true)
-    const { success, error } = await APIGetNotes(user.token, value.id)
+    setLoadingPlayer(true);
+    const { success, error } = await APIGetNotes(user.token, value.id);
 
-    if(error){
+    if (error) {
       console.log("handle error");
-      return
+      return;
     }
 
-    selectPlayer({ ...success, ...formatNotes(success.notes) })
-    setLoadingPlayer(false)
-    handleSearch("")
-    setSearch("")
-  }
+    selectPlayer({ ...success, ...formatNotes(success.notes) });
+    setLoadingPlayer(false);
+    handleSearch("");
+    setSearch("");
+  };
 
   const formatNotes = (allNotes) => {
-    const noteTypes = { notes: [], tendencies: [] }
+    const noteTypes = { notes: [], tendencies: [] };
 
-    allNotes.forEach(note => {
-        if(note.type === 'note') noteTypes.notes.push(note)
-        if(note.type === 'tendency') noteTypes.tendencies.push(note)
-    })
+    allNotes.forEach((note) => {
+      if (note.type === "note") noteTypes.notes.push(note);
+      if (note.type === "tendency") noteTypes.tendencies.push(note);
+    });
 
-    return noteTypes
-  }
+    return noteTypes;
+  };
 
   const handleClickModalBackground = (e) => {
-    if(e.target.classList.contains(MODAL_CONTAINER_CLASS)){
-      setSearch("")
-      handleSearch("")
+    if (e.target.classList.contains(MODAL_CONTAINER_CLASS)) {
+      setSearch("");
+      handleSearch("");
     }
-  }
+  };
+
+  const handleAddNote = () => setAddingNote((curr) => !curr);
 
   return (
     <div className="players">
       <div className="players__body">
-        <PlayerInfo player={selectedPlayer} loading={loadingPlayer} currentlySelectedGroup={currentlySelectedGroup}/>
+        <PlayerInfo
+          player={selectedPlayer}
+          loading={loadingPlayer}
+          currentlySelectedGroup={currentlySelectedGroup}
+        />
         {players && (
-          <div className={MODAL_CONTAINER_CLASS} onClick={handleClickModalBackground}>
-            <PlayersListView list={players} loading={loadingPlayers} exactMatch={hasExactMatch} search={search} handleClickPlayer={handleClickPlayer}/>
+          <div
+            className={MODAL_CONTAINER_CLASS}
+            onClick={handleClickModalBackground}
+          >
+            <PlayersListView
+              list={players}
+              loading={loadingPlayers}
+              exactMatch={hasExactMatch}
+              search={search}
+              handleClickPlayer={handleClickPlayer}
+            />
+          </div>
+        )}
+        {addingNote && (
+          <div
+            className={MODAL_CONTAINER_CLASS}
+            onClick={handleClickModalBackground}
+          >
+            <AddNote />
           </div>
         )}
       </div>
       <div className="players__footer">
         <input placeholder="search" value={search} onChange={updateSearch} />
-        <button>
+        <button className="standard-button">
           <RiChatHistoryLine />
+        </button>
+        <button onClick={handleAddNote} disabled={!selectedPlayer}>
+          {addingNote ? <div className="standard-button-cancel"><ImCancelCircle /></div> : <div className="standard-button"><MdOutlineAddCircle /></div>}
         </button>
       </div>
     </div>
@@ -77,7 +117,6 @@ const Players = ({ currentlySelectedGroup, user, selectedPlayer, selectPlayer })
 };
 
 export default Players;
-
 
 /*
 

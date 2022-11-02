@@ -66,6 +66,10 @@ $secondary-color: rgb(157, 157, 231);
                         padding: 20px;
                         font-size: 22px;
                         font-weight: bold;
+                        display: flex;
+                        justify-content: space-between;
+                        color: white;
+                        background-color: $primary-color;
                     }
 
                     &__content {
@@ -74,6 +78,7 @@ $secondary-color: rgb(157, 157, 231);
                         flex-direction: column;
                         overflow: hidden;
                         margin-bottom: 20px;
+                        margin-top: 10px;
 
                         &__list {
                             padding: 5px 20px;
@@ -161,6 +166,49 @@ $secondary-color: rgb(157, 157, 231);
                             }
                         }
                     }
+
+                    .add-note-modal {
+                        background-color: white;
+                        width: 80%;
+                        height: 300px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        padding: 10px;
+                        border-radius: 3px;
+
+                        textarea {
+                            flex: 1;
+                            resize: none;
+                        }
+
+                        &__buttons {
+                            display: flex;
+
+                            button {
+                                flex: 1;
+                                height: 30px;
+                                border: none;
+                                background-color: $primary-color;
+                                color: white;
+                                font-weight: bold;
+                            }
+
+                            .not-selected {
+                                opacity: 30%;
+                            }
+
+                            button:first-child {
+                                border-radius: 4px 0 0 4px;
+                            }
+
+                            button:last-child {
+                                border-radius:  0 4px 4px 0;
+                            }
+                        }
+
+
+                    }
                 }
                 
             }
@@ -171,10 +219,11 @@ $secondary-color: rgb(157, 157, 231);
                 align-items: center;
                 background-color: $primary-color;
                 gap: 10px;
-                padding: 10px 0 5px 0;
+                padding: 10px 20px 5px 20px;
+
 
                 input {
-                    width: 80%;
+                    flex: 1;
                     max-width: 350px;
                     height: 100%;
                     border-radius: 5px;
@@ -188,15 +237,14 @@ $secondary-color: rgb(157, 157, 231);
 
                 button {
                     background-color: transparent;
-                    color: white;
                     border: none;
 
                     svg { 
                         height: 30px;
                         width: 30px;
                     }
-                }
 
+                }
 
             }
 
@@ -241,4 +289,16 @@ $secondary-color: rgb(157, 157, 231);
     .remove-underline {
         text-decoration: none;
     }
+}
+
+.standard-button {
+    color: rgb(255, 255, 255);
+}
+
+.standard-button:disabled {
+    color: rgb(88, 88, 88);
+}
+
+.standard-button-cancel {
+    color: red;
 }

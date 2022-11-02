@@ -60,6 +60,10 @@
   padding: 20px;
   font-size: 22px;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: rgb(49, 49, 49);
 }
 .touch-container__content .players__body .player-info__content {
   display: flex;
@@ -67,6 +71,7 @@
   flex-direction: column;
   overflow: hidden;
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 .touch-container__content .players__body .player-info__content__list {
   padding: 5px 20px;
@@ -140,16 +145,50 @@
   width: 20px;
   height: 20px;
 }
+.touch-container__content .players__body .touch-modal-container .add-note-modal {
+  background-color: white;
+  width: 80%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 3px;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal textarea {
+  flex: 1;
+  resize: none;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons {
+  display: flex;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons button {
+  flex: 1;
+  height: 30px;
+  border: none;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  font-weight: bold;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons .not-selected {
+  opacity: 30%;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons button:last-child {
+  border-radius: 0 4px 4px 0;
+}
 .touch-container__content .players__footer {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(49, 49, 49);
   gap: 10px;
-  padding: 10px 0 5px 0;
+  padding: 10px 20px 5px 20px;
 }
 .touch-container__content .players__footer input {
-  width: 80%;
+  flex: 1;
   max-width: 350px;
   height: 100%;
   border-radius: 5px;
@@ -161,7 +200,6 @@
 }
 .touch-container__content .players__footer button {
   background-color: transparent;
-  color: white;
   border: none;
 }
 .touch-container__content .players__footer button svg {
@@ -199,4 +237,16 @@
 }
 .touch-container .remove-underline {
   text-decoration: none;
+}
+
+.standard-button {
+  color: rgb(255, 255, 255);
+}
+
+.standard-button:disabled {
+  color: rgb(88, 88, 88);
+}
+
+.standard-button-cancel {
+  color: red;
 }/*# sourceMappingURL=touch.css.map */

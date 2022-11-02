@@ -18,13 +18,13 @@ const PlayerInfo = ({ player, loading, currentlySelectedGroup }) => {
 
   return (
     <div className="player-info">
-      <div className="player-info__header">{currentlySelectedGroup.name} {'>'} {player.player.name}</div>
+      <div className="player-info__header"><p>{currentlySelectedGroup.name} {'>'} {player.player.name}</p><p>{player.player.type}</p></div>
       <div className="player-info__content">
           <div className="player-info__content__list notes">
             <p className="player-info__content__list__header">Notes</p>
             <div className="player-info__content__list__item-container">
-              {player.notes.map((note) => (
-                <div key={note.id}>
+              {player.notes.map((note, i) => (
+                <div key={`note-${i}`}>
                   <p onClick={handleClick}>{note.note}</p>
                 </div>
               ))}
@@ -33,9 +33,9 @@ const PlayerInfo = ({ player, loading, currentlySelectedGroup }) => {
           <div className="player-info__content__list tendency">
             <p className="player-info__content__list__header">Tendencies</p>
             <div className="player-info__content__list__item-container">
-              {player.tendencies.map((tendency) => (
-                <div key={tendency.id}>
-                  <p ={handleClick}>{tendency.note}</p>
+              {player.tendencies.map((tendency, i) => (
+                <div key={`tendency-${i}`}>
+                  <p onClick={handleClick}>{tendency.note}</p>
                 </div>
               ))}
             </div>
