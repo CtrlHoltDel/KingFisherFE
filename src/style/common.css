@@ -27,4 +27,13 @@
 .negative {
   background-color: black;
   color: white;
+}
+
+.corner-load {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
 }/*# sourceMappingURL=common.css.map */

@@ -8,7 +8,7 @@ const PlayersListView = ({
   search,
   loading,
   handleClickPlayer,
-  handleAddPlayer
+  handleAddPlayer,
 }) => {
   return (
     <div className="players-list">

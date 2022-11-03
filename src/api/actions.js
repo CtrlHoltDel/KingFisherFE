@@ -79,7 +79,6 @@ export const APIAddGroup = async (token, groupName) => {
 }
 
 export const APIAddPlayer = async (token, playerName, groupId) => {
-
     try {
         const { data: { data } } = await api.post(`/players/${groupId}`, { playerName }, setAuthHeader(token))
         return { success: data }
@@ -88,7 +87,6 @@ export const APIAddPlayer = async (token, playerName, groupId) => {
         return { error: error.response.data }
     }
 }
-
 
 export const APIGetNotes = async (token, playerId) => {
     try {
@@ -99,6 +97,30 @@ export const APIGetNotes = async (token, playerId) => {
         return { error: error.response.data }
     }
 }
+
+export const APIAddNote = async (token, playerId, noteBody) => {
+    try {
+        const { data: { data }} = await api.post(`/notes/${playerId}`, noteBody, setAuthHeader(token))
+        console.log(data);
+    } catch (error) {
+        logErrors(error)
+        return { error: error.response.data}
+    }
+}
+
+export const APIUpdateType = async (token, groupId, playerId, type) => {
+
+    console.log(`/players/${groupId}/${playerId}`)
+    console.log({ token, groupId, playerId, type })
+    try {
+        const { data: { data }} = await api.put(`/players/${groupId}/${playerId}`, { type }, setAuthHeader(token))
+        console.log(data);
+    } catch (error) {
+        logErrors(error)
+        return { error: error.response.data}
+    }
+}
+
 const handleNetworkError = (error) => {
     return error
 }

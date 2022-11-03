@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { APIAddNote, APIUpdateType } from "../api/actions";
+import { NOTE_TYPE } from "../utils/constants";
 // import Cookies from "universal-cookie";
 // const cookies = new Cookies();
 
@@ -10,6 +12,7 @@ const useUser = () => {
   const [user, setUser] = useState(null);
   const [currentlySelectedGroup, setCurrentlySelectedGroup] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [generalLoading, setGeneralLoading] = useState(false)
 
   // User
   useEffect(() => {
@@ -17,7 +20,6 @@ const useUser = () => {
   }, []);
 
   const handleLogin = (user) => {
-
     setUser(user);
   };
 
@@ -42,6 +44,30 @@ const useUser = () => {
     setSelectedPlayer(null);
   };
 
+  const addNoteToPlayer = async (type, note, playerId) => {
+    setSelectedPlayer(curr => {
+      curr[type === NOTE_TYPE ? 'notes' : 'tendencies'].push({ note, created_time: new Date().toISOString().slice(0, 19).replace('T', ' '), created_by: user.username, type })
+      return curr;
+    })
+
+    setGeneralLoading(true)
+    await APIAddNote(user.token, playerId, { note, type })
+    setGeneralLoading(false)
+  }
+
+  const updateType = async (newType) => {
+    let playerId;
+    setSelectedPlayer(curr => {
+      playerId = curr.player.id
+      return { ...curr, player: { ...curr.player, type: newType }}
+    })
+
+    setGeneralLoading(true)
+    APIUpdateType(user.token, currentlySelectedGroup.id, playerId ,newType)
+    setGeneralLoading(false)
+
+  }
+
   return {
     user,
     handleLogin,
@@ -50,6 +76,9 @@ const useUser = () => {
     currentlySelectedGroup,
     selectedPlayer,
     selectPlayer,
+    addNoteToPlayer,
+    generalLoading,
+    updateType
   };
 };
 

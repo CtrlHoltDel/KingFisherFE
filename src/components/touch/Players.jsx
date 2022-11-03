@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import usePlayers from "../../hooks/usePlayers";
 import PlayersListView from "../common/PlayersListView";
 
-import { RiChatHistoryLine } from "react-icons/ri";
-import { MdOutlineAddCircle } from "react-icons/md";
-import { ImCancelCircle } from "react-icons/im";
-
 import { APIGetNotes } from "../../api/actions";
 import PlayerInfo from "./PlayerInfo";
 import AddNote from "./AddNote";
+import PlayersFooter from "./PlayersFooter";
+import { formatNotes } from "../../utils/dataFormat";
 
 const MODAL_CONTAINER_CLASS = "touch-modal-container";
 
@@ -17,27 +15,31 @@ const Players = ({
   user,
   selectedPlayer,
   selectPlayer,
-  hideNavBar
+  hideNavBar,
+  addNoteToPlayer,
+  updateType
 }) => {
-  const [search, setSearch] = useState("");
   const [loadingPlayer, setLoadingPlayer] = useState(false);
-  const [addingNote, setAddingNote] = useState(false);
-  const [hideSearchButtons, setHideSearchButtons] = useState(false)
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
+  const openNoteModal = () => {
+    setNoteModalOpen(true)
+    hideNavBar(true)
+  };
+  const closeNoteModal = () => {
+    setNoteModalOpen(false)
+    hideNavBar(false)
+  };
 
   const {
     players,
     loadingPlayers,
-    handleSearch,
     hasExactMatch,
     handleAddPlayer,
-  } = usePlayers(user, currentlySelectedGroup);
+    playerSearch,
+    updateSearch
+  } = usePlayers(user, currentlySelectedGroup, selectPlayer);
 
   if (!currentlySelectedGroup) return <div>No Group Selected</div>;
-
-  const updateSearch = (e) => {
-    handleSearch(e.target.value);
-    setSearch(e.target.value);
-  };
 
   const handleClickPlayer = async (value) => {
     setLoadingPlayer(true);
@@ -49,114 +51,52 @@ const Players = ({
     }
 
     selectPlayer({ ...success, ...formatNotes(success.notes) });
+    updateSearch("")
     setLoadingPlayer(false);
-    handleSearch("");
-    handleOpenUIOnSearch(false)
-    setSearch("");
   };
 
-  const formatNotes = (allNotes) => {
-    const noteTypes = { notes: [], tendencies: [] };
-
-    allNotes.forEach((note) => {
-      if (note.type === "note") noteTypes.notes.push(note);
-      if (note.type === "tendency") noteTypes.tendencies.push(note);
-    });
-
-    return noteTypes;
-  };
-
-  const handleClickModalBackground = (e) => {
-    if (e.target.classList.contains(MODAL_CONTAINER_CLASS)) {
-      setSearch("");
-      handleSearch("");
-    }
-  };
-
-  const handleAddNote = () => setAddingNote((curr) => !curr);
-
-  const handleMinifyUIOnSearch = () => handleMiniUi(true)
-  const handleOpenUIOnSearch = () => handleMiniUi(false)
-  
-  const handleMiniUi = (bool) => {
-    setHideSearchButtons(bool)
-    hideNavBar(bool)
+  const handleAddNote = (note, type) => {
+    addNoteToPlayer(type, note, selectedPlayer.player.id)
+    closeNoteModal()
   }
 
-  // TODO: Remove handle add player from here
   return (
-    <div className="players" onClick={handleAddPlayer}>
+    <div className="players">
       <div className="players__body">
         <PlayerInfo
           player={selectedPlayer}
           loading={loadingPlayer}
           currentlySelectedGroup={currentlySelectedGroup}
+          updateType={updateType}
         />
         {players && (
-          <div
-            className={MODAL_CONTAINER_CLASS}
-            onClick={handleClickModalBackground}
-          >
+          <div className={MODAL_CONTAINER_CLASS}>
             <PlayersListView
               list={players}
               loading={loadingPlayers}
               exactMatch={hasExactMatch}
-              search={search}
+              search={playerSearch}
               handleClickPlayer={handleClickPlayer}
+              handleAddPlayer={handleAddPlayer}
             />
           </div>
         )}
-        {addingNote && (
-          <div
-            className={MODAL_CONTAINER_CLASS}
-            onClick={handleClickModalBackground}
-          >
-            <AddNote />
+        {noteModalOpen && (
+          <div className={MODAL_CONTAINER_CLASS}>
+            <AddNote closeNoteModal={closeNoteModal} handleAddNote={handleAddNote}/>
           </div>
         )}
       </div>
-      <div className="players__footer">
-        <input placeholder="search" value={search} onChange={updateSearch} onFocus={handleMinifyUIOnSearch}/>
-        {!hideSearchButtons && <><button className="standard-button">
-          <RiChatHistoryLine />
-        </button>
-        <button onClick={handleAddNote} disabled={!selectedPlayer}>
-          {addingNote ? <div className="standard-button-cancel"><ImCancelCircle /></div> : <div className="standard-button"><MdOutlineAddCircle /></div>}
-        </button></>}
-      </div>
+      <PlayersFooter
+        updateSearch={updateSearch}
+        openNoteModal={openNoteModal}
+        closeNoteModal={closeNoteModal}
+        noteModalOpen={noteModalOpen}
+        playerSearch={playerSearch}
+        selectedPlayer={selectedPlayer}
+      />
     </div>
   );
 };
 
 export default Players;
-
-/*
-
-[
-    {
-        "note": "note-contents 1",
-        "created_time": "2022-01-18T10:35:15.903Z",
-        "created_by": "ctrlholtdel",
-        "type": "note"
-    },
-    {
-        "note": "note-contents 2",
-        "created_time": "2022-01-18T10:35:15.903Z",
-        "created_by": "testuser2",
-        "type": "note"
-    },
-    {
-        "note": "note-contents 3",
-        "created_time": "2022-01-18T10:35:15.903Z",
-        "created_by": "ctrlholtdel",
-        "type": "note"
-    },
-    {
-        "note": "tendency-contents 2",
-        "created_time": "2022-01-18T10:35:15.903Z",
-        "created_by": "ctrlholtdel",
-        "type": "tendency"
-    }
-]
-
-*/

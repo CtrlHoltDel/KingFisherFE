@@ -1,13 +1,17 @@
 import { useState } from "react"
-import { APIGetPlayers } from "../api/actions";
+import { APIAddPlayer, APIGetPlayers } from "../api/actions";
 
-const usePlayers = (user, currentlySelectedGroup) => {
+const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
 
     const [players, setPlayers] = useState(null)
     const [loadingPlayers, setLoadingPlayers] = useState(true)
+    const [loadingAddPlayer, setLoadingAddPlayer] = useState(false)
+
+
     const [hasExactMatch, setHasExactMatch] = useState(null)
 
     const [noResults, setNoResults] = useState(false)
+    const [playerSearch, setPlayerSearch] = useState("")
 
     const handleSearch = async (search) => {
         if(!search){
@@ -25,9 +29,7 @@ const usePlayers = (user, currentlySelectedGroup) => {
         }
 
         setLoadingPlayers(true);
-        console.log("1");
         const { success, error } = await APIGetPlayers(user.token, currentlySelectedGroup.id, search);
-        console.log("1");
 
         if(error) return console.log("handle error", error);
 
@@ -41,11 +43,24 @@ const usePlayers = (user, currentlySelectedGroup) => {
         setLoadingPlayers(false);
     } 
 
-    const handleAddPlayer = (e) => {
-        e.preventDefault()
+    const handleAddPlayer = async () => {
+        setLoadingAddPlayer(true)
+        const { error, success } = await APIAddPlayer(user.token, playerSearch, currentlySelectedGroup.id)
+
+        selectPlayer({ player: { ...success.addedPlayer, note_group_id: currentlySelectedGroup.id }, notes: [], tendencies: [] })
+        console.log(success);
+
+        setPlayerSearch('')
+        setPlayers(null)
+        setLoadingAddPlayer(false)
     }
 
-    return { players, loadingPlayers, hasExactMatch, handleSearch, handleAddPlayer }
+    const updateSearch = (value) => {
+        setPlayerSearch(value)
+        handleSearch(value)
+    }
+
+    return { players, loadingPlayers, hasExactMatch, handleSearch, handleAddPlayer, playerSearch, updateSearch, loadingAddPlayer }
     
 }
 

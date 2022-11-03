@@ -1,7 +1,6 @@
 .touch-container {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  max-height: -webkit-fill-available;
   background-color: lightblue;
   display: flex;
   flex-direction: column;
@@ -43,10 +42,6 @@
   display: flex;
   flex-direction: column;
 }
-.touch-container__content .players__header {
-  display: flex;
-  justify-content: space-between;
-}
 .touch-container__content .players__body {
   flex: 1;
   position: relative;
@@ -58,13 +53,63 @@
   flex-direction: column;
 }
 .touch-container__content .players__body .player-info__header {
-  padding: 20px;
-  font-size: 22px;
+  padding: 12px 20px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   color: white;
   background-color: rgb(49, 49, 49);
+}
+.touch-container__content .players__body .player-info__header__group-name {
+  font-size: 11px;
+  color: rgb(226, 226, 226);
+  flex: 1;
+}
+.touch-container__content .players__body .player-info__header__player-name {
+  font-size: 20px;
+  flex: 1;
+}
+.touch-container__content .players__body .player-info__header__options {
+  display: flex;
+  align-self: center;
+  gap: 15px;
+}
+.touch-container__content .players__body .player-info__header__options p {
+  align-self: center;
+}
+.touch-container__content .players__body .player-info__header__options svg {
+  width: 25px;
+  height: 25px;
+}
+.touch-container__content .players__body .player-info__header__edit {
+  padding: 5px 20px 20px 20px;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.touch-container__content .players__body .player-info__header__edit__label {
+  font-size: 13px;
+}
+.touch-container__content .players__body .player-info__header__edit__input-container {
+  display: flex;
+  gap: 8px;
+}
+.touch-container__content .players__body .player-info__header__edit__input-container input {
+  flex: 1;
+  padding: 5px;
+  border-radius: 3px;
+  border: transparent;
+}
+.touch-container__content .players__body .player-info__header__edit__input-container button {
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(49, 49, 49);
+  color: white;
+  border: solid 1px gray;
+  border-radius: 3px;
 }
 .touch-container__content .players__body .player-info__content {
   display: flex;
@@ -78,12 +123,11 @@
   padding: 5px 20px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 .touch-container__content .players__body .player-info__content__list__header {
   font-weight: bold;
   height: 20px;
-  margin-left: 15px;
+  font-size: 14px;
 }
 .touch-container__content .players__body .player-info__content__list__item-container {
   display: flex;
@@ -146,39 +190,88 @@
 .touch-container__content .players__body .touch-modal-container .add-note-modal {
   background-color: white;
   width: 100vw;
-  height: 175px;
+  display: flex;
+  flex-direction: column;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__body {
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px;
-  border-radius: 3px;
 }
-.touch-container__content .players__body .touch-modal-container .add-note-modal textarea {
-  flex: 1;
+.touch-container__content .players__body .touch-modal-container .add-note-modal__body textarea {
   resize: none;
-  padding: 10px;
   border: solid rgb(194, 194, 194) 1px;
   border-radius: 3px;
+  height: 150px;
+  padding: 10px;
 }
-.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons {
+.touch-container__content .players__body .touch-modal-container .add-note-modal__body__buttons {
   display: flex;
 }
-.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons button {
+.touch-container__content .players__body .touch-modal-container .add-note-modal__body__buttons button {
   flex: 1;
   height: 30px;
   border: none;
   background-color: rgb(49, 49, 49);
   color: white;
   font-weight: bold;
+  justify-content: center;
 }
-.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons .not-selected {
+.touch-container__content .players__body .touch-modal-container .add-note-modal__body__buttons .not-selected {
   opacity: 30%;
 }
-.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons button:first-child {
+.touch-container__content .players__body .touch-modal-container .add-note-modal__body__buttons button:first-child {
   border-radius: 4px 0 0 4px;
 }
-.touch-container__content .players__body .touch-modal-container .add-note-modal__buttons button:last-child {
+.touch-container__content .players__body .touch-modal-container .add-note-modal__body__buttons button:last-child {
   border-radius: 0 4px 4px 0;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__controls {
+  background-color: rgb(49, 49, 49);
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  gap: 10px;
+  height: 65px;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__controls button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  border: solid gray 1px;
+  padding: 5px 15px;
+  border-radius: 3px;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__controls button svg {
+  width: 25px;
+  height: 25px;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__controls button:disabled {
+  opacity: 30%;
+}
+.touch-container__content .players__body .touch-modal-container .add-note-modal__controls button:active {
+  background-color: rgb(240, 240, 240);
+  border-radius: rgb(240, 240, 240);
+  color: rgb(49, 49, 49);
+}
+.touch-container__content .players__body .no-player-selected {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 15px;
+  gap: 10px;
+}
+.touch-container__content .players__body .no-player-selected svg {
+  width: 30px;
+  height: 30px;
+  color: rgb(49, 49, 49);
 }
 .touch-container__content .players__footer {
   display: flex;
@@ -186,7 +279,7 @@
   align-items: center;
   background-color: rgb(49, 49, 49);
   gap: 10px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 0 20px;
 }
 .touch-container__content .players__footer input {
   flex: 1;
@@ -251,4 +344,8 @@
 
 .standard-button-cancel {
   color: red;
+}
+
+.standard-button-accept {
+  color: green;
 }/*# sourceMappingURL=touch.css.map */
