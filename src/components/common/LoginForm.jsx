@@ -44,7 +44,7 @@ const LoginForm = ({ handleSetUser }) => {
       setUsername('')
       setPassword('')
       setPasswordConfirmation('')
-      setAuthType(REGISTER)
+      setAuthType(LOGIN)
       setToastMessage('Account created.')
     }
     setLoading(false);
