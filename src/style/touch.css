@@ -1,13 +1,11 @@
 .touch-container {
   height: 100%;
   width: 100vw;
-  background-color: lightblue;
   display: flex;
   flex-direction: column;
 }
 .touch-container__content {
   flex-grow: 1;
-  background-color: rgb(201, 176, 176);
 }
 .touch-container__content .groups {
   padding: 20px;
@@ -58,7 +56,7 @@
   display: flex;
   justify-content: space-between;
   color: white;
-  background-color: rgb(49, 49, 49);
+  background-color: #012e4d;
 }
 .touch-container__content .players__body .player-info__header__group-name {
   font-size: 11px;
@@ -83,7 +81,7 @@
 }
 .touch-container__content .players__body .player-info__header__edit {
   padding: 5px 20px 20px 20px;
-  background-color: rgb(49, 49, 49);
+  background-color: #012e4d;
   color: white;
   display: flex;
   flex-direction: column;
@@ -106,7 +104,7 @@
   padding: 5px 10px;
   border: none;
   font-weight: bold;
-  background-color: rgb(49, 49, 49);
+  background-color: #012e4d;
   color: white;
   border: solid 1px gray;
   border-radius: 3px;
@@ -213,7 +211,7 @@
   flex: 1;
   height: 30px;
   border: none;
-  background-color: rgb(49, 49, 49);
+  background-color: #012e4d;
   color: white;
   font-weight: bold;
   justify-content: center;
@@ -228,7 +226,7 @@
   border-radius: 0 4px 4px 0;
 }
 .touch-container__content .players__body .touch-modal-container .add-note-modal__controls {
-  background-color: rgb(49, 49, 49);
+  background-color: #012e4d;
   display: flex;
   padding: 10px;
   justify-content: space-between;
@@ -257,7 +255,7 @@
 .touch-container__content .players__body .touch-modal-container .add-note-modal__controls button:active {
   background-color: rgb(240, 240, 240);
   border-radius: rgb(240, 240, 240);
-  color: rgb(49, 49, 49);
+  color: #012e4d;
 }
 .touch-container__content .players__body .no-player-selected {
   display: flex;
@@ -271,13 +269,13 @@
 .touch-container__content .players__body .no-player-selected svg {
   width: 30px;
   height: 30px;
-  color: rgb(49, 49, 49);
+  color: #012e4d;
 }
 .touch-container__content .players__footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(49, 49, 49);
+  background-color: #012e4d;
   gap: 10px;
   padding: 10px 20px 0 20px;
 }
@@ -301,8 +299,14 @@
   height: 30px;
   width: 30px;
 }
+.touch-container__content .no-group-selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .touch-container__nav {
-  background-color: rgb(49, 49, 49);
+  background-color: #012e4d;
   height: 65px;
   display: flex;
   justify-content: center;

@@ -1,16 +1,14 @@
-$primary-color: rgb(49, 49, 49);
+$primary-color: #012e4d;
 $secondary-color: rgb(157, 157, 231);
 
 .touch-container {
     height: 100%;
     width: 100vw;
-    background-color: lightblue;
     display: flex;
     flex-direction: column;
 
     &__content {
         flex-grow: 1;
-        background-color: rgb(201, 176, 176);
 
         .groups {
             padding: 20px;
@@ -359,6 +357,13 @@ $secondary-color: rgb(157, 157, 231);
 
             }
 
+        }
+
+        .no-group-selected {
+            display: flex;       
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
     }
 

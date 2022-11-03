@@ -14,19 +14,88 @@
   align-items: center;
 }
 
-.pill {
-  padding: 5px 20px;
-  border-radius: 15px;
+.auth-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #26a6fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.positive {
-  background-color: green;
-  color: white;
+.auth-container .auth-inner {
+  height: 550px;
+  width: 300px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
 }
-
-.negative {
-  background-color: black;
-  color: white;
+.auth-container .auth-inner .loading-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+.auth-container .auth-inner img {
+  width: 140px;
+  height: 140px;
+}
+.auth-container .auth-inner form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 150px;
+  gap: 10px;
+  width: 70%;
+  margin-bottom: 40px;
+}
+.auth-container .auth-inner form .input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.auth-container .auth-inner form .input-container p {
+  font-size: 14px;
+}
+.auth-container .auth-inner form .input-container input {
+  width: 100%;
+  border: solid rgb(182, 182, 182) 1px;
+  padding: 5px;
+  border-radius: 2px;
+}
+.auth-container .auth-inner form .input-container input:focus {
+  outline: none;
+  border: solid #26a6fe 1px;
+  border-radius: 2px;
+}
+.auth-container .auth-inner form button {
+  margin-top: 20px;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  background-color: #fea613;
+  position: absolute;
+  bottom: 60px;
+}
+.auth-container .auth-inner form button:disabled {
+  opacity: 50%;
+  color: black;
+}
+.auth-container .auth-inner .toggle-auth-type {
+  font-size: 12px;
+  position: absolute;
+  bottom: 22px;
+  border: none;
+  background-color: transparent;
+}
+.auth-container .auth-inner .toggle-auth-type:hover {
+  cursor: pointer;
 }
 
 .corner-load {
@@ -36,4 +105,17 @@
   width: 40px;
   height: 40px;
   z-index: 2;
+}
+
+.toast {
+  position: absolute;
+  bottom: 10px;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
 }/*# sourceMappingURL=common.css.map */

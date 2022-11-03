@@ -21,6 +21,7 @@ export const APIHandleLogin = async (username, password) => {
 export const APIHandleRegister = async (username, password) => {
     try {
         await api.post('/auth/register', { username, password })
+        return { success: "Registered" }
     } catch (error) {
         logErrors(error)
         if(error.code === BAD_REQUEST) return { error: error.response.data.message }

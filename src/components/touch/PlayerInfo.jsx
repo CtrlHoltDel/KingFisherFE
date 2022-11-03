@@ -15,11 +15,10 @@ const PlayerInfo = ({
   const handleOpenEditMenu = () => setPlayerEditMenuOpen(true);
   const handleCloseEditMenu = () => setPlayerEditMenuOpen(false);
 
-
   const [playerType, setPlayerType] = useState('')
 
   useEffect(() => {
-    if(player) setPlayerType(player.player.type)
+    if(player) setPlayerType(player.player.type || '')
   }, [player])
 
   if (loading) {

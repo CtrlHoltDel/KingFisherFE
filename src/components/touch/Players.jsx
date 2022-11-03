@@ -39,26 +39,27 @@ const Players = ({
     updateSearch
   } = usePlayers(user, currentlySelectedGroup, selectPlayer);
 
-  if (!currentlySelectedGroup) return <div>No Group Selected</div>;
-
+  
   const handleClickPlayer = async (value) => {
     setLoadingPlayer(true);
     const { success, error } = await APIGetNotes(user.token, value.id);
-
+    
     if (error) {
       console.log("handle error");
       return;
     }
-
+    
     selectPlayer({ ...success, ...formatNotes(success.notes) });
     updateSearch("")
     setLoadingPlayer(false);
   };
-
+  
   const handleAddNote = (note, type) => {
     addNoteToPlayer(type, note, selectedPlayer.player.id)
     closeNoteModal()
   }
+
+  if (!currentlySelectedGroup) return <div className="no-group-selected"><p>No Group Selected</p></div>;
 
   return (
     <div className="players">
