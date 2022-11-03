@@ -63,7 +63,7 @@ const useUser = () => {
     })
 
     setGeneralLoading(true)
-    APIUpdateType(user.token, currentlySelectedGroup.id, playerId ,newType)
+    await APIUpdateType(user.token, currentlySelectedGroup.id, playerId ,newType)
     setGeneralLoading(false)
 
   }

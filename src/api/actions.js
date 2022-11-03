@@ -109,9 +109,6 @@ export const APIAddNote = async (token, playerId, noteBody) => {
 }
 
 export const APIUpdateType = async (token, groupId, playerId, type) => {
-
-    console.log(`/players/${groupId}/${playerId}`)
-    console.log({ token, groupId, playerId, type })
     try {
         const { data: { data }} = await api.put(`/players/${groupId}/${playerId}`, { type }, setAuthHeader(token))
         console.log(data);

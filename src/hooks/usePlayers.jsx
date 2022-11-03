@@ -47,11 +47,14 @@ const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
         setLoadingAddPlayer(true)
         const { error, success } = await APIAddPlayer(user.token, playerSearch, currentlySelectedGroup.id)
 
-        selectPlayer({ player: { ...success.addedPlayer, note_group_id: currentlySelectedGroup.id }, notes: [], tendencies: [] })
-        console.log(success);
+        if(error){
+            console.log(error);
+        } else {
+            selectPlayer({ player: { ...success.addedPlayer, note_group_id: currentlySelectedGroup.id }, notes: [], tendencies: [] })
+            setPlayerSearch('')
+            setPlayers(null)
+        }
 
-        setPlayerSearch('')
-        setPlayers(null)
         setLoadingAddPlayer(false)
     }
 
