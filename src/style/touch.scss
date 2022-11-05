@@ -11,14 +11,14 @@ $secondary-color: rgb(157, 157, 231);
         flex-grow: 1;
 
         .groups {
-            padding: 20px;
-            height: 80%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
 
             &__list {
                 display: flex;
                 flex-direction: column;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.171);
+                flex: 1;
                 gap: 5px;
                 &__group-card {
                     display: flex;
@@ -35,6 +35,69 @@ $secondary-color: rgb(157, 157, 231);
                             background-color: rgba(54, 121, 54, 0.904);
                             border-radius: 15px;
                         }
+                    }
+                }
+
+            }
+
+            &__controls {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $primary-color;
+                padding: 5px;
+
+                button {
+                    padding: 8px 20px;
+                    color: white;
+                    border: solid 1px gray;
+                    border-radius: 3px;
+                    background-color: transparent;
+                }
+
+                button:active {
+
+                }
+            }
+
+            &__new-group-modal {
+                background-color: $primary-color;
+                display: flex;
+                padding: 5px;
+                height: 43px;
+                gap: 15px;
+                padding: 5px 20px;
+
+                input{ 
+                    height: 100%;
+                    padding: 5px;
+                    flex: 1;
+                    border: none;
+                    border-radius: 3px;
+                }
+
+                input:focus {
+                    outline: none;
+                }
+
+                &__controls {
+                    display: flex;
+                    gap: 20px;
+
+                    &__cancel {
+                        border: none;
+                        background-color: transparent;
+                        color: white;
+                        text-decoration: underline;
+                        opacity: 80%;
+                    }
+
+                    &__create {
+                        padding: 8px 15px;
+                        color: white;
+                        border: solid 1px gray;
+                        border-radius: 3px;
+                        background-color: transparent;
                     }
                 }
             }

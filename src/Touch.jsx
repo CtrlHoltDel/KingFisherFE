@@ -16,14 +16,9 @@ const Touch = ({ user, logoutUser, selectGroup, currentlySelectedGroup, selected
   const [hideNav, setHideNav] = useState(false);
   const hideNavBar = (bool) => setHideNav(bool)
 
-  const scrollInto = useRef(null)
-  useEffect(() => {
-    scrollInto.current.scrollIntoView()
-  })
-
   return (
     <div className="touch-container">
-      <div className="touch-container__content" ref={scrollInto}>
+      <div className="touch-container__content">
         <Routes>
           <Route path="*" element={<Players currentlySelectedGroup={currentlySelectedGroup} user={user} selectedPlayer={selectedPlayer} selectPlayer={selectPlayer} hideNavBar={hideNavBar} addNoteToPlayer={addNoteToPlayer} updateType={updateType}/>} />
           <Route path="/m/groups" element={<Groups user={user} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup}/>} />

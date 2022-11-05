@@ -1,62 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { APIAddGroup, APIAddUserToGroup, APIGetGroups } from "../../api/actions";
+import React from "react";
+import { useState } from "react";
+import useGroups from "../../hooks/useGroups";
 import GroupCard from "./GroupCard";
 
 const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
-  const [groups, setGroups] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { groups, loading, addUserLoading, addUserToGroup, createGroup } =
+    useGroups(user, currentlySelectedGroup);
+  const [addedGroupValue, setAddedGroupValue] = useState("");
+  const [newGroupModal, setNewGroupModal] = useState(false);
 
-  const [addUserLoading, setAddUserLoading] = useState(false);
-  const [addedUser, setAddedUser] = useState("");
-
-  const [addedGroup, setAddedGroup] = useState("")
-
-  const [groupError, setGroupError] = useState("")
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const loadGroups = async () => {
-      setLoading(true);
-      const { success, error } = await APIGetGroups(user.token);
-
-      if(error){
-        //handle error
-        console.log(error);
-      }
-
-      setGroups(success.data.groups);
-      setLoading(false);
-    };
-    loadGroups();
-  }, [user.token]);
+  const openNewGroupModal = () => setNewGroupModal(true);
+  const closeNewGroupModal = () => setNewGroupModal(false);
 
   if (loading) return <p>Loading</p>;
-
-  const addUserToGroup = async (e) => {
-    e.preventDefault();
-    setAddUserLoading(true);
-    const { success, error } = await APIAddUserToGroup(
-      user.token,
-      currentlySelectedGroup.id,
-      addedUser
-    );
-    if (error) {
-      setError(JSON.stringify(error));
-      return;
-    }
-    console.log(success);
-    setError(success.message)
-
-    setAddUserLoading(false);
-  };
-
-  const createGroup = async (e) => {
-    e.preventDefault()
-    const { success, error } = await APIAddGroup(user.token, addedGroup);
-    if(error) return setGroupError(JSON.stringify(error))
-    
-    setGroupError(JSON.stringify(success))
-  }
 
   return (
     <div className="groups">
@@ -74,31 +30,20 @@ const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
           <p>No Groups</p>
         )}
       </div>
-      {currentlySelectedGroup &&
-        currentlySelectedGroup.created_by === user.username && (
-          <div>
-            <form disabled={addUserLoading} onSubmit={addUserToGroup}>
-              <input
-                placeholder="Add User"
-                onChange={(e) => {
-                  setAddedUser(e.target.value);
-                  if (error) {
-                    setError("");
-                  }
-                }}
-              />
-              <button>Add User</button>
-              {error}
-            </form>
-          </div>
-        )}
-        <div>
-          <form action="" onSubmit={createGroup}>
-            <input type="text" placeholder="Create Group" value={addedGroup} onChange={(e) => setAddedGroup(e.target.value)}/>
-            <button>Add Group</button>
-            {groupError}
-          </form>
+      {!newGroupModal && (
+        <div className="groups__controls">
+          <button onClick={openNewGroupModal}>Create New Group</button>
         </div>
+      )}
+      {newGroupModal && (
+        <div className="groups__new-group-modal">
+          <input placeholder="Group Name.." />
+          <div className="groups__new-group-modal__controls">
+            <button className="groups__new-group-modal__controls__cancel" onClick={closeNewGroupModal}>cancel</button>
+            <button className="groups__new-group-modal__controls__create">create</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

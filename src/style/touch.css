@@ -8,14 +8,14 @@
   flex-grow: 1;
 }
 .touch-container__content .groups {
-  padding: 20px;
-  height: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .touch-container__content .groups__list {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.171);
+  flex: 1;
   gap: 5px;
 }
 .touch-container__content .groups__list__group-card {
@@ -33,6 +33,56 @@
   color: white;
   background-color: rgba(54, 121, 54, 0.904);
   border-radius: 15px;
+}
+.touch-container__content .groups__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #012e4d;
+  padding: 5px;
+}
+.touch-container__content .groups__controls button {
+  padding: 8px 20px;
+  color: white;
+  border: solid 1px gray;
+  border-radius: 3px;
+  background-color: transparent;
+}
+.touch-container__content .groups__new-group-modal {
+  background-color: #012e4d;
+  display: flex;
+  padding: 5px;
+  height: 43px;
+  gap: 15px;
+  padding: 5px 20px;
+}
+.touch-container__content .groups__new-group-modal input {
+  height: 100%;
+  padding: 5px;
+  flex: 1;
+  border: none;
+  border-radius: 3px;
+}
+.touch-container__content .groups__new-group-modal input:focus {
+  outline: none;
+}
+.touch-container__content .groups__new-group-modal__controls {
+  display: flex;
+  gap: 20px;
+}
+.touch-container__content .groups__new-group-modal__controls__cancel {
+  border: none;
+  background-color: transparent;
+  color: white;
+  text-decoration: underline;
+  opacity: 80%;
+}
+.touch-container__content .groups__new-group-modal__controls__create {
+  padding: 8px 15px;
+  color: white;
+  border: solid 1px gray;
+  border-radius: 3px;
+  background-color: transparent;
 }
 .touch-container__content .players {
   background-color: white;

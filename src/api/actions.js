@@ -32,7 +32,7 @@ export const APIHandleRegister = async (username, password) => {
 
 export const APIGetPlayers = async (token, groupId, search) => {
     try {
-        const { data } = await api.get(`players/${groupId}?search=${search}`, setAuthHeader(token))
+        const { data } = await api.get(`players/${groupId}?search=${encodeURIComponent(search)}`, setAuthHeader(token))
         return { success: data }
     } catch (error) {
         logErrors(error);
