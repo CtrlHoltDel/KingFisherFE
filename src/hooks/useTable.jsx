@@ -1,28 +1,36 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 
+const EMPTY_SEAT = {
+    name: null,
+    id: null,
+    type: null
+}
+
 const useTable = () => {
-    const [players, setPlayers] = useState([])
+    const [seats, setSeats] = useState([])
 
     useEffect(() => {
         const playersPlaceholder = []
 
         for (let i = 1; i < 9; i++) {
-            playersPlaceholder.push([{ seatNumber: i }])
+            playersPlaceholder.push({ ...EMPTY_SEAT, seatNumber: i })
         }
 
-        setPlayers(playersPlaceholder)
+        setSeats(playersPlaceholder)
     }, [])
 
-    const addPlayer = () => {
+    const addPlayer = (selectedPlayer, seatNumber) => {
+        setSeats(seats => seats.map(seat => seat.seatNumber === seatNumber ? { ...selectedPlayer, seatNumber: seat.seatNumber } : seat))
+    }
+
+    const removePlayer = (seatNumber) => {
+        
+        setSeats(seats => seats.map(seat => seat.seatNumber === seatNumber ? { ...EMPTY_SEAT, seatNumber: seat.seatNumber } : seat))
 
     }
 
-    const removePlayer = () => {
-
-    }
-
-    return { players, addPlayer, removePlayer }
+    return { seats, addPlayer, removePlayer }
 }
 
 export default useTable

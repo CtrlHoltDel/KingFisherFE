@@ -5,6 +5,7 @@ const useTables = () => {
 
     const addTable = () => {
         const newTable = { id: Math.random() }
+
         setTables(tables => [ ...tables, newTable])
     }
 

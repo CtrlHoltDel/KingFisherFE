@@ -28,6 +28,8 @@ const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
             }
         }
 
+        console.log(user.token, currentlySelectedGroup.id, search)
+
         setLoadingPlayers(true);
         const { success, error } = await APIGetPlayers(user.token, currentlySelectedGroup.id, search);
 
@@ -63,7 +65,7 @@ const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
         handleSearch(value)
     }
 
-    return { players, loadingPlayers, hasExactMatch, handleSearch, handleAddPlayer, playerSearch, updateSearch, loadingAddPlayer }
+    return { players, loadingPlayers, hasExactMatch, handleAddPlayer, playerSearch, updateSearch, loadingAddPlayer }
     
 }
 

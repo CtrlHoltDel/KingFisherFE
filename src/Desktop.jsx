@@ -8,7 +8,7 @@ const Desktop = ({ user, logoutUser }) => {
   return (
     <div className="desktop">
       <Navigation user={user} logoutUser={logoutUser}/>
-      <Tables />
+      <Tables user={user}/>
     </div>
   )
 }

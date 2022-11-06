@@ -81,6 +81,7 @@
   align-content: flex-start;
   padding: 15px;
   gap: 10px;
+  position: relative;
 }
 .desktop .tables .table {
   width: 200px;
@@ -102,9 +103,56 @@
   flex-direction: column;
   gap: 3px;
 }
+.desktop .tables .table__seat-container .seat__empty-seat {
+  width: 100%;
+  font-size: 13px;
+}
 .desktop .tables .table__seat-container .seat__seated-player {
   display: flex;
   justify-content: space-between;
+}
+.desktop .tables .table__seat-container .seat .search-modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.11);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.desktop .tables .table__seat-container .seat .search-modal-container__modal {
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+.desktop .tables .table__seat-container .seat .search-modal-container__modal__results {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px 15px 0 15px;
+}
+.desktop .tables .table__seat-container .seat .search-modal-container__modal__results__result {
+  display: flex;
+  justify-content: space-between;
+}
+.desktop .tables .table__seat-container .seat .search-modal-container__modal__results__result__name {
+  width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.desktop .tables .table__seat-container .seat .search-modal-container__modal__controls {
+  padding: 0 15px 15px 15px;
+  display: flex;
+}
+.desktop .tables .table__seat-container .seat .search-modal-container__modal__controls input {
+  flex: 1;
 }
 .desktop .tables__add-table {
   background-color: transparent;
