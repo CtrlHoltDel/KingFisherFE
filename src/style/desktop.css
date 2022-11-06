@@ -1,0 +1,130 @@
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.desktop .navigation {
+  background-color: #26a6fe;
+  display: flex;
+}
+.desktop .navigation .layout-open {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 160px;
+  padding: 15px 0;
+}
+.desktop .navigation .layout-open .user {
+  font-size: 13px;
+  width: 100%;
+}
+.desktop .navigation .layout-open .menu {
+  width: 100%;
+}
+.desktop .navigation .layout-open button {
+  display: flex;
+  width: 100%;
+  padding: 5px 0;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+.desktop .navigation .layout-open button svg {
+  height: 25px;
+  width: 25px;
+}
+.desktop .navigation .layout-open button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.219);
+  text-decoration: underline;
+}
+.desktop .navigation .layout-closed {
+  width: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+}
+.desktop .navigation .layout-closed .user {
+  width: 100%;
+}
+.desktop .navigation .layout-closed .menu {
+  width: 100%;
+}
+.desktop .navigation .layout-closed button {
+  border: none;
+  color: white;
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+}
+.desktop .navigation .layout-closed button svg {
+  width: 25px;
+  height: 25px;
+}
+.desktop .navigation .layout-closed button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.219);
+}
+.desktop .tables {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 100%;
+  overflow: auto;
+  align-content: flex-start;
+  padding: 15px;
+  gap: 10px;
+}
+.desktop .tables .table {
+  width: 200px;
+  border: solid rgb(209, 209, 209) 1px;
+  border-radius: 3px;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+.desktop .tables .table__header {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.desktop .tables .table__seat-container {
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  gap: 3px;
+}
+.desktop .tables .table__seat-container .seat__seated-player {
+  display: flex;
+  justify-content: space-between;
+}
+.desktop .tables__add-table {
+  background-color: transparent;
+  border: solid rgb(209, 209, 209) 1px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  padding: 0 15px;
+  color: rgb(56, 56, 56);
+}
+.desktop .tables__add-table svg {
+  height: 20px;
+  width: 20px;
+}
+.desktop .tables__add-table:hover {
+  cursor: pointer;
+  background-color: rgb(226, 226, 226);
+  text-decoration: underline;
+}/*# sourceMappingURL=desktop.css.map */

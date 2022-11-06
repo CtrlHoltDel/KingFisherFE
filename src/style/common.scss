@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+$primary-color: #26a6fe;
+$secondary-color: #fea613;
+$primary-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 * {
     padding: 0;
     margin: 0;
@@ -10,16 +14,12 @@
 .App {
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
 }
 
 .auth-container {
     width: 100vw;
     height: 100vh;
-    background-color: #26a6fe;
+    background-color: $primary-color;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@
         width: 300px;
         border-radius: 3px;
         background-color: white;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: $primary-shadow;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -77,7 +77,7 @@
 
                 input:focus {
                     outline: none;
-                    border: solid #26a6fe 1px;
+                    border: solid $primary-color 1px;
                     border-radius: 2px;
                 }
             }
@@ -87,7 +87,7 @@
                 border: none;
                 width: 100%;
                 padding: 10px;
-                background-color: #fea613;
+                background-color: $secondary-color;
                 position: absolute;
                 bottom: 60px;
             }

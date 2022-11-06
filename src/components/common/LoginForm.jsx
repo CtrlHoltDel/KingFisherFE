@@ -83,6 +83,7 @@ const LoginForm = ({ handleSetUser }) => {
             <p className="input-container__label">Password</p>
             <input
               value={password}
+              type="password"
               disabled={loading}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -94,6 +95,7 @@ const LoginForm = ({ handleSetUser }) => {
             <div className="input-container">
               <p className="input-container__label">Confirm Password</p>
               <input
+              type="password"
                 value={passwordConfirmation}
                 disabled={loading}
                 onChange={(e) => {
