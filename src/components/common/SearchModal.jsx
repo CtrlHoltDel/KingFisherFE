@@ -1,14 +1,14 @@
 import React from "react";
 import usePlayers from "../../hooks/usePlayers";
 
-const SearchModal = ({ closeSearch, user, addPlayer, seat }) => {
+const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGroup }) => {
   const {
     players,
     loadingPlayers,
     hasExactMatch,
     playerSearch,
     updateSearch,
-  } = usePlayers(user, { id: "c1e094e3-090b-4c82-95c7-aa51ee663505" });
+  } = usePlayers(user, currentlySelectedGroup);
 
 
   return (

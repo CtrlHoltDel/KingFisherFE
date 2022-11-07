@@ -9,7 +9,10 @@ import { NOTE_TYPE } from "../utils/constants";
 // const KINGFISHER_PLAYER_COOKIE = "Kingfisher_Player_Cookie";
 
 const useUser = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImN0cmxob2x0ZGVsIiwiaWF0IjoxNjY3Nzk0MTUzfQ.RROr4xZzeDWCQf2FLlA2uDmuDOmkOpKBKBriJHTlZwo",
+    "username": "ctrlholtdel"
+  });
   const [currentlySelectedGroup, setCurrentlySelectedGroup] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [generalLoading, setGeneralLoading] = useState(false)

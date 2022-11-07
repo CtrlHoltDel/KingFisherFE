@@ -2,7 +2,9 @@ import React from "react";
 import { useState } from "react";
 
 import { BiChevronsLeft, BiChevronsRight, BiLogOutCircle } from "react-icons/bi";
-const Navigation = ({ logoutUser }) => {
+import { GrGroup } from 'react-icons/gr'
+
+const Navigation = ({ logoutUser, toggleGroupsMenu }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleNav = () => setIsOpen((curr) => !curr);
 
@@ -14,6 +16,10 @@ const Navigation = ({ logoutUser }) => {
             <button onClick={toggleNav}>
               <BiChevronsLeft />
               <p>close</p>
+            </button>
+            <button onClick={toggleGroupsMenu}>
+              <GrGroup />
+              <p>groups</p>
             </button>
           </div>
           <div className="user">
@@ -28,6 +34,9 @@ const Navigation = ({ logoutUser }) => {
           <div className="menu">
             <button onClick={toggleNav}>
               <BiChevronsRight />
+            </button>
+            <button onClick={toggleGroupsMenu}>
+              <GrGroup />
             </button>
           </div>
           <div className="user">

@@ -8,6 +8,7 @@ const useGroups = (user, currentlySelectedGroup) => {
     const [groups, setGroups] = useState([])
     
     const [loading, setLoading] = useState(false)
+    const [addGroupLoading, setAddGroupLoading] = useState(false)
     const [addUserLoading, setAddUserLoading] = useState(false)
 
     const [error, setError] = useState("")
@@ -48,11 +49,20 @@ const useGroups = (user, currentlySelectedGroup) => {
     }
 
     const createGroup = async (groupName) => {
+        setAddGroupLoading(true)
         const { success, error } = await APIAddGroup(user.token, groupName);
-        console.log(success, error);
+        
+        if(error){
+            setError(error.message);
+        } else {
+            setGroups(groups => ([...groups, { ...success.addedGroup, validated: true }]))
+        }
+        
+        
+        setAddGroupLoading(false)
     }
 
-    return { groups, loading, addUserLoading, addUserToGroup, createGroup, error }
+    return { groups, loading, addUserLoading, addUserToGroup, createGroup, error, addGroupLoading }
 
 }
 

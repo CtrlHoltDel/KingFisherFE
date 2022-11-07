@@ -1,7 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const useTables = () => {
+const useTables = (currentlySelectedGroup) => {
     const [tables, setTables] = useState([])
+
+    useEffect(() => {
+        // TODO: If tables are stored under this group. Reload them
+        setTables([])
+    }, [currentlySelectedGroup])
+    
 
     const addTable = () => {
         const newTable = { id: Math.random() }

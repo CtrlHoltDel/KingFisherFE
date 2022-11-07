@@ -32,8 +32,11 @@
   color: white;
 }
 .desktop .navigation .layout-open button svg {
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
+}
+.desktop .navigation .layout-open button svg path {
+  stroke: white;
 }
 .desktop .navigation .layout-open button:hover {
   cursor: pointer;
@@ -65,8 +68,11 @@
   padding: 5px 0;
 }
 .desktop .navigation .layout-closed button svg {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+}
+.desktop .navigation .layout-closed button svg path {
+  stroke: white;
 }
 .desktop .navigation .layout-closed button:hover {
   cursor: pointer;
@@ -174,5 +180,153 @@
 .desktop .tables__add-table:hover {
   cursor: pointer;
   background-color: rgb(226, 226, 226);
+  text-decoration: underline;
+}
+.desktop .groups {
+  position: relative;
+  border-right: solid rgb(209, 209, 209) 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 230px;
+}
+.desktop .groups__list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  overflow: auto;
+}
+.desktop .groups__list__item {
+  padding: 5px 15px;
+}
+.desktop .groups__list__item:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.096);
+}
+.desktop .groups__list .selected-group {
+  text-decoration: underline;
+  font-weight: bold;
+}
+.desktop .groups__new-group-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+.desktop .groups__new-group-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.desktop .groups__new-group-container form input {
+  border: solid rgb(146, 146, 146) 1px;
+  padding: 5px;
+  border-radius: 3px;
+}
+.desktop .groups__new-group-container form input:focus {
+  outline: none;
+  border: solid #26a6fe 1px;
+}
+.desktop .groups__new-group-container form button {
+  border: none;
+  padding: 3px;
+}
+.desktop .groups__new-group-container form button:disabled {
+  opacity: 90%;
+}
+.desktop .groups__new-group-container form button:hover:enabled {
+  cursor: pointer;
+  background-color: #26a6fe;
+  color: white;
+  text-decoration: underline;
+}
+.desktop .groups__new-group-container__error {
+  font-size: 11px;
+  max-width: 200px;
+}
+.desktop .groups__loading-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 35px;
+  width: 35px;
+}
+.desktop .notes {
+  min-width: 350px;
+  width: 20%;
+  border-left: solid rgb(209, 209, 209) 1px;
+  resize: both;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.desktop .notes__body {
+  background-color: red;
+  flex: 1;
+}
+.desktop .notes__body__header {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 14px;
+}
+.desktop .notes__add-note {
+  padding: 15px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.desktop .notes__add-note__type-toggle {
+  display: flex;
+}
+.desktop .notes__add-note__type-toggle button {
+  flex: 1;
+  border: none;
+  background-color: none;
+  padding: 5px;
+}
+.desktop .notes__add-note__type-toggle button:first-child {
+  border-radius: 2px 0 0 2px;
+}
+.desktop .notes__add-note__type-toggle button:last-child {
+  border-radius: 0 2px 2px 0;
+}
+.desktop .notes__add-note__type-toggle button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.desktop .notes__add-note__type-toggle .selected {
+  background-color: #26a6fe;
+  color: white;
+}
+.desktop .notes__add-note form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.desktop .notes__add-note form input {
+  width: 100%;
+  height: 80px;
+  padding: 15px;
+  resize: none;
+  border: solid rgb(209, 209, 209) 1px;
+}
+.desktop .notes__add-note form input:focus {
+  outline: none;
+  border: solid #26a6fe 1px;
+}
+.desktop .notes__add-note form .notes__add-note__add-button {
+  background-color: #26a6fe;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  color: white;
+}
+.desktop .notes__add-note form .notes__add-note__add-button:disabled {
+  opacity: 70%;
+}
+.desktop .notes__add-note form .notes__add-note__add-button:enabled:hover {
+  cursor: pointer;
   text-decoration: underline;
 }/*# sourceMappingURL=desktop.css.map */

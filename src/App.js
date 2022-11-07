@@ -42,7 +42,15 @@ function App() {
             updateType={updateType}
           />
         ) : (
-          <Desktop user={user} logoutUser={logoutUser} />
+          <Desktop
+            user={user}
+            logoutUser={logoutUser}
+            currentlySelectedGroup={currentlySelectedGroup}
+            selectGroup={selectGroup}
+            selectedPlayer={selectedPlayer}
+            selectPlayer={selectPlayer}
+            addNoteToPlayer={addNoteToPlayer}
+          />
         )}
       </div>
     </BrowserRouter>

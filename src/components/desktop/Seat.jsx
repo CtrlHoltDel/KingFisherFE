@@ -6,7 +6,7 @@ import SearchModal from "../common/SearchModal";
 
 const SEARCH_MODAL_CLASS = 'search-modal-container'
 
-const Seat = ({ seat, user, addPlayer, removePlayer }) => {
+const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, handleClickPlayer }) => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   const closeSearch = () => setSearchOpen(false)
@@ -17,15 +17,15 @@ const Seat = ({ seat, user, addPlayer, removePlayer }) => {
         <div className={SEARCH_MODAL_CLASS} onClick={(e) => { 
             if(e.target.classList.contains(SEARCH_MODAL_CLASS)) closeSearch()
         }}>
-            <SearchModal closeSearch={closeSearch} user={user} addPlayer={addPlayer} seat={seat}/>
+            <SearchModal closeSearch={closeSearch} user={user} addPlayer={addPlayer} seat={seat} currentlySelectedGroup={currentlySelectedGroup} />
         </div>
       )}
       {seat.id ? (
         <div className="seat__seated-player">
-          <p>{seat.name}</p>
+          <p onClick={() => handleClickPlayer(seat)}>{seat.name}</p>
           <button onClick={() => removePlayer(seat.seatNumber)}>
             <TiCancel />
-          </button>poker svg
+          </button>
         </div>
       ) : (
         <button className="seat__empty-seat" onClick={() => setSearchOpen(true)}>

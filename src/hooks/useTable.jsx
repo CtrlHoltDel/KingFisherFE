@@ -7,7 +7,7 @@ const EMPTY_SEAT = {
     type: null
 }
 
-const useTable = () => {
+const useTable = (handleClickPlayer) => {
     const [seats, setSeats] = useState([])
 
     useEffect(() => {
@@ -22,6 +22,7 @@ const useTable = () => {
 
     const addPlayer = (selectedPlayer, seatNumber) => {
         setSeats(seats => seats.map(seat => seat.seatNumber === seatNumber ? { ...selectedPlayer, seatNumber: seat.seatNumber } : seat))
+        handleClickPlayer(selectedPlayer)
     }
 
     const removePlayer = (seatNumber) => {
