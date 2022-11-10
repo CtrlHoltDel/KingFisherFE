@@ -47,7 +47,7 @@ const Groups = ({ selectGroup, currentlySelectedGroup, user }) => {
               setNewGroupInput(e.target.value)
               setNewGroupDisabled(e.target.value.length < 3)
             }}/>
-            <button disabled={loading || addGroupLoading || newGroupDisabled}>Create</button>
+            <button disabled={loading || addGroupLoading || newGroupDisabled}>Create New Group</button>
           </form>
         </div></>
       )}

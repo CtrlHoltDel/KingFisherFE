@@ -39,8 +39,6 @@ const useGroups = (user, currentlySelectedGroup) => {
             userAddedToGroup
         );
 
-        console.log(success, error);
-
         if(error){
             console.log(error)
         }

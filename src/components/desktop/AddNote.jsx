@@ -11,11 +11,8 @@ const AddNote = ({ player, addNoteToPlayer }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-
-    
     addNoteToPlayer(noteType, noteInput, player.id)
     setNoteInput("")
-    // APIAddNote()
   }
 
   return (

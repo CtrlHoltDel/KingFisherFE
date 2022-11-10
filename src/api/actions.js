@@ -102,7 +102,6 @@ export const APIGetNotes = async (token, playerId) => {
 export const APIAddNote = async (token, playerId, noteBody) => {
     try {
         const { data: { data }} = await api.post(`/notes/${playerId}`, noteBody, setAuthHeader(token))
-        console.log(data);
     } catch (error) {
         logErrors(error)
         return { error: error.response.data}
@@ -112,7 +111,6 @@ export const APIAddNote = async (token, playerId, noteBody) => {
 export const APIUpdateType = async (token, groupId, playerId, type) => {
     try {
         const { data: { data }} = await api.put(`/players/${groupId}/${playerId}`, { type }, setAuthHeader(token))
-        console.log(data);
     } catch (error) {
         logErrors(error)
         return { error: error.response.data}
