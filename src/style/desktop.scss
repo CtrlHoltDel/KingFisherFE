@@ -213,8 +213,18 @@ $light-blue-border: solid #26a6fe 1px;
 
         &__add-table:hover {
             cursor: pointer;
-            background-color: rgb(226, 226, 226);
+            background-color: $primary-color;
+            color: white;
             text-decoration: underline;
+
+            svg {
+                path {
+                    color: white;
+                    fill: white;
+                    stroke: white;
+
+                }
+            }
         }
     }
 

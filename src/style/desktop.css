@@ -179,8 +179,14 @@
 }
 .desktop .tables__add-table:hover {
   cursor: pointer;
-  background-color: rgb(226, 226, 226);
+  background-color: #26a6fe;
+  color: white;
   text-decoration: underline;
+}
+.desktop .tables__add-table:hover svg path {
+  color: white;
+  fill: white;
+  stroke: white;
 }
 .desktop .groups {
   position: relative;

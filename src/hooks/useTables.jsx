@@ -1,67 +1,32 @@
 import { useState, useEffect } from 'react'
+import { LS } from '../utils/LocalStorage'
 
-const LS_TABLE_PREFIX = 'Kingfisher_Table_Storage'
+export const LS_TABLE_STORAGE = 'Kingfisher_Table_Storage'
 
 const useTables = (currentlySelectedGroup) => {
     const [tables, setTables] = useState([])
-    const [tablesWithPlayers, setTablesWithPlayers] = useState([])
-    const [tablesOnLoad, setTablesOnLoad] = useState([])
 
     useEffect(() => {
         if(!currentlySelectedGroup) return
-
-        const storedTables = localStorage.getItem(LS_TABLE_PREFIX)
-        if(storedTables){
-            const parsedTables = JSON.parse(localStorage.getItem(`${LS_TABLE_PREFIX}`))
-            console.log(parsedTables)
-            const filteredTables = parsedTables.filter(table => table.groupId === currentlySelectedGroup.id)
-            setTables(filteredTables.map(table => ({ id: table.id })))
-        } else {
-            setTables([])
-        }
-
+        setTables(LS.getTables(currentlySelectedGroup.id) || [])
     }, [currentlySelectedGroup])
     
 
     const addTable = () => {
-        const newTable = { id: Math.random() }
-        setTablesWithPlayers(tables => {
-            const updatedTables = [ ...tables, { ...newTable , players: [], groupId: currentlySelectedGroup.id }];
-            updateLSTable(updatedTables)
-            return updatedTables
-        })
-        
+        const newTable = { id: Math.random(), groupId: currentlySelectedGroup.id }        
         setTables(tables => {
             const updatedTables = [ ...tables, newTable];
-            console.log(updatedTables)
+            LS.updateTables(updatedTables, currentlySelectedGroup.id)
             return updatedTables
         })
     }
 
     const closeTable = (tableId) => {
         setTables(tables => tables.filter(({ id }) => id !== tableId))
+        LS.removeTable(tableId, currentlySelectedGroup.id)
     }
 
-    const addPlayerToTablesWithPlayers = (player, seatNumber, tableId) => {
-        setTablesWithPlayers(tables => {
-            const updatedTables = tables.map(table => {
-                return table.id === tableId ? { ...table, players: [ ...table.players, { player, seatNumber } ]} : table 
-            })
-            updateLSTable(updatedTables)
-
-            return updatedTables
-        })
-    }
-
-    const removePlayerFromTablesWithPlayers = (playerId, tableId) => {
-        console.log({ playerId, tableId })
-    }
-
-    const updateLSTable = (updatedTables) => {
-        localStorage.setItem(LS_TABLE_PREFIX, JSON.stringify(updatedTables))
-    }
-
-    return { tables, addTable, closeTable, tablesWithPlayers, addPlayerToTablesWithPlayers, removePlayerFromTablesWithPlayers, tablesOnLoad }
+    return { tables, addTable, closeTable }
 }
 
 export default useTables

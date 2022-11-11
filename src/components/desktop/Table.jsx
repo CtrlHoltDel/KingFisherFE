@@ -1,11 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
 import useTable from "../../hooks/useTable";
 import Seat from "./Seat";
 
-const Table = ({ table, closeTable, user, currentlySelectedGroup, handleClickPlayer, addPlayerToTablesWithPlayers, removePlayerFromTablesWithPlayers }) => {
+const Table = ({ table, closeTable, user, currentlySelectedGroup, handleClickPlayer }) => {
 
-  const { seats, addPlayer, removePlayer } = useTable(handleClickPlayer, table.id, addPlayerToTablesWithPlayers, removePlayerFromTablesWithPlayers)
+  const { seats, addPlayer, removePlayer } = useTable(handleClickPlayer, table.id)
 
   return (
     <div className="table">

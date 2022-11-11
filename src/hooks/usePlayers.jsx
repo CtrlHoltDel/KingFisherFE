@@ -28,8 +28,6 @@ const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
             }
         }
 
-        console.log(user.token, currentlySelectedGroup.id, search)
-
         setLoadingPlayers(true);
         const { success, error } = await APIGetPlayers(user.token, currentlySelectedGroup.id, search);
 

@@ -1,35 +1,30 @@
 import { useEffect, useState } from "react";
 import { APIAddNote, APIUpdateType } from "../api/actions";
 import { NOTE_TYPE } from "../utils/constants";
-// import Cookies from "universal-cookie";
-// const cookies = new Cookies();
-
-// const KINGFISHER_USER_COOKIE = "Kingfisher_User_Cookie";
-// const KINGFISHER_GROUP_COOKIE = "Kingfisher_Group_Cookie";
-// const KINGFISHER_PLAYER_COOKIE = "Kingfisher_Player_Cookie";
+import { LS } from "../utils/LocalStorage";
 
 const useUser = () => {
-  const [user, setUser] = useState({
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImN0cmxob2x0ZGVsIiwiaWF0IjoxNjY3Nzk0MTUzfQ.RROr4xZzeDWCQf2FLlA2uDmuDOmkOpKBKBriJHTlZwo",
-    "username": "ctrlholtdel"
-  });
+  const [user, setUser] = useState();
   const [currentlySelectedGroup, setCurrentlySelectedGroup] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [generalLoading, setGeneralLoading] = useState(false)
+  const [generalLoading, setGeneralLoading] = useState(false);
 
   // User
   useEffect(() => {
-
+    const storedUser = LS.getUser()
+    if(storedUser) setUser(storedUser)
   }, []);
 
   const handleLogin = (user) => {
     setUser(user);
+    LS.storeUser(user)
   };
 
   const logoutUser = () => {
-    setUser(null);
-    setCurrentlySelectedGroup(null);
-    setSelectedPlayer(null);
+    // setUser(null);
+    // setCurrentlySelectedGroup(null);
+    // setSelectedPlayer(null);
+    LS.logout()
   };
 
   // Current Group
@@ -68,7 +63,6 @@ const useUser = () => {
     setGeneralLoading(true)
     await APIUpdateType(user.token, currentlySelectedGroup.id, playerId ,newType)
     setGeneralLoading(false)
-
   }
 
   return {
