@@ -8,8 +8,32 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
     hasExactMatch,
     playerSearch,
     updateSearch,
+    handleAddPlayer
   } = usePlayers(user, currentlySelectedGroup);
 
+  const handleClickAddPlayer = async (seatNumber) => {
+    const { addedPlayer } = await handleAddPlayer(true)
+    console.log(addedPlayer, "<<")
+
+    addPlayer({ 
+
+    })
+    
+
+  }
+
+  /*
+
+  {
+      "id": "401931cd-5868-48b7-a6e6-c22a57e3c157",
+      "name": "amma dhinema bathayo",
+      "type": "fish",
+      "created_time": "2022-01-18T10:35:15.903Z",
+      "created_by": "ctrlholtdel",
+      "note_group_id": "c1e094e3-090b-4c82-95c7-aa51ee663505"
+  }
+
+  */
 
   return (
     <div className="search-modal-container__modal">
@@ -25,6 +49,7 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
                     key={player.id}
                     className="search-modal-container__modal__results__result"
                     onClick={() => {
+                      console.log(player, seat.seatNumber)
                         addPlayer(player, seat.seatNumber)
                         closeSearch()
                     }}
@@ -38,7 +63,7 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
                   </div>
                 );
               })}
-            {!hasExactMatch && playerSearch && <p>Add {playerSearch}</p>}
+            {!hasExactMatch && playerSearch && <p onClick={() => handleClickAddPlayer(seat.seatNumber)}>Add {playerSearch}</p>}
           </>
         )}
       </div>

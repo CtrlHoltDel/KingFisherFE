@@ -13,7 +13,7 @@ const Table = ({ table, closeTable, user, currentlySelectedGroup, handleClickPla
         <button onClick={() => closeTable(table.id)}>x</button>
       </div>
       <div className="table__seat-container">
-        {seats.map(seat => <Seat key={seat.seatNumber} seat={seat} addPlayer={addPlayer} user={user} removePlayer={removePlayer} currentlySelectedGroup={currentlySelectedGroup} handleClickPlayer={handleClickPlayer}/>)}
+        {seats.map(seat => <Seat key={seat.seatNumber} seat={seat} addPlayer={addPlayer} user={user} removePlayer={removePlayer} currentlySelectedGroup={currentlySelectedGroup} handleClickPlayer={handleClickPlayer} />)}
       </div>
     </div>
   );

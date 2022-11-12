@@ -14,26 +14,12 @@ const Desktop = ({
   currentlySelectedGroup,
   selectGroup,
   selectedPlayer,
-  selectPlayer,
-  addNoteToPlayer
+  addNoteToPlayer,
+  selectPlayer
 }) => {
   const [groupsMenuOpen, setGroupsMenuOpen] = useState(false);
-  const [loadingPlayer, setLoadingPlayer] = useState(false);
-
+  
   const toggleGroupsMenu = () => setGroupsMenuOpen((curr) => !curr);
-
-  const handleClickPlayer = async (value) => {
-    setLoadingPlayer(true);
-    const { success, error } = await APIGetNotes(user.token, value.id);
-
-    if (error) {
-      console.log("handle error");
-      return;
-    }
-
-    selectPlayer({ ...success, ...formatNotes(success.notes) });
-    setLoadingPlayer(false);
-  };
 
   return (
     <div className="desktop">
@@ -52,11 +38,13 @@ const Desktop = ({
       <Tables
         user={user}
         currentlySelectedGroup={currentlySelectedGroup}
-        handleClickPlayer={handleClickPlayer}
+        selectPlayer={selectPlayer}
+        selectedPlayer={selectedPlayer}
+        addNoteToPlayer={addNoteToPlayer}
       />
-      {selectedPlayer && (
+      {/* {selectedPlayer && (
         <Notes selectedPlayer={selectedPlayer} loadingPlayer={loadingPlayer} addNoteToPlayer={addNoteToPlayer}/>
-      )}
+      )} */}
     </div>
   );
 };

@@ -11,13 +11,17 @@ const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, han
 
   const closeSearch = () => setSearchOpen(false)
 
+  const addNewPlayer = (newPlayerName) => {
+    console.log(newPlayerName)
+  }
+
   return (
     <div className="seat">
       {searchOpen && (
         <div className={SEARCH_MODAL_CLASS} onClick={(e) => { 
             if(e.target.classList.contains(SEARCH_MODAL_CLASS)) closeSearch()
         }}>
-            <SearchModal closeSearch={closeSearch} user={user} addPlayer={addPlayer} seat={seat} currentlySelectedGroup={currentlySelectedGroup} />
+            <SearchModal closeSearch={closeSearch} user={user} addPlayer={addPlayer} seat={seat} currentlySelectedGroup={currentlySelectedGroup} addNewPlayer={addNewPlayer}/>
         </div>
       )}
       {seat.id ? (
