@@ -14,7 +14,7 @@ const Players = ({
   user,
   hideNavBar,
 }) => {
-  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType, loadingUpdatingPlayer } = usePlayer(user, currentlySelectedGroup)
+  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType } = usePlayer(user, currentlySelectedGroup)
   const [noteModalOpen, setNoteModalOpen] = useState(false);
   const openNoteModal = () => {
     setNoteModalOpen(true)

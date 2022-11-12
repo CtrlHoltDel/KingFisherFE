@@ -5,11 +5,13 @@ import { LS } from "../utils/LocalStorage";
 const useUser = () => {
   const [user, setUser] = useState();
   const [currentlySelectedGroup, setCurrentlySelectedGroup] = useState(null);
+  const [config, setConfig] = useState()
 
   // User
   useEffect(() => {
     setUser(LS.getUser() || null)
     setCurrentlySelectedGroup(LS.getSelectedGroup() || null)
+    setConfig(DEFAULT_CONFIG)
   }, []);
 
   const handleLogin = (user) => {
@@ -26,6 +28,7 @@ const useUser = () => {
   const selectGroup = (group) => {
     LS.setSelectedGroup(group)
     setCurrentlySelectedGroup(group);
+    setConfig(config => config)
   };
 
   return {
@@ -34,6 +37,7 @@ const useUser = () => {
     logoutUser,
     selectGroup,
     currentlySelectedGroup,
+    config
   };
 };
 

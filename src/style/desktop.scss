@@ -157,7 +157,7 @@ $light-blue-border: solid #26a6fe 1px;
                             border: solid rgb(204, 204, 204) 1px;
                             background-color: transparent;
                             border-radius: 3px;
-                            height: 23px;
+                            height: 26px;
                         }
 
                         &__empty-seat:hover {
@@ -169,13 +169,13 @@ $light-blue-border: solid #26a6fe 1px;
                             display: flex;
                             justify-content: space-between;
                             border: solid rgb(204, 204, 204) 1px;
-                            height: 23px;
+                            height: 26px;
                             align-items: center;
                             border-radius: 3px;
 
                             p {
                                 padding-left: 4px;
-                                font-size: 13px;
+                                font-size: 14px;
                                 flex: 1;
                                 height: 100%;
                                 border-radius: 2px 0 0 2px;
@@ -334,6 +334,7 @@ $light-blue-border: solid #26a6fe 1px;
                 font-size: 12px;
                 padding: 0 15px;
                 color: rgb(56, 56, 56);
+                height: 291px;
     
                 svg {
                     height: 20px;
@@ -343,18 +344,9 @@ $light-blue-border: solid #26a6fe 1px;
     
             &__add-table:hover {
                 cursor: pointer;
-                background-color: $primary-color;
-                color: white;
                 text-decoration: underline;
-    
-                svg {
-                    path {
-                        color: white;
-                        fill: white;
-                        stroke: white;
-    
-                    }
-                }
+                border: solid $primary-color 1px;
+                color: $primary-color;
             }
         }
 

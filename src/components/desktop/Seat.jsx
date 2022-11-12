@@ -1,5 +1,8 @@
 import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
+
+import { UserContext } from "../../context/userContext"
 
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import { setSeatStyle } from "../../utils/typeStyle";
@@ -9,6 +12,8 @@ const SEARCH_MODAL_CLASS = 'search-modal-container'
 
 const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, selectPlayer }) => {
   const [searchOpen, setSearchOpen] = useState(false);
+
+  const { config } = useContext(UserContext)
 
   const closeSearch = () => setSearchOpen(false)
 
@@ -26,7 +31,7 @@ const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, sel
         </div>
       )}
       {seat.id ? (
-        <div className="seat__seated-player" style={setSeatStyle(seat.type)}>
+        <div className="seat__seated-player" style={setSeatStyle(seat.type, config)}>
           <p onClick={() => selectPlayer(seat)}>{seat.name}</p>
           <button onClick={() => removePlayer(seat.seatNumber)}>
             <MdOutlineRemoveCircle />

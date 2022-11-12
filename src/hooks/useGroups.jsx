@@ -56,7 +56,7 @@ const useGroups = (user, currentlySelectedGroup) => {
   const addUserToGroup = async (userAddedToGroup) => {
     setAddUserLoading(true);
 
-    const { success, error } = await APIAddUserToGroup(
+    const { error } = await APIAddUserToGroup(
       user.token,
       currentlySelectedGroup.id,
       userAddedToGroup

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import useGroups from "../../hooks/useGroups";
 
 import loadingIcon from '../../assets/loading.svg'
@@ -8,8 +7,6 @@ const Groups = ({ selectGroup, currentlySelectedGroup, user }) => {
   const {
     groups,
     loadingGroups,
-    addUserLoading,
-    addUserToGroup,
     createGroup,
     groupError,
     addGroupLoading,

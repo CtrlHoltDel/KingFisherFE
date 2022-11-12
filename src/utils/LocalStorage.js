@@ -3,7 +3,6 @@ const SEATED_PLAYERS_PREFIX = 'SEATED_PLAYERS_KF'
 const USER = 'USER_KF'
 const LOGOUT_REF = 'LOGOUT_REF_KF'
 const GROUP_REF = 'SELECT_GROUP_KF'
-const MENU_STATES_REF = 'MENU_STATES'
 
 // TABLES
 const updateTables = (updatedTables, groupId) => {

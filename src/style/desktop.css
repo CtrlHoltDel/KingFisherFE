@@ -132,7 +132,7 @@
   border: solid rgb(204, 204, 204) 1px;
   background-color: transparent;
   border-radius: 3px;
-  height: 23px;
+  height: 26px;
 }
 .desktop .tables-container .tables .table__seat-container .seat__empty-seat:hover {
   cursor: pointer;
@@ -142,13 +142,13 @@
   display: flex;
   justify-content: space-between;
   border: solid rgb(204, 204, 204) 1px;
-  height: 23px;
+  height: 26px;
   align-items: center;
   border-radius: 3px;
 }
 .desktop .tables-container .tables .table__seat-container .seat__seated-player p {
   padding-left: 4px;
-  font-size: 13px;
+  font-size: 14px;
   flex: 1;
   height: 100%;
   border-radius: 2px 0 0 2px;
@@ -271,6 +271,7 @@
   font-size: 12px;
   padding: 0 15px;
   color: rgb(56, 56, 56);
+  height: 291px;
 }
 .desktop .tables-container .tables__add-table svg {
   height: 20px;
@@ -278,14 +279,9 @@
 }
 .desktop .tables-container .tables__add-table:hover {
   cursor: pointer;
-  background-color: #26a6fe;
-  color: white;
   text-decoration: underline;
-}
-.desktop .tables-container .tables__add-table:hover svg path {
-  color: white;
-  fill: white;
-  stroke: white;
+  border: solid #26a6fe 1px;
+  color: #26a6fe;
 }
 .desktop .tables-container .notes {
   min-width: 350px;

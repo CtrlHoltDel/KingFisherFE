@@ -2,8 +2,15 @@ const DEFAULT_STYLE = {
     backgroundColor: "#f5f5f5"
 }
 
-export const setSeatStyle = (type) => {
+export const setSeatStyle = (type, config) => {
     if(!type) return DEFAULT_STYLE
 
-    if(type === 'reg') return { backgroundColor: "red", color: "white" }
+    for (const key in config) {
+      const matcher = new RegExp(key, "gi");
+      if (type.match(matcher)) {
+        console.log(config[key], "<<");
+        return config[key];
+      }
+    }
+
 }

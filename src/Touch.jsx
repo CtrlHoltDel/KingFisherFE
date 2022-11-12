@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
 
 import { Routes, Route } from "react-router-dom";
 

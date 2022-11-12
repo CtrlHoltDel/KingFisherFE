@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { APIAddNote } from "../../api/actions";
 import { NOTE_TYPE, TENDENCY_TYPE } from "../../utils/constants";
 
 const AddNote = ({ player, addNoteToPlayer }) => {

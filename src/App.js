@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import LoginForm from "./components/common/LoginForm";
+import { UserContext } from "./context/userContext";
 import Desktop from "./Desktop";
 import useHandleWindow from "./hooks/useHandleWindow";
 import useUser from "./hooks/useUser";
@@ -14,29 +15,41 @@ function App() {
     logoutUser,
     selectGroup,
     currentlySelectedGroup,
+    config,
   } = useUser();
 
   if (!user) return <LoginForm handleSetUser={handleLogin} />;
 
   return (
     <BrowserRouter>
-      <div className="App">
-        {windowType === TOUCH_SIZE ? (
-          <Touch
-            user={user}
-            logoutUser={logoutUser}
-            selectGroup={selectGroup}
-            currentlySelectedGroup={currentlySelectedGroup}
-          />
-        ) : (
-          <Desktop
-            user={user}
-            logoutUser={logoutUser}
-            currentlySelectedGroup={currentlySelectedGroup}
-            selectGroup={selectGroup}
-          />
-        )}
-      </div>
+      <UserContext.Provider
+        value={{
+          user,
+          handleLogin,
+          logoutUser,
+          selectGroup,
+          currentlySelectedGroup,
+          config,
+        }}
+      >
+        <div className="App">
+          {windowType === TOUCH_SIZE ? (
+            <Touch
+              user={user}
+              logoutUser={logoutUser}
+              selectGroup={selectGroup}
+              currentlySelectedGroup={currentlySelectedGroup}
+            />
+          ) : (
+            <Desktop
+              user={user}
+              logoutUser={logoutUser}
+              currentlySelectedGroup={currentlySelectedGroup}
+              selectGroup={selectGroup}
+            />
+          )}
+        </div>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }
