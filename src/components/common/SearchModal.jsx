@@ -1,5 +1,5 @@
 import React from "react";
-import usePlayers from "../../hooks/usePlayers";
+import useSearchPlayers from "../../hooks/useSearchPlayers";
 
 const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGroup }) => {
   const {
@@ -8,8 +8,7 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
     hasExactMatch,
     playerSearch,
     updateSearch,
-  } = usePlayers(user, currentlySelectedGroup);
-
+  } = useSearchPlayers(user, currentlySelectedGroup);
 
   return (
     <div className="search-modal-container__modal">
@@ -25,6 +24,7 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
                     key={player.id}
                     className="search-modal-container__modal__results__result"
                     onClick={() => {
+                      console.log(player, seat.seatNumber)
                         addPlayer(player, seat.seatNumber)
                         closeSearch()
                     }}
@@ -38,7 +38,7 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
                   </div>
                 );
               })}
-            {!hasExactMatch && playerSearch && <p>Add {playerSearch}</p>}
+            {!hasExactMatch && playerSearch && <p onClick={() => console.log("clicked")}>Add {playerSearch}</p>}
           </>
         )}
       </div>

@@ -6,10 +6,14 @@ import SearchModal from "../common/SearchModal";
 
 const SEARCH_MODAL_CLASS = 'search-modal-container'
 
-const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, handleClickPlayer }) => {
+const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, selectPlayer }) => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   const closeSearch = () => setSearchOpen(false)
+
+  const addNewPlayer = (newPlayerName) => {
+    console.log(newPlayerName)
+  }
 
   return (
     <div className="seat">
@@ -17,12 +21,12 @@ const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, han
         <div className={SEARCH_MODAL_CLASS} onClick={(e) => { 
             if(e.target.classList.contains(SEARCH_MODAL_CLASS)) closeSearch()
         }}>
-            <SearchModal closeSearch={closeSearch} user={user} addPlayer={addPlayer} seat={seat} currentlySelectedGroup={currentlySelectedGroup} />
+            <SearchModal closeSearch={closeSearch} user={user} addPlayer={addPlayer} seat={seat} currentlySelectedGroup={currentlySelectedGroup} addNewPlayer={addNewPlayer}/>
         </div>
       )}
       {seat.id ? (
         <div className="seat__seated-player">
-          <p onClick={() => handleClickPlayer(seat)}>{seat.name}</p>
+          <p onClick={() => selectPlayer(seat)}>{seat.name}</p>
           <button onClick={() => removePlayer(seat.seatNumber)}>
             <TiCancel />
           </button>

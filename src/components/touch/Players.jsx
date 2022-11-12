@@ -1,25 +1,20 @@
 import React, { useState } from "react";
-import usePlayers from "../../hooks/usePlayers";
+import useSearchPlayers from "../../hooks/useSearchPlayers";
 import PlayersListView from "../common/PlayersListView";
 
-import { APIGetNotes } from "../../api/actions";
 import PlayerInfo from "./PlayerInfo";
 import AddNote from "./AddNote";
 import PlayersFooter from "./PlayersFooter";
-import { formatNotes } from "../../utils/dataFormat";
+import usePlayer from "../../hooks/usePlayer";
 
 const MODAL_CONTAINER_CLASS = "touch-modal-container";
 
 const Players = ({
   currentlySelectedGroup,
   user,
-  selectedPlayer,
-  selectPlayer,
   hideNavBar,
-  addNoteToPlayer,
-  updateType
 }) => {
-  const [loadingPlayer, setLoadingPlayer] = useState(false);
+  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType, loadingUpdatingPlayer } = usePlayer(user, currentlySelectedGroup)
   const [noteModalOpen, setNoteModalOpen] = useState(false);
   const openNoteModal = () => {
     setNoteModalOpen(true)
@@ -37,23 +32,9 @@ const Players = ({
     handleAddPlayer,
     playerSearch,
     updateSearch
-  } = usePlayers(user, currentlySelectedGroup, selectPlayer);
+  } = useSearchPlayers(user, currentlySelectedGroup, selectPlayer);
 
-  
-  const handleClickPlayer = async (value) => {
-    setLoadingPlayer(true);
-    const { success, error } = await APIGetNotes(user.token, value.id);
-    
-    if (error) {
-      console.log("handle error");
-      return;
-    }
-    
-    selectPlayer({ ...success, ...formatNotes(success.notes) });
-    updateSearch("")
-    setLoadingPlayer(false);
-  };
-  
+
   const handleAddNote = (note, type) => {
     addNoteToPlayer(type, note, selectedPlayer.player.id)
     closeNoteModal()
@@ -77,7 +58,7 @@ const Players = ({
               loading={loadingPlayers}
               exactMatch={hasExactMatch}
               search={playerSearch}
-              handleClickPlayer={handleClickPlayer}
+              selectPlayer={selectPlayer}
               handleAddPlayer={handleAddPlayer}
             />
           </div>

@@ -1,7 +1,9 @@
-const TABLE_STORAGE_PREFIX = 'Kingfisher_Table_Storage'
-const SEATED_PLAYERS_PREFIX = 'SEATED_PLAYERS'
-const USER = 'KF-U'
+const TABLE_STORAGE_PREFIX = 'TABLES_LIST_KF'
+const SEATED_PLAYERS_PREFIX = 'SEATED_PLAYERS_KF'
+const USER = 'USER_KF'
 const LOGOUT_REF = 'LOGOUT_REF_KF'
+const GROUP_REF = 'SELECT_GROUP_KF'
+const MENU_STATES_REF = 'MENU_STATES'
 
 // TABLES
 const updateTables = (updatedTables, groupId) => {
@@ -36,8 +38,12 @@ const updateSeatedPlayers = (tableId, updatedSeats) => {
     localStorage.setItem(lsKey, JSON.stringify(updatedSeats))
 }
 
-// User
+// GROUP
+const setSelectedGroup = (selectedGroup) => localStorage.setItem(GROUP_REF, JSON.stringify(selectedGroup))
 
+const getSelectedGroup = () => JSON.parse(localStorage.getItem(GROUP_REF))
+
+// USER
 const storeUser = (user) => localStorage.setItem(USER, JSON.stringify(user))
 
 const getUser = () => JSON.parse(localStorage.getItem(USER))
@@ -47,6 +53,8 @@ const logout = () => {
     JSON.parse(logoutRef).forEach(ref => {
         localStorage.removeItem(ref)
     })
+    localStorage.removeItem(USER)
+    localStorage.removeItem(GROUP_REF)
 }
 
 const updateLogoutRef = (newRef) => {
@@ -55,4 +63,4 @@ const updateLogoutRef = (newRef) => {
     localStorage.setItem(LOGOUT_REF, JSON.stringify([...logoutRefParsed, newRef]))
 }
 
-export const LS = { updateTables, removeTable, getTables, getSeatedPlayers, updateSeatedPlayers, logout, storeUser, getUser }
+export const LS = { updateTables, removeTable, getTables, getSeatedPlayers, updateSeatedPlayers, logout, storeUser, getUser, setSelectedGroup, getSelectedGroup }

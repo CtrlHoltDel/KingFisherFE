@@ -100,133 +100,232 @@ $light-blue-border: solid #26a6fe 1px;
         }
     }
 
-    .tables {
-        flex: 1;
+    .tables-container {
         display: flex;
-        flex-wrap: wrap;
-        max-height: 100%;
-        overflow: auto;
-        align-content: flex-start;
-        padding: 15px;
-        gap: 10px;
-        position: relative;
-        .table {
-            width: 200px;
-            border: $simple-border;
-            border-radius: 3px;
-            height: min-content;
+        flex: 1;
 
-            &__header {
-                display: flex;
-                padding: 5px;
-                justify-content: space-between;
-                font-size: 12px;
-            }
-
-            &__seat-container {
-                display: flex;
-                padding: 5px;
-                flex-direction: column;
-                gap: 3px;
-
-                .seat {
-                    &__empty-seat {
-                        width: 100%;
-                        font-size: 13px;
-                    }
-
-                    &__seated-player {
-                        display: flex;
-                        justify-content: space-between;
-                    }
-
-                    .search-modal-container {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        background-color: rgba(0, 0, 0, 0.11);
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        &__modal {
-                            border-radius: 4px;
-                            background-color: white;
-                            box-shadow: $primary-shadow;
+        .tables {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            max-height: 100%;
+            overflow: auto;
+            align-content: flex-start;
+            padding: 15px;
+            gap: 10px;
+            position: relative;
+            .table {
+                width: 200px;
+                border: $simple-border;
+                border-radius: 3px;
+                height: min-content;
+    
+                &__header {
+                    display: flex;
+                    padding: 5px;
+                    justify-content: space-between;
+                    font-size: 12px;
+                }
+    
+                &__seat-container {
+                    display: flex;
+                    padding: 5px;
+                    flex-direction: column;
+                    gap: 3px;
+    
+                    .seat {
+                        &__empty-seat {
+                            width: 100%;
+                            font-size: 13px;
+                        }
+    
+                        &__seated-player {
                             display: flex;
-                            flex-direction: column;
                             justify-content: space-between;
-                            gap: 5px;
-
-                            &__results {
+                        }
+    
+                        .search-modal-container {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            background-color: rgba(0, 0, 0, 0.11);
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+    
+                            &__modal {
+                                border-radius: 4px;
+                                background-color: white;
+                                box-shadow: $primary-shadow;
                                 display: flex;
                                 flex-direction: column;
-                                gap: 6px;
-                                padding: 15px 15px 0 15px;
-
-                                &__result {
+                                justify-content: space-between;
+                                gap: 5px;
+    
+                                &__results {
                                     display: flex;
-                                    justify-content: space-between;
-
-                                    &__name {
-                                        width: 200px;
-                                        white-space: nowrap;
-                                        text-overflow: ellipsis;
-                                        overflow: hidden;
+                                    flex-direction: column;
+                                    gap: 6px;
+                                    padding: 15px 15px 0 15px;
+    
+                                    &__result {
+                                        display: flex;
+                                        justify-content: space-between;
+    
+                                        &__name {
+                                            width: 200px;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                        }
                                     }
                                 }
-                            }
-
-                            &__controls {
-                                padding: 0 15px 15px 15px;
-                                display: flex;
-                                input {
-                                    flex: 1;
+    
+                                &__controls {
+                                    padding: 0 15px 15px 15px;
+                                    display: flex;
+                                    input {
+                                        flex: 1;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-
-        &__add-table {
-            background-color: transparent;
-            border: $simple-border;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            font-size: 12px;
-            padding: 0 15px;
-            color: rgb(56, 56, 56);
-
-            svg {
-                height: 20px;
-                width: 20px;
+    
+            &__add-table {
+                background-color: transparent;
+                border: $simple-border;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                font-size: 12px;
+                padding: 0 15px;
+                color: rgb(56, 56, 56);
+    
+                svg {
+                    height: 20px;
+                    width: 20px;
+                }
             }
-        }
-
-        &__add-table:hover {
-            cursor: pointer;
-            background-color: $primary-color;
-            color: white;
-            text-decoration: underline;
-
-            svg {
-                path {
-                    color: white;
-                    fill: white;
-                    stroke: white;
-
+    
+            &__add-table:hover {
+                cursor: pointer;
+                background-color: $primary-color;
+                color: white;
+                text-decoration: underline;
+    
+                svg {
+                    path {
+                        color: white;
+                        fill: white;
+                        stroke: white;
+    
+                    }
                 }
             }
         }
+
+        .notes {
+            min-width: 350px;
+            width: 20%;
+            border-left: $simple-border;
+            resize: both;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+    
+            &__body {
+                background-color: red;
+                flex: 1;
+    
+                &__header {
+                    display: flex;
+                    justify-content: space-between;
+                    background-color: white;
+                    padding: 14px;
+                }
+            }
+    
+            &__add-note {
+                padding: 15px;
+                display: flex;
+                gap: 8px;
+                flex-direction: column;
+    
+                &__type-toggle {
+                    display: flex;
+                    button {
+                        flex: 1;
+                        border: none;
+                        background-color: none;
+                        padding: 5px;
+                    }
+    
+                    button:first-child {
+                        border-radius: 2px 0 0 2px;
+                    }
+    
+                    button:last-child {
+                        border-radius: 0 2px 2px 0;
+                    }
+    
+                    button:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+    
+                    .selected {
+                        background-color: $primary-color;
+                        color: white;
+                    }
+                }
+    
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    input {
+                        width: 100%;
+                        height: 80px;
+                        padding: 15px;
+                        resize: none;
+                        border: $simple-border;
+                    }
+        
+                    input:focus {
+                        outline: none;
+                        border: $light-blue-border;
+                    }
+        
+                    .notes__add-note__add-button {
+                        background-color: $primary-color;
+                        border: none;
+                        padding: 8px;
+                        border-radius: 4px;
+                        color: white;
+                    }
+        
+                    .notes__add-note__add-button:disabled {
+                        opacity: 70%;
+                    }
+        
+                    .notes__add-note__add-button:enabled:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                }
+    
+            }
+        }
     }
+
 
     .groups {
         position: relative;
@@ -311,96 +410,4 @@ $light-blue-border: solid #26a6fe 1px;
         }
     }
 
-    .notes {
-        min-width: 350px;
-        width: 20%;
-        border-left: $simple-border;
-        resize: both;
-        overflow: auto;
-        display: flex;
-        flex-direction: column;
-
-        &__body {
-            background-color: red;
-            flex: 1;
-
-            &__header {
-                display: flex;
-                justify-content: space-between;
-                background-color: white;
-                padding: 14px;
-            }
-        }
-
-        &__add-note {
-            padding: 15px;
-            display: flex;
-            gap: 8px;
-            flex-direction: column;
-
-            &__type-toggle {
-                display: flex;
-                button {
-                    flex: 1;
-                    border: none;
-                    background-color: none;
-                    padding: 5px;
-                }
-
-                button:first-child {
-                    border-radius: 2px 0 0 2px;
-                }
-
-                button:last-child {
-                    border-radius: 0 2px 2px 0;
-                }
-
-                button:hover {
-                    cursor: pointer;
-                    text-decoration: underline;
-                }
-
-                .selected {
-                    background-color: $primary-color;
-                    color: white;
-                }
-            }
-
-            form {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                input {
-                    width: 100%;
-                    height: 80px;
-                    padding: 15px;
-                    resize: none;
-                    border: $simple-border;
-                }
-    
-                input:focus {
-                    outline: none;
-                    border: $light-blue-border;
-                }
-    
-                .notes__add-note__add-button {
-                    background-color: $primary-color;
-                    border: none;
-                    padding: 8px;
-                    border-radius: 4px;
-                    color: white;
-                }
-    
-                .notes__add-note__add-button:disabled {
-                    opacity: 70%;
-                }
-    
-                .notes__add-note__add-button:enabled:hover {
-                    cursor: pointer;
-                    text-decoration: underline;
-                }
-            }
-
-        }
-    }
 }
