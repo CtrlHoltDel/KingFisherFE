@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { DEFAULT_CONFIG } from "../utils/constants";
 import { LS } from "../utils/LocalStorage";
 
 const useUser = () => {

@@ -67,7 +67,6 @@ const LoginForm = ({ handleSetUser }) => {
       <div className="auth-inner">
         {loading && <img alt="loading-icon" className="loading-icon" src={loadingIcon}></img>}
         <img src={logo} alt="logo"></img>
-        <div class="backdrop-connector"></div>
         <form onSubmit={handleSubmitForm}>
           <div className="input-container">
             <p className="input-container__label">Username</p>

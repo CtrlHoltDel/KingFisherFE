@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-import { TiCancel } from "react-icons/ti";
+import { MdOutlineRemoveCircle } from "react-icons/md";
+import { setSeatStyle } from "../../utils/typeStyle";
 import SearchModal from "../common/SearchModal";
 
 const SEARCH_MODAL_CLASS = 'search-modal-container'
@@ -25,15 +26,15 @@ const Seat = ({ seat, user, addPlayer, removePlayer, currentlySelectedGroup, sel
         </div>
       )}
       {seat.id ? (
-        <div className="seat__seated-player">
+        <div className="seat__seated-player" style={setSeatStyle(seat.type)}>
           <p onClick={() => selectPlayer(seat)}>{seat.name}</p>
           <button onClick={() => removePlayer(seat.seatNumber)}>
-            <TiCancel />
+            <MdOutlineRemoveCircle />
           </button>
         </div>
       ) : (
         <button className="seat__empty-seat" onClick={() => setSearchOpen(true)}>
-          Empty Seat - Search Player
+          {searchOpen ? "Seating Player.." : "Empty - add or search"}
         </button>
       )}
     </div>

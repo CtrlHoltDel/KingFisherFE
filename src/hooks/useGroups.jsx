@@ -1,80 +1,91 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect } from "react";
+import { useState } from "react";
 
 import { APIAddGroup, APIAddUserToGroup, APIGetGroups } from "../api/actions";
 
 const useGroups = (user, currentlySelectedGroup) => {
+  const [groups, setGroups] = useState([]);
 
-    const [groups, setGroups] = useState([])
-    
-    const [loadingGroups, setLoading] = useState(false)
-    const [addGroupLoading, setAddGroupLoading] = useState(false)
-    const [addUserLoading, setAddUserLoading] = useState(false)
+  const [loadingGroups, setLoading] = useState(false);
+  const [addGroupLoading, setAddGroupLoading] = useState(false);
+  const [addUserLoading, setAddUserLoading] = useState(false);
 
-    
-    const [newGroupInput, setNewGroupInput] = useState("")
-    const [newGroupDisabled, setNewGroupDisabled] = useState(true)
-    
-    const [groupError, setGroupError] = useState("")
+  const [newGroupInput, setNewGroupInput] = useState("");
+  const [newGroupDisabled, setNewGroupDisabled] = useState(true);
 
-    useEffect(() => {
-        const loadGroups = async () => {
-            setLoading(true);
-            const { success, error } = await APIGetGroups(user.token);
-      
-            if(error){
-              //handle error
-              console.log(error);
-              setGroups([])
-            } else {
-                setGroups(success.data.groups);
-            }
-      
-            setLoading(false);
-        }
+  const [groupError, setGroupError] = useState("");
 
-        loadGroups()
-    }, [user.token])
+  useEffect(() => {
+    const loadGroups = async () => {
+      setLoading(true);
+      const { success, error } = await APIGetGroups(user.token);
 
-    const createGroup = async () => {
-        setAddGroupLoading(true)
-        setNewGroupInput("")
-        setNewGroupDisabled(true)
+      if (error) {
+        //handle error
+        console.log(error);
+        setGroups([]);
+      } else {
+        setGroups(success.data.groups);
+      }
 
-        const { success, error } = await APIAddGroup(user.token, newGroupInput);
-        
-        if(error){
-            setGroupError(error.message);
-        } else {
-            setGroups(groups => ([...groups, { ...success.addedGroup, validated: true }]))
-        }
-        
-        setAddGroupLoading(false)
+      setLoading(false);
+    };
+
+    loadGroups();
+  }, [user.token]);
+
+  const createGroup = async () => {
+    setAddGroupLoading(true);
+    setNewGroupInput("");
+    setNewGroupDisabled(true);
+
+    const { success, error } = await APIAddGroup(user.token, newGroupInput);
+
+    if (error) {
+      setGroupError(error.message);
+    } else {
+      setGroups((groups) => [
+        ...groups,
+        { ...success.addedGroup, validated: true },
+      ]);
     }
 
-    const addUserToGroup = async (userAddedToGroup) => {
-        setAddUserLoading(true);
+    setAddGroupLoading(false);
+  };
 
-        const { success, error } = await APIAddUserToGroup(
-            user.token,
-            currentlySelectedGroup.id,
-            userAddedToGroup
-        );
+  const addUserToGroup = async (userAddedToGroup) => {
+    setAddUserLoading(true);
 
-        if(error){
-            console.log(error)
-        }
+    const { success, error } = await APIAddUserToGroup(
+      user.token,
+      currentlySelectedGroup.id,
+      userAddedToGroup
+    );
 
-        setAddUserLoading(false);
+    if (error) {
+      console.log(error);
     }
 
-    const updateGroupInput = (e) => {
-        setNewGroupInput(e.target.value)
-        setNewGroupDisabled(e.target.value.length < 3)
-    }
+    setAddUserLoading(false);
+  };
 
-    return { groups, loadingGroups, addUserLoading, addUserToGroup, createGroup, groupError, addGroupLoading, newGroupInput, newGroupDisabled, updateGroupInput }
+  const updateGroupInput = (e) => {
+    setNewGroupInput(e.target.value);
+    setNewGroupDisabled(e.target.value.length < 3);
+  };
 
-}
+  return {
+    groups,
+    loadingGroups,
+    addUserLoading,
+    addUserToGroup,
+    createGroup,
+    groupError,
+    addGroupLoading,
+    newGroupInput,
+    newGroupDisabled,
+    updateGroupInput,
+  };
+};
 
-export default useGroups
+export default useGroups;

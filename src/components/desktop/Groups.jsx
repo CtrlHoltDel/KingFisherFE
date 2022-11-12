@@ -15,8 +15,6 @@ const Groups = ({ selectGroup, currentlySelectedGroup, user }) => {
     addGroupLoading,
     newGroupInput,
     newGroupDisabled,
-    setNewGroupDisabled,
-    setNewGroupInput,
     updateGroupInput
   } = useGroups(user, currentlySelectedGroup);
 

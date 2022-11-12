@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { APIAddPlayer, APIGetPlayers } from "../api/actions";
+import { APIGetPlayers } from "../api/actions";
 
-const useSearchPlayers = (user, currentlySelectedGroup, selectPlayer) => {
+const useSearchPlayers = (user, currentlySelectedGroup) => {
   const [players, setPlayers] = useState(null);
-  const [loadingPlayers, setLoadingPlayers] = useState(true);
+  const [loadingPlayers, setLoadingPlayers] = useState(false);
   const [hasExactMatch, setHasExactMatch] = useState(null);
 
   const [noResults, setNoResults] = useState(false);

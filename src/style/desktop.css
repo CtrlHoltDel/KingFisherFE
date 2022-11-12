@@ -103,9 +103,22 @@
 }
 .desktop .tables-container .tables .table__header {
   display: flex;
-  padding: 5px;
   justify-content: space-between;
   font-size: 12px;
+}
+.desktop .tables-container .tables .table__header button {
+  border: none;
+  background-color: transparent;
+  padding: 5px 5px 0 0;
+}
+.desktop .tables-container .tables .table__header button svg {
+  color: gray;
+}
+.desktop .tables-container .tables .table__header button:hover {
+  cursor: pointer;
+}
+.desktop .tables-container .tables .table__header button:hover svg {
+  color: black;
 }
 .desktop .tables-container .tables .table__seat-container {
   display: flex;
@@ -116,10 +129,57 @@
 .desktop .tables-container .tables .table__seat-container .seat__empty-seat {
   width: 100%;
   font-size: 13px;
+  border: solid rgb(204, 204, 204) 1px;
+  background-color: transparent;
+  border-radius: 3px;
+  height: 23px;
+}
+.desktop .tables-container .tables .table__seat-container .seat__empty-seat:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .desktop .tables-container .tables .table__seat-container .seat__seated-player {
   display: flex;
   justify-content: space-between;
+  border: solid rgb(204, 204, 204) 1px;
+  height: 23px;
+  align-items: center;
+  border-radius: 3px;
+}
+.desktop .tables-container .tables .table__seat-container .seat__seated-player p {
+  padding-left: 4px;
+  font-size: 13px;
+  flex: 1;
+  height: 100%;
+  border-radius: 2px 0 0 2px;
+  display: flex;
+  align-items: center;
+}
+.desktop .tables-container .tables .table__seat-container .seat__seated-player button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 24px;
+  border-radius: 0 2px 2px 0;
+}
+.desktop .tables-container .tables .table__seat-container .seat__seated-player button svg {
+  width: 18px;
+  height: 18px;
+  color: rgb(177, 177, 177);
+}
+.desktop .tables-container .tables .table__seat-container .seat__seated-player button:hover {
+  background-color: rgb(250, 187, 187);
+  cursor: pointer;
+}
+.desktop .tables-container .tables .table__seat-container .seat__seated-player button:hover svg {
+  color: red;
+}
+.desktop .tables-container .tables .table__seat-container .seat__seated-player:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container {
   position: absolute;
@@ -140,16 +200,22 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
+  width: 340px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 15px 15px 0 15px;
+  padding-top: 10px;
+  flex: 1;
+  justify-content: flex-end;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__result {
   display: flex;
   justify-content: space-between;
+  padding: 3px 15px;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__result__name {
   width: 200px;
@@ -157,12 +223,41 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__result__add-player {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__loading {
+  padding: 3px 15px;
+  text-align: center;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__result:hover {
+  cursor: pointer;
+  background-color: rgb(241, 241, 241);
+}
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls {
   padding: 0 15px 15px 15px;
   display: flex;
 }
-.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls input {
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input {
+  border: solid rgb(146, 146, 146) 1px;
+  border-radius: 4px;
+  display: flex;
+  width: 100%;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input input {
   flex: 1;
+  border-radius: 4px;
+  height: 25px;
+  padding-left: 5px;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input input:focus {
+  outline: none;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input * {
+  border: none;
 }
 .desktop .tables-container .tables__add-table {
   background-color: transparent;
