@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { APIAddPlayer, APIGetPlayers } from "../api/actions";
 
-const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
+const useSearchPlayers = (user, currentlySelectedGroup, selectPlayer) => {
   const [players, setPlayers] = useState(null);
   const [loadingPlayers, setLoadingPlayers] = useState(true);
-  const [loadingAddPlayer, setLoadingAddPlayer] = useState(false);
-
   const [hasExactMatch, setHasExactMatch] = useState(null);
 
   const [noResults, setNoResults] = useState(false);
@@ -45,38 +43,6 @@ const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
     setLoadingPlayers(false);
   };
 
-  const handleAddPlayer = async (inDesktop) => {
-    setLoadingAddPlayer(true);
-    const { error, success } = await APIAddPlayer(
-      user.token,
-      playerSearch,
-      currentlySelectedGroup.id
-    );
-
-    if (error) {
-      console.log(error);
-    } else if (success) {
-      if (!inDesktop) {
-        selectPlayer({
-          player: {
-            ...success.addedPlayer,
-            note_group_id: currentlySelectedGroup.id,
-          },
-          notes: [],
-          tendencies: [],
-        });
-      }
-
-      setPlayerSearch("");
-      setPlayers(null);
-      setLoadingAddPlayer(false);
-      return success
-
-    }
-
-    setLoadingAddPlayer(false);
-  };
-
   const updateSearch = (value) => {
     setPlayerSearch(value);
     handleSearch(value);
@@ -86,11 +52,9 @@ const usePlayers = (user, currentlySelectedGroup, selectPlayer) => {
     players,
     loadingPlayers,
     hasExactMatch,
-    handleAddPlayer,
     playerSearch,
     updateSearch,
-    loadingAddPlayer,
   };
 };
 
-export default usePlayers;
+export default useSearchPlayers;

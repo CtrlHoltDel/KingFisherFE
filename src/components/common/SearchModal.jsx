@@ -1,5 +1,5 @@
 import React from "react";
-import usePlayers from "../../hooks/usePlayers";
+import useSearchPlayers from "../../hooks/useSearchPlayers";
 
 const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGroup }) => {
   const {
@@ -8,32 +8,7 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
     hasExactMatch,
     playerSearch,
     updateSearch,
-    handleAddPlayer
-  } = usePlayers(user, currentlySelectedGroup);
-
-  const handleClickAddPlayer = async (seatNumber) => {
-    const { addedPlayer } = await handleAddPlayer(true)
-    console.log(addedPlayer, "<<")
-
-    addPlayer({ 
-
-    })
-    
-
-  }
-
-  /*
-
-  {
-      "id": "401931cd-5868-48b7-a6e6-c22a57e3c157",
-      "name": "amma dhinema bathayo",
-      "type": "fish",
-      "created_time": "2022-01-18T10:35:15.903Z",
-      "created_by": "ctrlholtdel",
-      "note_group_id": "c1e094e3-090b-4c82-95c7-aa51ee663505"
-  }
-
-  */
+  } = useSearchPlayers(user, currentlySelectedGroup);
 
   return (
     <div className="search-modal-container__modal">
@@ -63,7 +38,7 @@ const SearchModal = ({ closeSearch, user, addPlayer, seat, currentlySelectedGrou
                   </div>
                 );
               })}
-            {!hasExactMatch && playerSearch && <p onClick={() => handleClickAddPlayer(seat.seatNumber)}>Add {playerSearch}</p>}
+            {!hasExactMatch && playerSearch && <p onClick={() => console.log("clicked")}>Add {playerSearch}</p>}
           </>
         )}
       </div>

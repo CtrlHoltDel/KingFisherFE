@@ -7,7 +7,7 @@ const PlayersListView = ({
   exactMatch,
   search,
   loading,
-  handleClickPlayer,
+  selectPlayer,
   handleAddPlayer,
 }) => {
   return (
@@ -22,7 +22,7 @@ const PlayersListView = ({
             <div
               className="players-list__player players-list__item"
               key={item.id}
-              onClick={() => handleClickPlayer(item)}
+              onClick={() => selectPlayer(item)}
             >
               <p>{item.name}</p>
               <p>{item.type || "no type"}</p>

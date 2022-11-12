@@ -80,6 +80,10 @@
   position: absolute;
   bottom: 60px;
 }
+.auth-container .auth-inner form button:enabled:hover {
+  cursor: pointer;
+  color: white;
+}
 .auth-container .auth-inner form button:disabled {
   opacity: 50%;
   color: black;

@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-import { APIGetNotes } from "./api/actions";
 import Groups from "./components/desktop/Groups";
 import Navigation from "./components/desktop/Navigation";
-import Notes from "./components/desktop/Notes";
 import Tables from "./components/desktop/Tables";
 
 import "./style/desktop.css";
-import { formatNotes } from "./utils/dataFormat";
 
 const Desktop = ({
   user,
   logoutUser,
   currentlySelectedGroup,
   selectGroup,
-  selectedPlayer,
-  addNoteToPlayer,
-  selectPlayer
 }) => {
   const [groupsMenuOpen, setGroupsMenuOpen] = useState(false);
-  
   const toggleGroupsMenu = () => setGroupsMenuOpen((curr) => !curr);
 
   return (
@@ -38,13 +31,7 @@ const Desktop = ({
       <Tables
         user={user}
         currentlySelectedGroup={currentlySelectedGroup}
-        selectPlayer={selectPlayer}
-        selectedPlayer={selectedPlayer}
-        addNoteToPlayer={addNoteToPlayer}
       />
-      {/* {selectedPlayer && (
-        <Notes selectedPlayer={selectedPlayer} loadingPlayer={loadingPlayer} addNoteToPlayer={addNoteToPlayer}/>
-      )} */}
     </div>
   );
 };

@@ -92,6 +92,11 @@ $primary-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
                 bottom: 60px;
             }
 
+            button:enabled:hover {
+                cursor: pointer;
+                color: white;
+            }
+
             button:disabled {
                 opacity: 50%;
                 color: black;
