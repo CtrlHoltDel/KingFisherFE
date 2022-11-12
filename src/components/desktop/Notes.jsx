@@ -1,13 +1,18 @@
 import React from "react";
+import { useContext } from "react";
 import AddNote from "./AddNote";
+import { UserContext } from "../../context/UserContext"
+import { setHeaderStyle } from "../../utils/typeStyle";
 
 const Notes = ({ selectedPlayer, addNoteToPlayer }) => {
   const { player, notes, tendencies } = selectedPlayer;
 
+  const { config } = useContext(UserContext)
+
   return (
     <div className="notes">
       <div className="notes__body">
-          <div className="notes__body__header">
+          <div className="notes__body__header" style={setHeaderStyle(player.type, config)}>
             <p>{player.name}</p>
             <p>{player.type}</p>
           </div>

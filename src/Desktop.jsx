@@ -1,37 +1,38 @@
 import React, { useState } from "react";
 import Groups from "./components/desktop/Groups";
 import Navigation from "./components/desktop/Navigation";
+import Settings from "./components/desktop/Settings";
 import Tables from "./components/desktop/Tables";
 
 import "./style/desktop.css";
 
-const Desktop = ({
-  user,
-  logoutUser,
-  currentlySelectedGroup,
-  selectGroup,
-}) => {
+const Desktop = () => {
   const [groupsMenuOpen, setGroupsMenuOpen] = useState(false);
-  const toggleGroupsMenu = () => setGroupsMenuOpen((curr) => !curr);
+  const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
+
+  const toggleGroupsMenu = () => {
+    setSettingsMenuOpen(false)
+    setGroupsMenuOpen((curr) => !curr)
+  };
+  const toggleSettingsMenu = () => {
+    setGroupsMenuOpen(false)
+    setSettingsMenuOpen((curr) => !curr)
+  };
+
 
   return (
     <div className="desktop">
       <Navigation
-        user={user}
-        logoutUser={logoutUser}
         toggleGroupsMenu={toggleGroupsMenu}
+        toggleSettingsMenu={toggleSettingsMenu}
       />
       {groupsMenuOpen && (
-        <Groups
-          selectGroup={selectGroup}
-          currentlySelectedGroup={currentlySelectedGroup}
-          user={user}
-        />
+        <Groups />
       )}
-      <Tables
-        user={user}
-        currentlySelectedGroup={currentlySelectedGroup}
-      />
+      {settingsMenuOpen && (
+        <Settings />
+      )}
+      <Tables />
     </div>
   );
 };

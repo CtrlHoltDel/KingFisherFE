@@ -2,8 +2,13 @@ import React from "react";
 import useGroups from "../../hooks/useGroups";
 
 import loadingIcon from '../../assets/loading.svg'
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
-const Groups = ({ selectGroup, currentlySelectedGroup, user }) => {
+const Groups = () => {
+
+  const { user, selectGroup, currentlySelectedGroup } = useContext(UserContext)
+
   const {
     groups,
     loadingGroups,

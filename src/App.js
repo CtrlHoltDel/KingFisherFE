@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import LoginForm from "./components/common/LoginForm";
-import { UserContext } from "./context/userContext";
+import { UserContext } from "./context/UserContext";
 import Desktop from "./Desktop";
 import useHandleWindow from "./hooks/useHandleWindow";
 import useUser from "./hooks/useUser";
@@ -43,7 +43,6 @@ function App() {
           ) : (
             <Desktop
               user={user}
-              logoutUser={logoutUser}
               currentlySelectedGroup={currentlySelectedGroup}
               selectGroup={selectGroup}
             />

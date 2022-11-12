@@ -5,11 +5,11 @@ import Table from "./Table";
 import tableIcon from "../../assets/table-icon.svg";
 import Notes from "./Notes";
 import usePlayer from "../../hooks/usePlayer";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
-const Tables = ({
-  user,
-  currentlySelectedGroup,
-}) => {
+const Tables = () => {
+  const { user, currentlySelectedGroup } = useContext(UserContext)
 
   const { tables, addTable, closeTable } = useTables(currentlySelectedGroup);
   const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer } = usePlayer(user, currentlySelectedGroup)

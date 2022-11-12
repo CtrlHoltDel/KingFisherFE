@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 
-import { UserContext } from "../../context/userContext"
+import { UserContext } from "../../context/UserContext"
 
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import { setSeatStyle } from "../../utils/typeStyle";

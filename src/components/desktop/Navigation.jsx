@@ -3,10 +3,15 @@ import { useState } from "react";
 
 import { BiChevronsLeft, BiChevronsRight, BiLogOutCircle } from "react-icons/bi";
 import { GrGroup } from 'react-icons/gr'
+import { CiSettings } from 'react-icons/ci'
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
-const Navigation = ({ logoutUser, toggleGroupsMenu }) => {
+const Navigation = ({ toggleGroupsMenu, toggleSettingsMenu }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleNav = () => setIsOpen((curr) => !curr);
+
+  const { logoutUser } = useContext(UserContext)
 
   return (
     <div className="navigation">
@@ -23,6 +28,10 @@ const Navigation = ({ logoutUser, toggleGroupsMenu }) => {
             </button>
           </div>
           <div className="user">
+            <button onClick={toggleSettingsMenu}>
+              <CiSettings />
+              <p>Settings</p>
+            </button>
             <button onClick={logoutUser}>
               <BiLogOutCircle />
               <p>Logout</p>
@@ -40,6 +49,9 @@ const Navigation = ({ logoutUser, toggleGroupsMenu }) => {
             </button>
           </div>
           <div className="user">
+            <button onClick={toggleSettingsMenu}>
+              <CiSettings />
+            </button>
             <button onClick={logoutUser}>
               <BiLogOutCircle />
             </button>
