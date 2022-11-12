@@ -133,10 +133,12 @@
   background-color: transparent;
   border-radius: 3px;
   height: 26px;
+  opacity: 60%;
 }
 .desktop .tables-container .tables .table__seat-container .seat__empty-seat:hover {
   cursor: pointer;
   text-decoration: underline;
+  opacity: 100%;
 }
 .desktop .tables-container .tables .table__seat-container .seat__seated-player {
   display: flex;
@@ -171,11 +173,11 @@
   color: rgb(177, 177, 177);
 }
 .desktop .tables-container .tables .table__seat-container .seat__seated-player button:hover {
-  background-color: rgb(250, 187, 187);
+  background-color: rgba(0, 0, 0, 0.356);
   cursor: pointer;
 }
 .desktop .tables-container .tables .table__seat-container .seat__seated-player button:hover svg {
-  color: red;
+  color: rgba(255, 255, 255, 0.801);
 }
 .desktop .tables-container .tables .table__seat-container .seat__seated-player:hover {
   cursor: pointer;
@@ -216,9 +218,19 @@
   display: flex;
   justify-content: space-between;
   padding: 3px 15px;
+  gap: 5px;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__result__name {
-  width: 200px;
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__result__type {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -287,20 +299,158 @@
   min-width: 350px;
   width: 20%;
   border-left: solid rgb(209, 209, 209) 1px;
-  resize: both;
   overflow: auto;
   display: flex;
   flex-direction: column;
 }
-.desktop .tables-container .notes__body {
-  background-color: red;
-  flex: 1;
-}
-.desktop .tables-container .notes__body__header {
+.desktop .tables-container .notes__header {
   display: flex;
   justify-content: space-between;
-  background-color: white;
+  background-color: rgb(241, 241, 241);
+  flex-direction: column;
   padding: 14px;
+  gap: 4px;
+}
+.desktop .tables-container .notes__header__break-line {
+  height: 2px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.192);
+}
+.desktop .tables-container .notes__header__content {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.desktop .tables-container .notes__header__content__name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-self: center;
+}
+.desktop .tables-container .notes__header__content__type {
+  display: flex;
+  gap: 3px;
+  padding-left: 3px;
+}
+.desktop .tables-container .notes__header__content__type .type-icon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 75px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.desktop .tables-container .notes__header__content__type .type-icon svg {
+  height: 22px;
+  width: 22px;
+}
+.desktop .tables-container .notes__header__content__type__edit {
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+}
+.desktop .tables-container .notes__header__content__type__edit svg {
+  height: 16px;
+  width: 16px;
+}
+.desktop .tables-container .notes__header__content__type:hover {
+  background-color: rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+}
+.desktop .tables-container .notes__header__player-edit-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 3px;
+}
+.desktop .tables-container .notes__header__player-edit-menu__quick-buttons {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+}
+.desktop .tables-container .notes__header__player-edit-menu__quick-buttons button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.473);
+  padding: 4px;
+  color: white;
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 11px;
+  width: 40px;
+}
+.desktop .tables-container .notes__header__player-edit-menu__quick-buttons button svg {
+  width: 20px;
+  height: 20px;
+}
+.desktop .tables-container .notes__header__player-edit-menu__quick-buttons button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.788);
+  text-decoration: underline;
+}
+.desktop .tables-container .notes__header__player-edit-menu__custom-type-input {
+  display: flex;
+}
+.desktop .tables-container .notes__header__player-edit-menu__custom-type-input input {
+  flex: 1;
+  height: 25px;
+  padding: 0 5px;
+  border-radius: 3px 0 0 3px;
+}
+.desktop .tables-container .notes__header__player-edit-menu__custom-type-input button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.562);
+  color: white;
+  border-radius: 0 3px 3px 0;
+  padding: 0 5px;
+}
+.desktop .tables-container .notes__header__player-edit-menu__custom-type-input button:hover {
+  cursor: pointer;
+  opacity: 90%;
+  text-decoration: underline;
+}
+.desktop .tables-container .notes__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.desktop .tables-container .notes__body__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.desktop .tables-container .notes__body__list__header {
+  padding: 5px 15px;
+  background-color: rgb(241, 241, 241);
+}
+.desktop .tables-container .notes__body__list__content {
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+  overflow: auto;
+}
+.desktop .tables-container .notes__body__list__content__item {
+  padding: 0 15px;
+  word-wrap: break-word;
+}
+.desktop .tables-container .notes__body .notes-list {
+  flex: 2 1 auto;
+  overflow-y: auto;
+  height: 0px;
+}
+.desktop .tables-container .notes__body .tendencies-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  height: 0px;
 }
 .desktop .tables-container .notes__add-note {
   padding: 15px;

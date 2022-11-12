@@ -1,5 +1,6 @@
 import React from "react";
 import useSearchPlayers from "../../hooks/useSearchPlayers";
+import TypeIcon from "./TypeIcon";
 
 const SearchModal = ({
   closeSearch,
@@ -25,7 +26,6 @@ const SearchModal = ({
                     key={player.id}
                     className="search-modal-container__modal__results__result"
                     onClick={() => {
-                      console.log(player, seat.seatNumber);
                       addPlayer(player, seat.seatNumber);
                       closeSearch();
                     }}
@@ -34,7 +34,7 @@ const SearchModal = ({
                       {player.name}
                     </div>
                     <div className="search-modal-container__modal__results__result__type">
-                      {/* {player.type} */}
+                      <TypeIcon type={player.type}/>
                     </div>
                   </div>
                 );

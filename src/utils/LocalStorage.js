@@ -4,11 +4,13 @@ const USER = 'USER_KF'
 const LOGOUT_REF = 'LOGOUT_REF_KF'
 const GROUP_REF = 'SELECT_GROUP_KF'
 
+// TODO: Fix this mess.
+
 // TABLES
 const updateTables = (updatedTables, groupId) => {
     const lsKey = `${TABLE_STORAGE_PREFIX}-${groupId}`
     localStorage.setItem(lsKey, JSON.stringify(updatedTables))
-    updateLogoutRef(lsKey)
+    updateTablesRef(lsKey)
 }
 
 const removeTable = (tableId, groupId) => {
@@ -25,6 +27,7 @@ const getTables = (groupId) => {
     return parsedTables.filter(table => table.groupId === groupId)
 }
 
+// TODO: Move seated players into cloud?
 // SEATS
 const getSeatedPlayers = (tableId) => {
     const retreivedPlayers = localStorage.getItem(`${SEATED_PLAYERS_PREFIX}-${tableId}`)
@@ -33,7 +36,7 @@ const getSeatedPlayers = (tableId) => {
 
 const updateSeatedPlayers = (tableId, updatedSeats) => {
     const lsKey = `${SEATED_PLAYERS_PREFIX}-${tableId}`
-    updateLogoutRef(lsKey)
+    updateTablesRef(lsKey)
     localStorage.setItem(lsKey, JSON.stringify(updatedSeats))
 }
 
@@ -48,18 +51,18 @@ const storeUser = (user) => localStorage.setItem(USER, JSON.stringify(user))
 const getUser = () => JSON.parse(localStorage.getItem(USER))
 
 const logout = () => {
-    const logoutRef = localStorage.getItem(LOGOUT_REF)
-    JSON.parse(logoutRef).forEach(ref => {
+    const tablesAndPlayersRef = localStorage.getItem(LOGOUT_REF)
+    JSON.parse(tablesAndPlayersRef).forEach(ref => {
         localStorage.removeItem(ref)
     })
     localStorage.removeItem(USER)
     localStorage.removeItem(GROUP_REF)
 }
 
-const updateLogoutRef = (newRef) => {
-    const logoutRef = localStorage.getItem(LOGOUT_REF)
-    const logoutRefParsed = JSON.parse(logoutRef) || []
-    localStorage.setItem(LOGOUT_REF, JSON.stringify([...logoutRefParsed, newRef]))
+const updateTablesRef = (newRef) => {
+    const tablesAndPlayersRef = localStorage.getItem(LOGOUT_REF)
+    const tablesAndPlayersRefParsed = JSON.parse(tablesAndPlayersRef) || []
+    localStorage.setItem(LOGOUT_REF, JSON.stringify([...tablesAndPlayersRefParsed, newRef]))
 }
 
 export const LS = { updateTables, removeTable, getTables, getSeatedPlayers, updateSeatedPlayers, logout, storeUser, getUser, setSelectedGroup, getSelectedGroup }

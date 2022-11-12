@@ -9,10 +9,10 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
 const Tables = () => {
-  const { user, currentlySelectedGroup } = useContext(UserContext)
+  const { user, currentlySelectedGroup, config } = useContext(UserContext)
 
   const { tables, addTable, closeTable } = useTables(currentlySelectedGroup);
-  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer } = usePlayer(user, currentlySelectedGroup)
+  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType } = usePlayer(user, currentlySelectedGroup, config)
 
   if (!currentlySelectedGroup) return <div>No Group Selected</div>;
 
@@ -27,6 +27,7 @@ const Tables = () => {
             user={user}
             currentlySelectedGroup={currentlySelectedGroup}
             selectPlayer={selectPlayer}
+            selectedPlayer={selectedPlayer}
           />
         ))}
         <button className="tables__add-table" onClick={addTable}>
@@ -39,6 +40,7 @@ const Tables = () => {
           selectedPlayer={selectedPlayer}
           addNoteToPlayer={addNoteToPlayer}
           loadingPlayer={loadingPlayer}
+          updateType={updateType}
         />
       )}
     </div>

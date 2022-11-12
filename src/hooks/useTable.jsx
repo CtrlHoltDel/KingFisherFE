@@ -1,50 +1,61 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { LS } from '../utils/LocalStorage'
+import { useState } from "react";
+import { useEffect } from "react";
+import { LS } from "../utils/LocalStorage";
 
 const EMPTY_SEAT = {
-    name: null,
-    id: null,
-    type: null
-}
+  name: null,
+  id: null,
+  type: null,
+};
 
-export const SEATED_PLAYERS_PREFIX = 'SEATED_PLAYERS'
+export const SEATED_PLAYERS_PREFIX = "SEATED_PLAYERS";
 
 const generateSeats = () => {
-    const playersPlaceholder = []
-    for (let i = 1; i <= 9; i++) {
-        playersPlaceholder.push({ ...EMPTY_SEAT, seatNumber: i })
-    }
-    return playersPlaceholder
-}
+  const playersPlaceholder = [];
+  for (let i = 1; i <= 9; i++) {
+    playersPlaceholder.push({ ...EMPTY_SEAT, seatNumber: i });
+  }
+  return playersPlaceholder;
+};
 
+const useTable = (handleClickPlayer, tableId, selectedPlayer) => {
+  const [seats, setSeats] = useState([]);
 
-const useTable = (handleClickPlayer, tableId) => {
-    const [seats, setSeats] = useState([])
+  useEffect(() => {
+    const seatedPlayers = LS.getSeatedPlayers(tableId);
+    setSeats(seatedPlayers || generateSeats());
+  }, [tableId]);
 
-    useEffect(() => {
-        const seatedPlayers = LS.getSeatedPlayers(tableId)
-        setSeats(seatedPlayers || generateSeats())
-    }, [tableId])
+  useEffect(() => {
+      setSeats((seats) => seats.map((seat) => seat?.id === selectedPlayer?.player.id ? { ...seat, type: selectedPlayer.player.type } : seat));
+  }, [selectedPlayer?.player.type, selectedPlayer?.player.id]);
 
-    const addPlayer = (selectedPlayer, seatNumber) => {
-        setSeats(seats => {
-            const updatedSeats = seats.map(seat => seat.seatNumber === seatNumber ? { ...selectedPlayer, seatNumber } : seat)
-            LS.updateSeatedPlayers(tableId, updatedSeats)
-            return updatedSeats
-        })
-        handleClickPlayer(selectedPlayer)
-    }
+  const addPlayer = (selectedPlayer, seatNumber) => {
+    setSeats((seats) => {
+      const updatedSeats = seats.map((seat) =>
+        seat.seatNumber === seatNumber
+          ? { ...selectedPlayer, seatNumber }
+          : seat
+      );
+      LS.updateSeatedPlayers(tableId, updatedSeats);
+      return updatedSeats;
+    });
+    handleClickPlayer(selectedPlayer);
+  };
 
-    const removePlayer = (seatNumber) => {
-        setSeats(seats => { 
-            const updatedSeats = seats.map(seat => seat.seatNumber === seatNumber ? { ...EMPTY_SEAT, seatNumber: seat.seatNumber } : seat)
-            LS.updateSeatedPlayers(tableId, updatedSeats)
-            return updatedSeats
-        })
-    }
+  const removePlayer = (seatNumber) => {
+    setSeats((seats) => {
+      const updatedSeats = seats.map((seat) =>
+        seat.seatNumber === seatNumber
+          ? { ...EMPTY_SEAT, seatNumber: seat.seatNumber }
+          : seat
+      );
+      LS.updateSeatedPlayers(tableId, updatedSeats);
+      return updatedSeats;
+    });
+  };
 
-    return { seats, addPlayer, removePlayer }
-}
+  return { seats, addPlayer, removePlayer };
+};
 
-export default useTable
+export default useTable;

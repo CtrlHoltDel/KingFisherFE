@@ -4,9 +4,9 @@ import Seat from "./Seat";
 
 import { VscChromeClose } from 'react-icons/vsc'
 
-const Table = ({ table, closeTable, user, currentlySelectedGroup, selectPlayer }) => {
+const Table = ({ table, closeTable, user, currentlySelectedGroup, selectPlayer, selectedPlayer }) => {
 
-  const { seats, addPlayer, removePlayer } = useTable(selectPlayer, table.id)
+  const { seats, addPlayer, removePlayer } = useTable(selectPlayer, table.id, selectedPlayer)
 
   return (
     <div className="table">

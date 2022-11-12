@@ -1,35 +1,34 @@
 import React from "react";
-import { useContext } from "react";
 import AddNote from "./AddNote";
-import { UserContext } from "../../context/UserContext"
-import { setHeaderStyle } from "../../utils/typeStyle";
 
-const Notes = ({ selectedPlayer, addNoteToPlayer }) => {
-  const { player, notes, tendencies } = selectedPlayer;
+import NotesHeader from "./NotesHeader";
 
-  const { config } = useContext(UserContext)
-
+const Notes = ({ selectedPlayer, addNoteToPlayer, updateType }) => {
+  const { player, notes, tendencies, styleConfig } = selectedPlayer;
   return (
     <div className="notes">
+      <NotesHeader player={player} updateType={updateType} style={styleConfig.headerStyle}/>
       <div className="notes__body">
-          <div className="notes__body__header" style={setHeaderStyle(player.type, config)}>
-            <p>{player.name}</p>
-            <p>{player.type}</p>
+        <div className="notes__body__list notes-list">
+          <div className="notes__body__list__header" style={styleConfig.headerStyle}>Notes</div>
+          <div className="notes__body__list__content">
+            {!notes.length && <p className="notes__body__list__content__item">No Notes</p>}
+            {notes.map(({ note }) => {
+              return <div className="notes__body__list__content__item">{note}</div>;
+            })}
           </div>
-          <div className="notes__body__list">
-            <div>
-              {notes.map(({ note }) => {
-                return <div>{note}</div>;
-              })}
-            </div>
-            <div>
-              {tendencies.map(({ note }) => {
-                return <div>{note}</div>;
-              })}
-            </div>
+        </div>
+        <div className="notes__body__list tendencies-list">
+          <div className="notes__body__list__header" style={styleConfig.headerStyle}>Tendencies</div>
+          <div className="notes__body__list__content">
+            {!tendencies.length && <p className="notes__body__list__content__item">No Tendencies</p>}
+            {tendencies.map(({ note }) => {
+              return <div className="notes__body__list__content__item">{note}</div>;
+            })}
           </div>
+        </div>
       </div>
-      <AddNote player={player} addNoteToPlayer={addNoteToPlayer}/>
+      <AddNote player={player} addNoteToPlayer={addNoteToPlayer} style={styleConfig.buttonStyle}/>
     </div>
   );
 };

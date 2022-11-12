@@ -5,6 +5,7 @@ $primary-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 $gray-border: solid rgb(146, 146, 146) 1px;
 $simple-border: solid rgb(209, 209, 209) 1px;
 $light-blue-border: solid #26a6fe 1px;
+$light-gray: rgb(146, 146, 146);
 
 .desktop {
     width: 100vw;
@@ -158,11 +159,13 @@ $light-blue-border: solid #26a6fe 1px;
                             background-color: transparent;
                             border-radius: 3px;
                             height: 26px;
+                            opacity: 60%;
                         }
 
                         &__empty-seat:hover {
                             cursor: pointer;
                             text-decoration: underline;
+                            opacity: 100%;
                         }
     
                         &__seated-player {
@@ -200,11 +203,11 @@ $light-blue-border: solid #26a6fe 1px;
                             }
 
                             button:hover {
-                                background-color: rgb(250, 187, 187);
+                                background-color: rgba(0, 0, 0, 0.356);
                                 cursor: pointer;
 
                                 svg {
-                                    color: red;
+                                    color: rgba(255, 255, 255, 0.801);
                                 }
                             }
                         }
@@ -250,13 +253,23 @@ $light-blue-border: solid #26a6fe 1px;
                                         display: flex;
                                         justify-content: space-between;
                                         padding: 3px 15px;
+                                        gap: 5px;
                                         
                                         &__name {
-                                            width: 200px;
+                                            flex: 1;
                                             white-space: nowrap;
                                             text-overflow: ellipsis;
                                             overflow: hidden;
                                         }
+
+                                        &__type {
+                                            width: fit-content;
+                                            max-width: 100px;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                        }
+
                                         &__add-player {
                                             width: 100%;
                                             white-space: nowrap;
@@ -304,18 +317,6 @@ $light-blue-border: solid #26a6fe 1px;
                                         border: none;
                                     }
                                 }
-
-                                // &__controls:focus-within {
-                                //     input {
-                                //         border: $light-blue-border;
-                                //         border-right: none;
-                                //     }
-
-                                //     button {
-                                //         border: $light-blue-border;
-                                //         border-left: none;
-                                //     }
-                                // }
                             }
                         }
                     }
@@ -354,20 +355,182 @@ $light-blue-border: solid #26a6fe 1px;
             min-width: 350px;
             width: 20%;
             border-left: $simple-border;
-            resize: both;
             overflow: auto;
             display: flex;
             flex-direction: column;
     
-            &__body {
-                background-color: red;
-                flex: 1;
-    
-                &__header {
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                background-color: rgb(241, 241, 241);
+                flex-direction: column;
+                padding: 14px;
+                gap: 4px;
+
+                &__break-line {
+                    height: 2px;
+                    width: 100%;
+                    background-color: rgba(0, 0, 0, 0.192);
+                }
+
+                &__content {
                     display: flex;
                     justify-content: space-between;
-                    background-color: white;
-                    padding: 14px;
+                    gap: 8px;
+
+                    &__name {
+                        flex: 1;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        align-self: center;
+                    }
+
+                    &__type {
+                        display: flex;
+                        gap: 3px;
+                        padding-left: 3px;
+
+                        .type-icon {
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: flex-start;
+                            width: fit-content;
+                            max-width: 75px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            font-size: 12px;
+
+                            svg {
+                                height: 22px;
+                                width: 22px;
+                            }
+                        }
+
+                        &__edit {
+                            background-color: transparent;
+                            border: none;
+                            border-radius: 3px;
+                            padding: 3px;
+                            display: flex;
+                            justify-content: center;
+
+                            svg {
+                                height: 16px;
+                                width: 16px;
+                            }
+                        }
+
+                    }
+                    &__type:hover {
+                        background-color: rgba(0, 0, 0, 0.164);
+                        cursor: pointer;
+                    }
+                }
+
+                &__player-edit-menu {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    padding-top: 3px;
+
+                    &__quick-buttons {
+                        display: flex;
+                        gap: 2px;
+                        justify-content: center;
+                        button {
+                            border: none;
+                            background-color: rgba(0, 0, 0, 0.473);
+                            padding: 4px;
+                            color: white;
+                            border-radius: 3px;
+                            padding: 5px;
+                            font-size: 11px;
+                            width: 40px;
+
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+
+                        button:hover {
+                            cursor: pointer;
+                            background-color: rgba(0, 0, 0, 0.788);
+                            text-decoration: underline;
+                        }
+                    }
+
+                    
+                    &__custom-type-input {
+                        display: flex;
+
+                        input {
+                            flex: 1;
+                            height: 25px;
+                            padding: 0 5px;
+                            border-radius: 3px 0 0 3px;
+                        }
+
+                        button {
+                            border: none;
+                            background-color: rgba(0, 0, 0, 0.562);
+                            color: white;
+                            border-radius: 0 3px 3px 0;
+                            padding: 0 5px;
+                        }
+
+                        button:hover {
+                            cursor: pointer;
+                            opacity: 90%;
+                            text-decoration: underline;
+                        }
+                    }
+
+                }
+            }
+
+            &__body {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+
+
+                &__list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    &__header {
+                        padding: 5px 15px;
+                        background-color: rgb(241, 241, 241);
+                    }
+
+                    &__content {
+                        display: flex;
+                        gap: 6px;
+                        flex-direction: column;
+                        overflow: auto;
+
+                        &__item {
+                            padding: 0 15px;
+                            word-wrap: break-word;
+                        }
+                    }
+
+                }
+
+                .notes-list {
+                    flex: 2 1 auto;
+                    overflow-y: auto;
+                    height: 0px;
+                }
+
+                .tendencies-list {
+                    flex: 1 1 auto;
+                    overflow-y: auto;
+                    height: 0px;
                 }
             }
     
