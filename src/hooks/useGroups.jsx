@@ -20,8 +20,6 @@ const useGroups = (user) => {
       setLoading(true);
       const { success, error } = await APIGetGroups(user.token);
 
-      console.log(success);
-
       if (error) {
         console.log(error);
         setGroups([]);

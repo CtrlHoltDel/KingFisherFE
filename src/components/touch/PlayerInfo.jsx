@@ -35,7 +35,6 @@ const PlayerInfo = ({
   }
 
   const handleClick = (e) => {
-    console.log("object");
     console.log(e.detail);
   };
 

@@ -11,7 +11,6 @@ const AddNote = ({ closeNoteModal, handleAddNote }) => {
   const handleUpdateCurrentNote = (e) => setNoteInput(e.target.value);
 
   const handleClickAddNote = () => {
-    console.log("clicking add note")
     handleAddNote(noteInput, noteType)
   }
 

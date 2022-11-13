@@ -31,7 +31,6 @@ const useTable = (handleClickPlayer, tableId, selectedPlayer) => {
   }, [selectedPlayer?.player.type, selectedPlayer?.player.id]);
 
   const seatPlayer = (selectedPlayer, seatNumber) => {
-    console.log(selectedPlayer, seatNumber)
     setSeats((seats) => {
       const updatedSeats = seats.map((seat) =>
         seat.seatNumber === seatNumber

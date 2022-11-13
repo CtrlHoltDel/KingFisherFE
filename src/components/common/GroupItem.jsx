@@ -51,7 +51,7 @@ const GroupItem = ({ group, selectGroup, addUserToGroup, currentlySelectedGroup 
       </div>
       {adminMenu && (
         <>
-          <div class="group-line-break"></div>
+          <div className="group-line-break"></div>
           {group.admin ? (
             <div className="groups__list__item__general__admin">
               <div className="groups__list__item__general__admin__header">
@@ -110,7 +110,7 @@ const GroupItem = ({ group, selectGroup, addUserToGroup, currentlySelectedGroup 
           )}
         </>
       )}
-      <div class="group-line-break"></div>
+      <div className="group-line-break"></div>
     </div>
   );
 };
