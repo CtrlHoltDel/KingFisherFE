@@ -25,7 +25,7 @@ const GroupItem = ({ group, selectGroup, addUserToGroup, currentlySelectedGroup 
     setAddUserLoading(false);
   };
 
-  const groupIsSelected = group.id === currentlySelectedGroup.id
+  const groupIsSelected = group?.id === currentlySelectedGroup?.id
 
   return (
     <div className="groups__list__item">
