@@ -101,7 +101,8 @@ export const APIGetNotes = async (token, playerId) => {
 
 export const APIAddNote = async (token, playerId, noteBody) => {
     try {
-        await api.post(`/notes/${playerId}`, noteBody, setAuthHeader(token))
+        const { data: { data } } = await api.post(`/notes/${playerId}`, noteBody, setAuthHeader(token))
+        return { success: data }
     } catch (error) {
         logErrors(error)
         return { error: error.response.data}

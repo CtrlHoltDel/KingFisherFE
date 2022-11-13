@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { APIAddNote, APIAddPlayer, APIGetNotes, APIUpdateType } from "../api/actions";
 import { NOTE_TYPE } from "../utils/constants";
-import { formatNotes } from "../utils/dataFormat";
 import {
   setButtonStyle,
   setHeaderStyle,
@@ -25,7 +24,6 @@ const usePlayer = (user, currentlySelectedGroup, config) => {
 
     setSelectedPlayer({
       ...success,
-      ...formatNotes(success.notes),
       styleConfig: setStyles(success.player.type, config),
     });
     
@@ -34,17 +32,22 @@ const usePlayer = (user, currentlySelectedGroup, config) => {
 
   const addNoteToPlayer = async (type, note, playerId) => {
     setLoadingUpdatingPlayer(true);
-    setSelectedPlayer((curr) => {
-      curr[type === NOTE_TYPE ? "notes" : "tendencies"].push({
-        note,
-        created_time: new Date().toISOString().slice(0, 19).replace("T", " "),
-        created_by: user.username,
-        type,
-      });
-      return curr;
-    });
+    const { success, error } = await APIAddNote(user.token, playerId, { note, type });
 
-    await APIAddNote(user.token, playerId, { note, type });
+    if(error){
+      console.log(error)
+    } else {
+      setSelectedPlayer((curr) => {
+        curr[type === NOTE_TYPE ? "notes" : "tendencies"].push({
+          created_time: new Date().toISOString().slice(0, 19).replace("T", " "),
+          ...success.addedNote
+        });
+        return curr;
+      });
+
+    }
+
+
     setLoadingUpdatingPlayer(false);
   };
 

@@ -17,12 +17,12 @@ const Seat = ({ seat, user, seatPlayer, unseatPlayer, currentlySelectedGroup, se
 
   const closeSearch = () => setSearchOpen(false)
 
-  const handleAddNewPlayer = async (newPlayerName, seat) => {
-    const { error, success } = await addNewPlayer(newPlayerName, seat)
+  const handleAddNewPlayer = async (newPlayerName, seatNumber) => {
+    const { error, success } = await addNewPlayer(newPlayerName, seatNumber)
     if(error){
       console.log({ error }, "Handle This Error");
     } else {
-      seatPlayer({ ...success.addedPlayer, note_group_id: currentlySelectedGroup.id, type: null }, seat.seatNumber)
+      seatPlayer({ ...success.addedPlayer, note_group_id: currentlySelectedGroup.id, type: null }, seatNumber)
     }
     setSearchOpen(false)
   }
