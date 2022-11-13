@@ -28,7 +28,7 @@ const Groups = () => {
     <div className="groups">
       <div className="groups__list">
         {groups &&
-          groups.map((group) => <GroupItem addUserLoading={addUserLoading} addUserToGroup={addUserToGroup} user={user} group={group} key={group.id} selectGroup={selectGroup}/>)}
+          groups.map((group) => <GroupItem addUserLoading={addUserLoading} addUserToGroup={addUserToGroup} user={user} group={group} key={group.id} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup}/>)}
       </div>
       <div className="groups__new-group-container">
         <p className="groups__new-group-container__error">{groupError}</p>

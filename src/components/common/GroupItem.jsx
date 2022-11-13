@@ -4,11 +4,13 @@ import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
 import { MdAdminPanelSettings, MdStars } from "react-icons/md";
 import { dateFormat } from "../../utils/dataFormat";
 
-const GroupItem = ({ group, selectGroup, addUserToGroup }) => {
+const GroupItem = ({ group, selectGroup, addUserToGroup, currentlySelectedGroup }) => {
   const [adminMenu, setAdminMenu] = useState(false);
   const toggleAdminMenu = () => setAdminMenu((curr) => !curr);
 
-  const handleSelectGroup = () => selectGroup(group);
+  const handleSelectGroup = (e) => {
+    selectGroup(group)
+  };
 
   const [addingUserInput, setAddingUserInput] = useState("");
   useState(false);
@@ -23,12 +25,13 @@ const GroupItem = ({ group, selectGroup, addUserToGroup }) => {
     setAddUserLoading(false);
   };
 
+  const groupIsSelected = group.id === currentlySelectedGroup.id
+
   return (
     <div className="groups__list__item">
-      <div className="groups__list__item__general">
+      <div className="groups__list__item__general" onClick={handleSelectGroup} style={groupIsSelected ? { background: 'rgb(58 58 58)', color: "white" } : {}}>
         <div
           className="groups__list__item__general__name"
-          onClick={handleSelectGroup}
         >
           <p title={group.name}>
             {group.name.length > 20
@@ -41,8 +44,8 @@ const GroupItem = ({ group, selectGroup, addUserToGroup }) => {
           onClick={toggleAdminMenu}
         >
           <button>
-            {group.admin && <MdAdminPanelSettings style={{ color: "blue" }} />}
-            {adminMenu ? <FaChevronCircleUp /> : <FaChevronCircleDown />}
+            {group.admin && <MdAdminPanelSettings style={{ color: groupIsSelected ? '#eeeeff' : "blue" }} />}
+            {adminMenu ? <FaChevronCircleUp style={groupIsSelected && { color: 'white' } } /> : <FaChevronCircleDown style={groupIsSelected && { color: 'white' } } />}
           </button>
         </div>
       </div>

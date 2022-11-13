@@ -578,10 +578,6 @@
 .desktop .groups__list__item__general__name {
   flex: 1;
 }
-.desktop .groups__list__item__general__name:hover {
-  background-color: rgb(236, 236, 236);
-  cursor: pointer;
-}
 .desktop .groups__list__item__general__expand {
   display: flex;
   justify-content: flex-end;
@@ -599,7 +595,7 @@
   width: 18px;
 }
 .desktop .groups__list__item__general__expand:hover button {
-  background-color: rgb(235, 235, 235);
+  background-color: rgba(0, 0, 0, 0.158);
   cursor: pointer;
 }
 .desktop .groups__list__item__general__expand:hover button svg {
@@ -656,6 +652,10 @@
 .desktop .groups__list__item__general__non-admin p {
   font-size: 11px;
   color: gray;
+}
+.desktop .groups__list__item__general:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .desktop .groups__new-group-container {
   display: flex;

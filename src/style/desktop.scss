@@ -688,11 +688,6 @@ $light-gray: rgb(146, 146, 146);
                         flex: 1;
                     }
 
-                    &__name:hover {
-                        background-color: rgb(236, 236, 236);
-                        cursor: pointer;
-                    }
-
                     &__expand {
                         display: flex;
                         justify-content: flex-end;
@@ -712,7 +707,7 @@ $light-gray: rgb(146, 146, 146);
 
                     &__expand:hover {
                         button {
-                            background-color: rgb(235, 235, 235);
+                            background-color: rgba(0, 0, 0, 0.158);
                             cursor: pointer;
                             svg {
                                 opacity: 100%;
@@ -788,6 +783,11 @@ $light-gray: rgb(146, 146, 146);
                         }
                     }
 
+                }
+
+                &__general:hover {
+                    cursor: pointer;
+                        text-decoration: underline;
                 }
             }
         }
