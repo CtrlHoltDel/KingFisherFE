@@ -1,13 +1,13 @@
 import React from "react";
 import useGroups from "../../hooks/useGroups";
 
-import loadingIcon from '../../assets/loading.svg'
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import LoadingIcon from "../common/LoadingIcon";
+import GroupItem from "../common/GroupItem";
 
 const Groups = () => {
-
-  const { user, selectGroup, currentlySelectedGroup } = useContext(UserContext)
+  const { user, selectGroup, currentlySelectedGroup } = useContext(UserContext);
 
   const {
     groups,
@@ -17,31 +17,40 @@ const Groups = () => {
     addGroupLoading,
     newGroupInput,
     newGroupDisabled,
-    updateGroupInput
+    updateGroupInput,
+    addUserToGroup,
+    addUserLoading
   } = useGroups(user, currentlySelectedGroup);
+
+  if (loadingGroups) return <LoadingIcon />;
 
   return (
     <div className="groups">
-      {loadingGroups ? (
-        <img className="groups__loading-icon" src={loadingIcon} alt="loading-icon"/>
-      ) : (
-        <><div className="groups__list">
-          {groups &&
-            groups.map((group) => {
-              return <div className={`groups__list__item ${(currentlySelectedGroup && currentlySelectedGroup.id === group.id) ? 'selected-group' : ''}`} key={group.id} onClick={() => selectGroup(group)}><p>{group.name}</p></div>;
-            })}
-        </div>
-        <div className="groups__new-group-container">
-          <p className="groups__new-group-container__error">{groupError}</p>
-          <form onSubmit={(e) => {
-            e.preventDefault()
-            createGroup()
-          }}>
-            <input value={newGroupInput} type="text" disabled={loadingGroups || addGroupLoading} onChange={updateGroupInput}/>
-            <button disabled={loadingGroups || addGroupLoading || newGroupDisabled}>Create New Group</button>
-          </form>
-        </div></>
-      )}
+      <div className="groups__list">
+        {groups &&
+          groups.map((group) => <GroupItem addUserLoading={addUserLoading} addUserToGroup={addUserToGroup} user={user} group={group} key={group.id} selectGroup={selectGroup}/>)}
+      </div>
+      <div className="groups__new-group-container">
+        <p className="groups__new-group-container__error">{groupError}</p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            createGroup();
+          }}
+        >
+          <input
+            value={newGroupInput}
+            type="text"
+            disabled={loadingGroups || addGroupLoading}
+            onChange={updateGroupInput}
+          />
+          <button
+            disabled={loadingGroups || addGroupLoading || newGroupDisabled}
+          >
+            Create New Group
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

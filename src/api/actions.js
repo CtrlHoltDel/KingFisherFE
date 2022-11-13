@@ -109,6 +109,17 @@ export const APIAddNote = async (token, playerId, noteBody) => {
     }
 }
 
+export const APIDeleteNote = async (token, noteId) => {
+
+    try {
+        const { data: { data } } = await api.delete(`/notes/${noteId}`, setAuthHeader(token))
+        return { success: data }
+    } catch (error) {
+        logErrors(error)
+        return { error: error.response.data}
+    }
+}
+
 export const APIUpdateType = async (token, groupId, playerId, type) => {
     try {
         await api.put(`/players/${groupId}/${playerId}`, { type }, setAuthHeader(token))

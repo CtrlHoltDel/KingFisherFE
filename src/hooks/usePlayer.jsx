@@ -83,6 +83,10 @@ const usePlayer = (user, currentlySelectedGroup, config) => {
     };
   }
 
+  const removeNoteFromPlayer = (noteId) => {
+    setSelectedPlayer(player => ({ ...player, notes: player.notes.filter(note => note.id !== noteId), tendencies: player.tendencies.filter(tendency => tendency.id !== noteId)}))
+  }
+
   return {
     selectedPlayer,
     loadingPlayer,
@@ -91,7 +95,8 @@ const usePlayer = (user, currentlySelectedGroup, config) => {
     updateType,
     addNewPlayer,
     loadingUpdatingPlayer,
-    loadingAddingNewPlayer
+    loadingAddingNewPlayer,
+    removeNoteFromPlayer
   };
 };
 

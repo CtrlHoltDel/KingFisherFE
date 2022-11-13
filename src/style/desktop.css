@@ -451,13 +451,29 @@
 }
 .desktop .tables-container .notes__body__list__content {
   display: flex;
-  gap: 6px;
   flex-direction: column;
   overflow: auto;
 }
 .desktop .tables-container .notes__body__list__content__item {
-  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 2px 15px;
+}
+.desktop .tables-container .notes__body__list__content__item__content {
   word-wrap: break-word;
+  font-size: 14px;
+}
+.desktop .tables-container .notes__body__list__content__item__info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+.desktop .tables-container .notes__body__list__content__item__info__delete:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.desktop .tables-container .notes__body__list__content__item:hover {
+  background-color: rgb(243, 243, 243);
 }
 .desktop .tables-container .notes__body .notes-list {
   flex: 2 1 auto;
@@ -528,13 +544,18 @@
   cursor: pointer;
   text-decoration: underline;
 }
+.desktop .tables-container .notes__deleting {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
 .desktop .groups {
   position: relative;
   border-right: solid rgb(209, 209, 209) 1px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 230px;
+  width: 275px;
 }
 .desktop .groups__list {
   flex: 1;
@@ -543,16 +564,98 @@
   padding: 15px 0;
   overflow: auto;
 }
-.desktop .groups__list__item {
-  padding: 5px 15px;
+.desktop .groups__list .group-line-break {
+  height: 2px;
+  background: #f5f5f5;
 }
-.desktop .groups__list__item:hover {
+.desktop .groups__list__item__general {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+  align-items: center;
+  padding: 7px 10px 7px 15px;
+}
+.desktop .groups__list__item__general__name {
+  flex: 1;
+}
+.desktop .groups__list__item__general__name:hover {
+  background-color: rgb(236, 236, 236);
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.096);
 }
-.desktop .groups__list .selected-group {
-  text-decoration: underline;
+.desktop .groups__list__item__general__expand {
+  display: flex;
+  justify-content: flex-end;
+}
+.desktop .groups__list__item__general__expand button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  padding: 2px 3px;
+  border-radius: 2px;
+}
+.desktop .groups__list__item__general__expand button svg {
+  opacity: 60%;
+  height: 18px;
+  width: 18px;
+}
+.desktop .groups__list__item__general__expand:hover button {
+  background-color: rgb(235, 235, 235);
+  cursor: pointer;
+}
+.desktop .groups__list__item__general__expand:hover button svg {
+  opacity: 100%;
+}
+.desktop .groups__list__item__general__admin {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 15px;
+}
+.desktop .groups__list__item__general__admin__header {
+  text-align: center;
   font-weight: bold;
+}
+.desktop .groups__list__item__general__admin__players {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.desktop .groups__list__item__general__admin__players__player {
+  display: flex;
+  justify-content: space-between;
+}
+.desktop .groups__list__item__general__admin form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.desktop .groups__list__item__general__admin form input {
+  border: solid #26a6fe 1px;
+  border-radius: 3px;
+  padding: 4px 7px;
+}
+.desktop .groups__list__item__general__admin form button {
+  color: white;
+  background-color: #26a6fe;
+  border: none;
+  padding: 3px;
+  border-radius: 3px;
+}
+.desktop .groups__list__item__general__admin form button:enabled:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.desktop .groups__list__item__general__admin form button:disabled {
+  opacity: 60%;
+}
+.desktop .groups__list__item__general__admin__details {
+  font-size: 11px;
+  color: gray;
+}
+.desktop .groups__list__item__general__non-admin p {
+  font-size: 11px;
+  color: gray;
 }
 .desktop .groups__new-group-container {
   display: flex;

@@ -12,7 +12,7 @@ const Tables = () => {
   const { user, currentlySelectedGroup, config } = useContext(UserContext)
 
   const { tables, addTable, closeTable } = useTables(currentlySelectedGroup);
-  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType, addNewPlayer, loadingAddingNewPlayer } = usePlayer(user, currentlySelectedGroup, config)
+  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType, addNewPlayer, loadingAddingNewPlayer, removeNoteFromPlayer } = usePlayer(user, currentlySelectedGroup, config)
 
   if (!currentlySelectedGroup) return <div>No Group Selected</div>;
 
@@ -43,6 +43,8 @@ const Tables = () => {
           addNoteToPlayer={addNoteToPlayer}
           loadingPlayer={loadingPlayer}
           updateType={updateType}
+          removeNoteFromPlayer={removeNoteFromPlayer}
+          user={user}
         />
       )}
     </div>

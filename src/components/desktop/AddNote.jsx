@@ -28,7 +28,7 @@ const AddNote = ({ player, addNoteToPlayer }) => {
             <button style={{ ...buttonStyle, opacity: noteType === TENDENCY_TYPE ? '100%' : '60%'}} onClick={() => handleChangeType(TENDENCY_TYPE)}>TENDENCY</button>
         </div>
       <form onSubmit={handleFormSubmit}>
-          <input onChange={(e) => setNoteInput(e.target.value)}/>
+          <input onChange={(e) => setNoteInput(e.target.value)} value={noteInput}/>
           <button className="notes__add-note__add-button" style={buttonStyle} disabled={!noteInput}>Add {noteType} for {player.name}</button>
       </form>
     </div>

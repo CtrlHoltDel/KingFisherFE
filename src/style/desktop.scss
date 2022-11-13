@@ -530,13 +530,33 @@ $light-gray: rgb(146, 146, 146);
 
                     &__content {
                         display: flex;
-                        gap: 6px;
                         flex-direction: column;
                         overflow: auto;
-
                         &__item {
-                            padding: 0 15px;
-                            word-wrap: break-word;
+                               display: flex;
+                            flex-direction: column;
+                            padding: 2px 15px;
+ 
+                            &__content {
+                                word-wrap: break-word;
+                                font-size: 14px;
+                            }
+
+                            &__info {
+                                display: flex;
+                                justify-content: space-between;
+                                font-size: 11px;
+
+                                &__delete:hover {
+                                    text-decoration: underline;
+                                    cursor: pointer;
+
+                                }
+                            }
+                        }
+
+                        &__item:hover {
+                            background-color: rgb(243, 243, 243);                            
                         }
                     }
 
@@ -625,6 +645,12 @@ $light-gray: rgb(146, 146, 146);
                 }
     
             }
+
+            &__deleting {
+                position: absolute;
+                right: 5px;
+                top: 5px;
+            }
         }
     }
 
@@ -635,7 +661,7 @@ $light-gray: rgb(146, 146, 146);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 230px;
+        width: 275px;
 
         &__list {
             flex: 1;
@@ -643,19 +669,126 @@ $light-gray: rgb(146, 146, 146);
             flex-direction: column;
             padding: 15px 0;
             overflow: auto;
+            
+
+            .group-line-break {
+                height: 2px;
+                background: #f5f5f5;
+            }
 
             &__item {
-                padding: 5px 15px;
-            }
+                &__general {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 3px;
+                    align-items: center;
+                    padding: 7px 10px 7px 15px;
 
-            &__item:hover {
-                cursor: pointer;
-                background-color: rgba(0, 0, 0, 0.096);
-            }
+                    &__name {
+                        flex: 1;
+                    }
 
-            .selected-group {
-                text-decoration: underline;
-                font-weight: bold;
+                    &__name:hover {
+                        background-color: rgb(236, 236, 236);
+                        cursor: pointer;
+                    }
+
+                    &__expand {
+                        display: flex;
+                        justify-content: flex-end;
+                        button {
+                            border: none;
+                            background-color: transparent;
+                            display: flex;
+                            padding: 2px 3px;
+                            border-radius: 2px;
+                            svg {
+                                opacity: 60%;
+                                height: 18px;
+                                width: 18px;
+                            }
+                        }
+                    }
+
+                    &__expand:hover {
+                        button {
+                            background-color: rgb(235, 235, 235);
+                            cursor: pointer;
+                            svg {
+                                opacity: 100%;
+                            }
+                        }
+                    }
+
+                    &__admin {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                        padding: 2px 15px;
+                        
+                        &__header {
+                            text-align: center;
+                            font-weight: bold;
+                        }
+
+                        &__players {
+                            display: flex;   
+                            flex-direction: column;
+                            gap: 3px;
+
+
+                            &__player {
+                                display: flex;
+                                justify-content: space-between;
+                            }
+
+
+                        }
+
+                        form {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 3px;
+
+                            input {
+                                border: $light-blue-border;
+                                border-radius: 3px;
+                                padding: 4px 7px;
+                            }
+
+                            button {
+                                color: white;
+                                background-color: $primary-color;
+                                border: none;
+                                padding: 3px;
+                                border-radius: 3px;
+                            }
+
+                            button:enabled:hover {
+                                cursor: pointer;
+                                text-decoration: underline;
+                            }
+
+                            button:disabled {
+                                opacity: 60%;
+                            }
+                        }
+
+                        &__details {
+                            font-size: 11px;
+                            color: gray;
+                        }
+                    }
+
+                    &__non-admin {
+                        p {
+                            font-size: 11px;
+                            color: gray;    
+                        }
+                    }
+
+                }
             }
         }
 
