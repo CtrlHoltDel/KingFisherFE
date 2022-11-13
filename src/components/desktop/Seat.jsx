@@ -7,7 +7,6 @@ import { UserContext } from "../../context/UserContext"
 import { MdOutlineRemoveCircle } from "react-icons/md";
 import { setSeatStyle } from "../../utils/typeStyle";
 import SearchModal from "../common/SearchModal";
-import { APIAddPlayer } from "../../api/actions";
 
 const SEARCH_MODAL_CLASS = 'search-modal-container'
 
