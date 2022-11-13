@@ -3,20 +3,38 @@ import useSearchPlayers from "../../hooks/useSearchPlayers";
 import TypeIcon from "./TypeIcon";
 
 const SearchModal = ({
-  closeSearch,
   user,
-  addPlayer,
+  seatPlayer,
   seat,
   currentlySelectedGroup,
+  handleAddNewPlayer,
+  loadingAddingNewPlayer,
+  handleSeatPlayer,
 }) => {
   const { players, loadingPlayers, hasExactMatch, playerSearch, updateSearch } =
     useSearchPlayers(user, currentlySelectedGroup);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (hasExactMatch) 
+      return handleSeatPlayer(
+        players.find((player) => player.exactMatch),
+        seat.seatNumber
+      );
+    handleAddNewPlayer(playerSearch, seat.seatNumber);
+  };
+
   return (
     <div className="search-modal-container__modal">
       <div className="search-modal-container__modal__results">
-        {loadingPlayers && playerSearch ? (
-          <div className="search-modal-container__modal__results__loading">Loading..</div>
+        {loadingAddingNewPlayer ? (
+          <div className="search-modal-container__modal__results__adding-player">
+            Adding {playerSearch}
+          </div>
+        ) : loadingPlayers && playerSearch ? (
+          <div className="search-modal-container__modal__results__loading">
+            Loading..
+          </div>
         ) : (
           <>
             {players &&
@@ -26,15 +44,14 @@ const SearchModal = ({
                     key={player.id}
                     className="search-modal-container__modal__results__result"
                     onClick={() => {
-                      addPlayer(player, seat.seatNumber);
-                      closeSearch();
+                      handleSeatPlayer(player, seat.seatNumber);
                     }}
                   >
                     <div className="search-modal-container__modal__results__result__name">
                       {player.name}
                     </div>
                     <div className="search-modal-container__modal__results__result__type">
-                      <TypeIcon type={player.type}/>
+                      <TypeIcon type={player.type} />
                     </div>
                   </div>
                 );
@@ -42,24 +59,32 @@ const SearchModal = ({
             {!hasExactMatch && playerSearch && (
               <div
                 className="search-modal-container__modal__results__result"
-                onClick={() => console.log("clicked")}
+                onClick={() => handleAddNewPlayer(playerSearch, seat)}
               >
-                <p className="search-modal-container__modal__results__result__add-player">Add {playerSearch}</p>
+                <p className="search-modal-container__modal__results__result__add-player">
+                  Add {playerSearch}
+                </p>
               </div>
             )}
           </>
         )}
       </div>
       <div className="search-modal-container__modal__controls">
-        <div className="search-modal-container__modal__controls__input">
+        <form
+          className="search-modal-container__modal__controls__input"
+          onSubmit={handleSubmit}
+        >
           <input
             value={playerSearch}
             autoFocus
             onChange={(e) => updateSearch(e.target.value)}
             placeholder="Search.."
+            disabled={loadingAddingNewPlayer}
           />
-          {/* <button disabled={loadingPlayers || !playerSearch} onClick={closeSearch}>{!playerSearch ? 'Search' : hasExactMatch ? 'Choose' : 'Add'}</button> */}
-        </div>
+          <button disabled={loadingPlayers || !playerSearch}>
+            {!playerSearch ? "Search" : hasExactMatch ? "Choose" : "Add"}
+          </button>
+        </form>
       </div>
     </div>
   );

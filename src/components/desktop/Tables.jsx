@@ -12,7 +12,7 @@ const Tables = () => {
   const { user, currentlySelectedGroup, config } = useContext(UserContext)
 
   const { tables, addTable, closeTable } = useTables(currentlySelectedGroup);
-  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType } = usePlayer(user, currentlySelectedGroup, config)
+  const { selectedPlayer, loadingPlayer, selectPlayer, addNoteToPlayer, updateType, addNewPlayer, loadingAddingNewPlayer } = usePlayer(user, currentlySelectedGroup, config)
 
   if (!currentlySelectedGroup) return <div>No Group Selected</div>;
 
@@ -28,6 +28,8 @@ const Tables = () => {
             currentlySelectedGroup={currentlySelectedGroup}
             selectPlayer={selectPlayer}
             selectedPlayer={selectedPlayer}
+            addNewPlayer={addNewPlayer}
+            loadingAddingNewPlayer={loadingAddingNewPlayer}
           />
         ))}
         <button className="tables__add-table" onClick={addTable}>

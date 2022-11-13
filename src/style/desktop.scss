@@ -228,6 +228,7 @@ $light-gray: rgb(146, 146, 146);
                             display: flex;
                             justify-content: center;
                             align-items: center;
+                            z-index: 3;
 
                             // TODO: Change the size of results based upon screen size.
     
@@ -282,6 +283,10 @@ $light-gray: rgb(146, 146, 146);
                                         padding: 3px 15px;
                                         text-align: center;
                                     }
+
+                                    &__adding-player {
+                                        text-align: center;
+                                    }
                                     
                                     &__result:hover {
                                         cursor: pointer;
@@ -294,7 +299,7 @@ $light-gray: rgb(146, 146, 146);
                                     display: flex;
 
                                     &__input {
-                                        border: $gray-border;
+                                        border: 1px solid rgb(209, 209, 209);
                                         border-radius: 4px;
                                         display: flex;
                                         width: 100%;
@@ -308,6 +313,17 @@ $light-gray: rgb(146, 146, 146);
 
                                         input:focus {
                                             outline: none;
+                                        }
+
+                                        button {
+                                            width: 20%;
+                                            border-radius: 0 3px 3px 0;
+                                            background-color: $primary-color;
+                                            color: white;
+                                        }
+
+                                        button:disabled {
+                                            opacity: 40%;
                                         }
 
 
@@ -364,7 +380,7 @@ $light-gray: rgb(146, 146, 146);
                 justify-content: space-between;
                 background-color: rgb(241, 241, 241);
                 flex-direction: column;
-                padding: 14px;
+                padding: 14px 14px 0 14px;
                 gap: 4px;
 
                 &__break-line {
@@ -471,6 +487,11 @@ $light-gray: rgb(146, 146, 146);
                             height: 25px;
                             padding: 0 5px;
                             border-radius: 3px 0 0 3px;
+                            background-color: rgba(255, 255, 255, 0.616);
+                        }
+
+                        input:focus {
+                            outline: none;
                         }
 
                         button {

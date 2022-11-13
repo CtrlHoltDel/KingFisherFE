@@ -193,6 +193,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal {
   border-radius: 4px;
@@ -245,6 +246,9 @@
   padding: 3px 15px;
   text-align: center;
 }
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__adding-player {
+  text-align: center;
+}
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__results__result:hover {
   cursor: pointer;
   background-color: rgb(241, 241, 241);
@@ -254,7 +258,7 @@
   display: flex;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input {
-  border: solid rgb(146, 146, 146) 1px;
+  border: 1px solid rgb(209, 209, 209);
   border-radius: 4px;
   display: flex;
   width: 100%;
@@ -267,6 +271,15 @@
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input input:focus {
   outline: none;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input button {
+  width: 20%;
+  border-radius: 0 3px 3px 0;
+  background-color: #26a6fe;
+  color: white;
+}
+.desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input button:disabled {
+  opacity: 40%;
 }
 .desktop .tables-container .tables .table__seat-container .seat .search-modal-container__modal__controls__input * {
   border: none;
@@ -308,7 +321,7 @@
   justify-content: space-between;
   background-color: rgb(241, 241, 241);
   flex-direction: column;
-  padding: 14px;
+  padding: 14px 14px 0 14px;
   gap: 4px;
 }
 .desktop .tables-container .notes__header__break-line {
@@ -404,6 +417,10 @@
   height: 25px;
   padding: 0 5px;
   border-radius: 3px 0 0 3px;
+  background-color: rgba(255, 255, 255, 0.616);
+}
+.desktop .tables-container .notes__header__player-edit-menu__custom-type-input input:focus {
+  outline: none;
 }
 .desktop .tables-container .notes__header__player-edit-menu__custom-type-input button {
   border: none;

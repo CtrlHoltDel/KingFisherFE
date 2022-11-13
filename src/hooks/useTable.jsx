@@ -30,7 +30,8 @@ const useTable = (handleClickPlayer, tableId, selectedPlayer) => {
       setSeats((seats) => seats.map((seat) => seat?.id === selectedPlayer?.player.id ? { ...seat, type: selectedPlayer.player.type } : seat));
   }, [selectedPlayer?.player.type, selectedPlayer?.player.id]);
 
-  const addPlayer = (selectedPlayer, seatNumber) => {
+  const seatPlayer = (selectedPlayer, seatNumber) => {
+
     setSeats((seats) => {
       const updatedSeats = seats.map((seat) =>
         seat.seatNumber === seatNumber
@@ -40,10 +41,11 @@ const useTable = (handleClickPlayer, tableId, selectedPlayer) => {
       LS.updateSeatedPlayers(tableId, updatedSeats);
       return updatedSeats;
     });
+    
     handleClickPlayer(selectedPlayer);
   };
 
-  const removePlayer = (seatNumber) => {
+  const unseatPlayer = (seatNumber) => {
     setSeats((seats) => {
       const updatedSeats = seats.map((seat) =>
         seat.seatNumber === seatNumber
@@ -55,7 +57,7 @@ const useTable = (handleClickPlayer, tableId, selectedPlayer) => {
     });
   };
 
-  return { seats, addPlayer, removePlayer };
+  return { seats, seatPlayer, unseatPlayer };
 };
 
 export default useTable;

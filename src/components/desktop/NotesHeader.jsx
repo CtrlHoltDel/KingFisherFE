@@ -49,11 +49,11 @@ const NotesHeader = ({ player, updateType, style }) => {
             </div>
           </div>
         </div>
+        {<div className="notes__header__break-line"></div>}
         {userEditMenuOpen && (
           <div className="notes__header__player-edit-menu">
-            <div className="notes__header__break-line"></div>
             <div className="notes__header__player-edit-menu__quick-buttons">
-              {QUICK_MENU_TYPES.map(type => <QuickButton type={type} player={player} updateType={updateType}/>)}
+              {QUICK_MENU_TYPES.map(type => <QuickButton type={type} key={type} player={player} updateType={updateType}/>)}
             </div>
             <div className="notes__header__break-line"></div>
             <div className="notes__header__player-edit-menu__custom-type-input">
@@ -76,6 +76,7 @@ const NotesHeader = ({ player, updateType, style }) => {
                 Add Custom Type
               </button>
             </div>
+            <div className="notes__header__break-line"></div>
           </div>
         )}
       </div>
