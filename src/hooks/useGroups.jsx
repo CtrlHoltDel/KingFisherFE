@@ -6,7 +6,7 @@ import { APIAddGroup, APIAddUserToGroup, APIGetGroups } from "../api/actions";
 const useGroups = (user) => {
   const [groups, setGroups] = useState([]);
 
-  const [loadingGroups, setLoading] = useState(false);
+  const [loadingGroups, setLoading] = useState(true);
   const [addGroupLoading, setAddGroupLoading] = useState(false);
   const [addUserLoading, setAddUserLoading] = useState(false);
 

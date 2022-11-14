@@ -3,10 +3,12 @@ import useGroups from "../../hooks/useGroups";
 
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import LoadingIcon from "../common/LoadingIcon";
 import GroupItem from "../common/GroupItem";
+import { FaChevronCircleLeft } from "react-icons/fa";
 
-const Groups = () => {
+import loadingSVG from '../../assets/primary-loading.svg'
+
+const Groups = ({ toggleGroupsMenu }) => {
   const { user, selectGroup, currentlySelectedGroup } = useContext(UserContext);
 
   const {
@@ -19,17 +21,36 @@ const Groups = () => {
     newGroupDisabled,
     updateGroupInput,
     addUserToGroup,
-    addUserLoading
+    addUserLoading,
   } = useGroups(user, currentlySelectedGroup);
-
-  if (loadingGroups) return <LoadingIcon />;
 
   return (
     <div className="groups">
-      <div className="groups__list">
-        {groups &&
-          groups.map((group) => <GroupItem addUserLoading={addUserLoading} addUserToGroup={addUserToGroup} user={user} group={group} key={group.id} selectGroup={selectGroup} currentlySelectedGroup={currentlySelectedGroup}/>)}
+      <div className="groups__header">
+        <p>Groups</p>
+        <button onClick={toggleGroupsMenu}>
+          <FaChevronCircleLeft />
+          <p>Collapse Menu</p>
+        </button>
       </div>
+      {loadingGroups ? (
+        <div className="groups__loading"><div className="groups__loading__container"><img src={loadingSVG} alt="groups-loading"/><p>Getting Groups..</p></div></div>
+      ) : (
+        <div className="groups__list">
+          {groups &&
+            groups.map((group) => (
+              <GroupItem
+                addUserLoading={addUserLoading}
+                addUserToGroup={addUserToGroup}
+                user={user}
+                group={group}
+                key={group.id}
+                selectGroup={selectGroup}
+                currentlySelectedGroup={currentlySelectedGroup}
+              />
+            ))}
+        </div>
+      )}
       <div className="groups__new-group-container">
         <p className="groups__new-group-container__error">{groupError}</p>
         <form

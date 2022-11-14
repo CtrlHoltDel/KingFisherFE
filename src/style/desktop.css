@@ -448,6 +448,7 @@
 .desktop .tables-container .notes__body__list__header {
   padding: 5px 15px;
   background-color: rgb(241, 241, 241);
+  text-transform: capitalize;
 }
 .desktop .tables-container .notes__body__list__content {
   display: flex;
@@ -557,11 +558,55 @@
   justify-content: space-between;
   width: 275px;
 }
+.desktop .groups__header {
+  display: flex;
+  padding: 15px 15px 12px 15px;
+  background-color: #247cb8;
+  color: white;
+  justify-content: space-between;
+}
+.desktop .groups__header p {
+  font-weight: bold;
+}
+.desktop .groups__header button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  border-radius: 3px;
+  padding: 4px;
+}
+.desktop .groups__header button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.178);
+  text-decoration: underline;
+}
+.desktop .groups__loading {
+  height: 100%;
+  margin-top: 25px;
+  align-self: center;
+  justify-self: flex-start;
+  flex-direction: column;
+}
+.desktop .groups__loading__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.desktop .groups__loading__container img {
+  width: 30px;
+  height: 40px;
+}
+.desktop .groups__loading__container p {
+  font-size: 12px;
+  color: #26a6fe;
+}
 .desktop .groups__list {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
   overflow: auto;
 }
 .desktop .groups__list .group-line-break {

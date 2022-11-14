@@ -62,7 +62,7 @@ const NotesList = ({ style, handleDeleteNote, list, listName }) => {
       </div>
       <div className="notes__body__list__content">
         {!list.length && (
-          <p className="notes__body__list__content__item">No Tendencies</p>
+          <p className="notes__body__list__content__item">No {listName}</p>
         )}
         {!!list.length &&
           list.map(({ note, id, created_by, created_time }) => {
