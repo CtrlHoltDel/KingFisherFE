@@ -7,6 +7,16 @@ const api = axios.create({
 const BAD_REQUEST = 'ERR_BAD_REQUEST';
 const ERR_NETWORK = 'ERR_NETWORK'
 
+export const APIping = async () => {
+    try {
+        const { data: { data } } = await api.get(`/ping`)
+        return { success: data.message }
+    } catch (error) {
+        console.log(error)
+        return { error }
+    }
+}
+
 export const APIHandleLogin = async (username, password) => {
     try {
         const { data: { data } } = await api.post('/auth/login', {username, password})

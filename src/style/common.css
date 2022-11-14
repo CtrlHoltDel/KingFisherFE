@@ -99,6 +99,21 @@
   cursor: pointer;
 }
 
+.server-ping-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #26a6fe;
+  flex-direction: column;
+  color: white;
+}
+.server-ping-screen img {
+  width: 40px;
+  height: 40px;
+}
+
 .toast {
   position: absolute;
   bottom: 10px;
