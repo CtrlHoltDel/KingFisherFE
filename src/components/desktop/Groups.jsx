@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext";
 import GroupItem from "../common/GroupItem";
 import { FaChevronCircleLeft } from "react-icons/fa";
 
-import loadingSVG from '../../assets/primary-loading.svg'
+import loadingSVG from "../../assets/primary-loading.svg";
 
 const Groups = ({ toggleGroupsMenu }) => {
   const { user, selectGroup, currentlySelectedGroup } = useContext(UserContext);
@@ -24,6 +24,8 @@ const Groups = ({ toggleGroupsMenu }) => {
     addUserLoading,
   } = useGroups(user, currentlySelectedGroup);
 
+  console.log(groups);
+
   return (
     <div className="groups">
       <div className="groups__header">
@@ -34,7 +36,14 @@ const Groups = ({ toggleGroupsMenu }) => {
         </button>
       </div>
       {loadingGroups ? (
-        <div className="groups__loading"><div className="groups__loading__container"><img src={loadingSVG} alt="groups-loading"/><p>Getting Groups..</p></div></div>
+        <div className="groups__loading">
+          <div className="groups__loading__container">
+            <img src={loadingSVG} alt="groups-loading" />
+            <p>Getting Groups..</p>
+          </div>
+        </div>
+      ) : !groups.length ? (
+        <div>No Groups</div>
       ) : (
         <div className="groups__list">
           {groups &&
