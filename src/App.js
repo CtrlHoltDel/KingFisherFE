@@ -9,10 +9,11 @@ import Touch from "./Touch";
 
 import loadingIcon from "./assets/loading.svg";
 import { APIping } from "./api/actions";
+import { LS } from "./utils/LocalStorage";
 
 function App() {
   const { windowType, TOUCH_SIZE } = useHandleWindow();
-  const [serverCheck, setServerCheck] = useState(true);
+  const [initialSetup, setInitialSetup] = useState(true);
 
   const {
     user,
@@ -24,21 +25,18 @@ function App() {
   } = useUser();
 
   useEffect(() => {
-    const checkServer = async () => {
-      const { success, error } = await APIping()
-      if(error){
-        console.log(error)
-      } else {
-        console.log(success)
-        setServerCheck(false)
-      }
+    const appSetup = async () => {
+      const { error } = await APIping()
+      if(error) return console.log(error)
+
+      setInitialSetup(false)
     }
 
-    checkServer()
+    appSetup()
   }, [])
 
 
-  if (serverCheck)
+  if (initialSetup)
     return (
       <div className="server-ping-screen">
         <img src={loadingIcon} alt="loading-icon"></img>

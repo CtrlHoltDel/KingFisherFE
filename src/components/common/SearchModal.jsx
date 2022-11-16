@@ -71,16 +71,6 @@ const SearchModal = ({
                 </div>
               );
             })}
-            {!exactMatch && searchInput && (
-              <div
-                className="search-modal-container__modal__results__result"
-                onClick={() => handleAddNewPlayer(searchInput, seat)}
-              >
-                <p className="search-modal-container__modal__results__result__add-player">
-                  Add {searchInput}
-                </p>
-              </div>
-            )}
           </>
         )}
       </div>
