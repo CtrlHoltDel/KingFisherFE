@@ -9,7 +9,6 @@ import Touch from "./Touch";
 
 import loadingIcon from "./assets/loading.svg";
 import { APIping } from "./api/actions";
-import { LS } from "./utils/LocalStorage";
 
 function App() {
   const { windowType, TOUCH_SIZE } = useHandleWindow();
