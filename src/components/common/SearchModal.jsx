@@ -1,68 +1,83 @@
 import React from "react";
-import useSearchPlayers from "../../hooks/useSearchPlayers";
+import { useState } from "react";
+import { useEffect } from "react";
+import useSearch from "../../hooks/useSearch";
+import { PLAYER_SEARCH_TYPE } from "../../utils/constants";
 import TypeIcon from "./TypeIcon";
+
+import loadingIcon from "../../assets/loading-white.svg";
 
 const SearchModal = ({
   user,
-  seatPlayer,
   seat,
   currentlySelectedGroup,
   handleAddNewPlayer,
   loadingAddingNewPlayer,
   handleSeatPlayer,
 }) => {
-  const { players, loadingPlayers, hasExactMatch, playerSearch, updateSearch } =
-    useSearchPlayers(user, currentlySelectedGroup);
+  const {
+    searchInput,
+    updateSearch: updateSearchTest,
+    searchResults,
+    searchLoading,
+  } = useSearch(user.token, PLAYER_SEARCH_TYPE, currentlySelectedGroup.id);
+
+  const [players, setPlayers] = useState([]);
+  const [exactMatch, setExactMatch] = useState(null);
+
+  useEffect(() => {
+    if (!searchResults.players) return;
+
+    setExactMatch(
+      searchResults.players.length ? searchResults.players[0].exactMatch : false
+    );
+    setPlayers(searchResults.players.reverse());
+  }, [searchResults.players]);
+
+  useEffect(() => {
+    if (!searchInput) setPlayers([]);
+  }, [searchInput]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (hasExactMatch) 
+    if (exactMatch)
       return handleSeatPlayer(
         players.find((player) => player.exactMatch),
         seat.seatNumber
       );
-    handleAddNewPlayer(playerSearch, seat.seatNumber);
+    handleAddNewPlayer(searchInput, seat.seatNumber);
   };
 
   return (
     <div className="search-modal-container__modal">
       <div className="search-modal-container__modal__results">
-        {loadingAddingNewPlayer ? (
-          <div className="search-modal-container__modal__results__adding-player">
-            Adding {playerSearch}
-          </div>
-        ) : loadingPlayers && playerSearch ? (
-          <div className="search-modal-container__modal__results__loading">
-            Loading..
-          </div>
-        ) : (
+        {players && !loadingAddingNewPlayer && (
           <>
-            {players &&
-              players.map((player) => {
-                return (
-                  <div
-                    key={player.id}
-                    className="search-modal-container__modal__results__result"
-                    onClick={() => {
-                      handleSeatPlayer(player, seat.seatNumber);
-                    }}
-                  >
-                    <div className="search-modal-container__modal__results__result__name">
-                      {player.name}
-                    </div>
-                    <div className="search-modal-container__modal__results__result__type">
-                      <TypeIcon type={player.type} />
-                    </div>
+            {players.map((player) => {
+              return (
+                <div
+                  key={player.id}
+                  className="search-modal-container__modal__results__result"
+                  onClick={() => {
+                    handleSeatPlayer(player, seat.seatNumber);
+                  }}
+                >
+                  <div className="search-modal-container__modal__results__result__name">
+                    {player.name}
                   </div>
-                );
-              })}
-            {!hasExactMatch && playerSearch && (
+                  <div className="search-modal-container__modal__results__result__type">
+                    <TypeIcon type={player.type} />
+                  </div>
+                </div>
+              );
+            })}
+            {!exactMatch && searchInput && (
               <div
                 className="search-modal-container__modal__results__result"
-                onClick={() => handleAddNewPlayer(playerSearch, seat)}
+                onClick={() => handleAddNewPlayer(searchInput, seat)}
               >
                 <p className="search-modal-container__modal__results__result__add-player">
-                  Add {playerSearch}
+                  Add {searchInput}
                 </p>
               </div>
             )}
@@ -75,14 +90,23 @@ const SearchModal = ({
           onSubmit={handleSubmit}
         >
           <input
-            value={playerSearch}
+            value={searchInput}
             autoFocus
-            onChange={(e) => updateSearch(e.target.value)}
+            onChange={updateSearchTest}
             placeholder="Search.."
-            disabled={loadingAddingNewPlayer}
           />
-          <button disabled={loadingPlayers || !playerSearch}>
-            {!playerSearch ? "Search" : hasExactMatch ? "Choose" : "Add"}
+          <button
+            disabled={searchLoading || !searchInput || loadingAddingNewPlayer}
+          >
+            {!searchInput && !searchLoading && !loadingAddingNewPlayer ? (
+              <p>Search</p>
+            ) : (searchLoading || loadingAddingNewPlayer) ? (
+              <img src={loadingIcon} alt="loading"></img>
+            ) : exactMatch ? (
+              <p>Seat</p>
+            ) : (
+              <p>Add</p>
+            )}
           </button>
         </form>
       </div>

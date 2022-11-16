@@ -9,3 +9,5 @@ export const DEFAULT_CONFIG = {
     "^known$" : { background: "#e6c000", color: "black" },
     friend: { background: "#e6c000", color: "black" },
 }
+
+export const PLAYER_SEARCH_TYPE = 'players'
