@@ -21,6 +21,7 @@ function App() {
     selectGroup,
     currentlySelectedGroup,
     config,
+    updateConfig
   } = useUser();
 
   useEffect(() => {
@@ -54,6 +55,7 @@ function App() {
           selectGroup,
           currentlySelectedGroup,
           config,
+          updateConfig
         }}
       >
         <div className="App">

@@ -49,7 +49,7 @@ const Seat = ({ seat, user, seatPlayer, unseatPlayer, currentlySelectedGroup, se
           </button>
         </div>
       ) : (
-        <button className="seat__empty-seat" onClick={() => setSearchOpen(true)}>
+        <button style={{ backgroundColor: searchOpen && "#26a6fe", color: searchOpen && "white" }}className="seat__empty-seat" onClick={() => setSearchOpen(true)}>
           {searchOpen ? "Seating Player.." : "Empty - add or search"}
         </button>
       )}

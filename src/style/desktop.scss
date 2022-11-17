@@ -104,7 +104,7 @@ $light-gray: rgb(146, 146, 146);
     .tables-container {
         display: flex;
         flex: 1;
-
+        
         .tables {
             flex: 1;
             display: flex;
@@ -115,11 +115,14 @@ $light-gray: rgb(146, 146, 146);
             padding: 15px;
             gap: 10px;
             position: relative;
+            background-color: rgb(248, 248, 248);
+
             .table {
                 width: 200px;
                 border: $simple-border;
                 border-radius: 3px;
                 height: min-content;
+                background-color: white;
 
                 &__header {
                     display: flex;
@@ -218,7 +221,7 @@ $light-gray: rgb(146, 146, 146);
                         }
 
                         .search-modal-container {
-                            position: absolute;
+                            position: fixed;
                             top: 0;
                             left: 0;
                             background-color: rgba(0, 0, 0, 0.11);
@@ -345,6 +348,14 @@ $light-gray: rgb(146, 146, 146);
                 }
             }
 
+            .table:focus-within {
+                border: solid $primary-color 1px;
+            }
+
+            .table:hover {
+                border: solid $primary-color 1px;
+            }
+
             &__add-table {
                 background-color: transparent;
                 border: $simple-border;
@@ -358,6 +369,7 @@ $light-gray: rgb(146, 146, 146);
                 padding: 0 15px;
                 color: rgb(56, 56, 56);
                 height: 291px;
+                background-color: white;
 
                 svg {
                     height: 20px;
@@ -370,6 +382,23 @@ $light-gray: rgb(146, 146, 146);
                 text-decoration: underline;
                 border: solid $primary-color 1px;
                 color: $primary-color;
+                background-color: white;
+            }
+
+            &__group-info {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background-color: $primary-color;
+                color: white;
+                border-radius: 25px 0 0 0;
+                padding: 15px;
+
+                p {
+                    margin-top: 2px;
+                    padding-left: 10px;
+                    text-transform: capitalize;
+                }
             }
         }
 
@@ -839,6 +868,50 @@ $light-gray: rgb(146, 146, 146);
             }
         }
 
+        &__no-group {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                fill: $primary-color;
+            }
+
+            &__body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                color: rgb(53, 53, 53);
+
+                p {
+                    font-weight: bold;
+                }
+
+                svg {
+                    height: 75px;
+                    width: 75px;
+                }
+
+            }
+
+            &__cta {
+                position: absolute;
+                justify-self: center;
+                align-self: flex-end;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 8px;
+
+                svg {
+                    height: 25px;
+                    width: 25px;
+                }
+            }
+        }
+
         &__new-group-container {
             display: flex;
             flex-direction: column;
@@ -863,15 +936,17 @@ $light-gray: rgb(146, 146, 146);
                 button {
                     border: none;
                     padding: 3px;
+                    background-color: $primary-color;
+                    color: white;
+                    border-radius: 3px;
                 }
 
                 button:disabled {
-                    opacity: 90%;
+                    opacity: 40%;
                 }
 
                 button:hover:enabled {
                     cursor: pointer;
-                    background-color: $primary-color;
                     color: white;
                     text-decoration: underline;
                 }

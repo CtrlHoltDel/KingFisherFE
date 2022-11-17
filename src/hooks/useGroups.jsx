@@ -84,7 +84,7 @@ const useGroups = (user) => {
 
   const updateGroupInput = (e) => {
     setNewGroupInput(e.target.value);
-    setNewGroupDisabled(e.target.value.length < 3);
+    setNewGroupDisabled(e.target.value.length < 4);
   };
 
   return {
@@ -102,41 +102,3 @@ const useGroups = (user) => {
 };
 
 export default useGroups;
-
-
-/*
-
-{
-    "name": "kingfisher",
-    "id": "c1e094e3-090b-4c82-95c7-aa51ee663505",
-    "created_by": "ctrlholtdel",
-    "validated": true,
-    "created_time": "2022-01-18T10:35:15.903Z",
-    "admin": true,
-    "users": [
-        {
-            "username": "btr1993",
-            "admin": false,
-            "validated": true,
-            "blocked": false,
-            "note_group": "c1e094e3-090b-4c82-95c7-aa51ee663505"
-        },
-        {
-            "username": "tom",
-            "admin": true,
-            "validated": true,
-            "blocked": false,
-            "note_group": "c1e094e3-090b-4c82-95c7-aa51ee663505"
-        },
-    ]
-}
-
-{
-    "name": "this is a group",
-    "created_time": "2022-11-13T16:30:29.124Z",
-    "id": "9d279fdb-cdff-4e45-9c41-d8b2da6452d2",
-    "created_by": "ctrlholtdel",
-    "validated": true
-}
-
-*/

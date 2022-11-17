@@ -1,17 +1,21 @@
 import React from "react";
 import { useState } from "react";
 
-import { BiChevronsLeft, BiChevronsRight, BiLogOutCircle } from "react-icons/bi";
-import { GrGroup } from 'react-icons/gr'
-import { CiSettings } from 'react-icons/ci'
+import {
+  BiChevronsLeft,
+  BiChevronsRight,
+  BiLogOutCircle,
+} from "react-icons/bi";
+import { GrGroup, GrUserAdmin } from "react-icons/gr";
+import { CiSettings } from "react-icons/ci";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
-const Navigation = ({ toggleGroupsMenu, toggleSettingsMenu }) => {
+const Navigation = ({ toggleGroupsMenu, toggleSettingsMenu, toggleAdminMenu }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleNav = () => setIsOpen((curr) => !curr);
 
-  const { logoutUser } = useContext(UserContext)
+  const { logoutUser, user } = useContext(UserContext);
 
   return (
     <div className="navigation">
@@ -28,6 +32,12 @@ const Navigation = ({ toggleGroupsMenu, toggleSettingsMenu }) => {
             </button>
           </div>
           <div className="user">
+            {user.sysadmin && (
+              <button onClick={toggleAdminMenu}>
+                <GrUserAdmin />
+                <p>Admin</p>
+              </button>
+            )}
             <button onClick={toggleSettingsMenu}>
               <CiSettings />
               <p>Settings</p>
@@ -49,6 +59,11 @@ const Navigation = ({ toggleGroupsMenu, toggleSettingsMenu }) => {
             </button>
           </div>
           <div className="user">
+            {user.sysadmin && (
+              <button onClick={toggleAdminMenu}>
+                <GrUserAdmin />
+              </button>
+            )}
             <button onClick={toggleSettingsMenu}>
               <CiSettings />
             </button>

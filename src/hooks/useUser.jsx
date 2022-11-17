@@ -31,13 +31,18 @@ const useUser = () => {
     setConfig(config => config)
   };
 
+  const updateConfig = (updatedConfig) => {
+    setConfig(updatedConfig)
+  }
+
   return {
     user,
     handleLogin,
     logoutUser,
     selectGroup,
     currentlySelectedGroup,
-    config
+    config,
+    updateConfig
   };
 };
 

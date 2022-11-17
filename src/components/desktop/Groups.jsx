@@ -5,8 +5,10 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import GroupItem from "../common/GroupItem";
 import { FaChevronCircleLeft } from "react-icons/fa";
+import { BsFillArrowDownSquareFill } from 'react-icons/bs'
 
 import loadingSVG from "../../assets/primary-loading.svg";
+import { GiSadCrab } from "react-icons/gi";
 
 const Groups = ({ toggleGroupsMenu }) => {
   const { user, selectGroup, currentlySelectedGroup } = useContext(UserContext);
@@ -23,8 +25,6 @@ const Groups = ({ toggleGroupsMenu }) => {
     addUserToGroup,
     addUserLoading,
   } = useGroups(user, currentlySelectedGroup);
-
-  console.log(groups);
 
   return (
     <div className="groups">
@@ -43,7 +43,17 @@ const Groups = ({ toggleGroupsMenu }) => {
           </div>
         </div>
       ) : !groups.length ? (
-        <div>No Groups</div>
+        <div className="groups__no-group">
+          <div className="groups__no-group__body">
+            <GiSadCrab />
+            <p>No Groups</p>
+          </div>
+
+          <div className="groups__no-group__cta">
+            <p>Add a Group</p>
+            <BsFillArrowDownSquareFill />
+          </div>
+        </div>
       ) : (
         <div className="groups__list">
           {groups &&
@@ -61,7 +71,7 @@ const Groups = ({ toggleGroupsMenu }) => {
         </div>
       )}
       <div className="groups__new-group-container">
-        <p className="groups__new-group-container__error">{groupError}</p>
+        <p className="groups__new-group-container__error"><p>{groupError}</p></p>
         <form
           onSubmit={(e) => {
             e.preventDefault();

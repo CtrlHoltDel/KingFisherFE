@@ -10,6 +10,9 @@ import "./style/desktop.css";
 const Desktop = ({ currentlySelectedGroup }) => {
   const [groupsMenuOpen, setGroupsMenuOpen] = useState(false);
   const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
+  const [adminMenu, SetAdminMenu] = useState(false)
+
+  const toggleAdminMenu = () => SetAdminMenu(curr => !curr)
 
   const toggleGroupsMenu = () => {
     setSettingsMenuOpen(false)
@@ -31,13 +34,15 @@ const Desktop = ({ currentlySelectedGroup }) => {
       <Navigation
         toggleGroupsMenu={toggleGroupsMenu}
         toggleSettingsMenu={toggleSettingsMenu}
-      />
+        toggleAdminMenu={toggleAdminMenu}
+        />
       {groupsMenuOpen && (
         <Groups toggleGroupsMenu={toggleGroupsMenu}/>
-      )}
+        )}
       {settingsMenuOpen && (
         <Settings />
-      )}
+        )}
+      {adminMenu && <div className="desktop__admin">Admin</div>}
       <Tables />
     </div>
   );

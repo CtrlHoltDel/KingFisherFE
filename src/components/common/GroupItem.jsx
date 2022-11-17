@@ -55,10 +55,11 @@ const GroupItem = ({ group, selectGroup, addUserToGroup, currentlySelectedGroup 
           {group.admin ? (
             <div className="groups__list__item__general__admin">
               <div className="groups__list__item__general__admin__header">
-                Players
+                Users
               </div>
               <div className="groups__list__item__general__admin__players">
-                {group.users.map((user) => {
+                {group.users.length === 1 ? <div style={{ textAlign: "center" }}>Just You!</div> : 
+                group.users.map((user) => {
                   return (
                     <div className="groups__list__item__general__admin__players__player">
                       <p className="groups__list__item__general__admin__players__player__username">
