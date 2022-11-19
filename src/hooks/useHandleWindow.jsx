@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const TOUCH_SIZE = 'touch'
 const DESKTOP_SIZE = 'desktop'
-const MOBILE_CUT_OFF = 605
+const MOBILE_CUT_OFF = 250
 
 const useHandleWindow = () => {
     const [windowType, setWindowType] = useState(null);

@@ -5,7 +5,7 @@ import { UserContext } from "./context/UserContext";
 import Desktop from "./Desktop";
 import useHandleWindow from "./hooks/useHandleWindow";
 import useUser from "./hooks/useUser";
-import Touch from "./Touch";
+// import Touch from "./Touch";
 
 import loadingIcon from "./assets/loading.svg";
 import { APIping } from "./api/actions";
@@ -60,12 +60,13 @@ function App() {
       >
         <div className="App">
           {windowType === TOUCH_SIZE ? (
-            <Touch
-              user={user}
-              logoutUser={logoutUser}
-              selectGroup={selectGroup}
-              currentlySelectedGroup={currentlySelectedGroup}
-            />
+            // <Touch
+            //   user={user}
+            //   logoutUser={logoutUser}
+            //   selectGroup={selectGroup}
+            //   currentlySelectedGroup={currentlySelectedGroup}
+            // />
+            <div>Under Construction</div>
           ) : (
             <Desktop
               user={user}

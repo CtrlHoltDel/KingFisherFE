@@ -139,6 +139,16 @@ export const APIUpdateType = async (token, groupId, playerId, type) => {
     }
 }
 
+export const APIGetBackup = async (token) => {
+    try {
+        const { data } = await api.get('/admin/backup', setAuthHeader(token))
+        return data
+    } catch (error) {
+        logErrors(error)
+        return { error: error.response.data }
+    }
+}
+
 const handleNetworkError = (error) => {
     return error
 }
