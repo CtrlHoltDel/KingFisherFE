@@ -22,7 +22,7 @@ const useSearch = (token, type, selectedGroupId) => {
     const searchByType = async () => {
       if(type === PLAYER_SEARCH_TYPE) return await APIGetPlayers(token, selectedGroupId, debouncedValue)
     }
-
+    
     if(debouncedValue) search() 
   }, [debouncedValue, token, selectedGroupId, type])
   
