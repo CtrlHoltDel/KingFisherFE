@@ -83,7 +83,7 @@ const SearchModal = ({
             value={searchInput}
             autoFocus
             onChange={updateSearchTest}
-            placeholder="Search.."
+            placeholder={`Search.....${currentlySelectedGroup.name} group`}
           />
           <button
             disabled={searchLoading || !searchInput || loadingAddingNewPlayer}

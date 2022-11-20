@@ -158,6 +158,15 @@ export const APIGetHistory = async (token) => {
     }
 }
 
+export const APIGetHistoryBackup = async (token) => {
+    try {
+        const { data } = await api.get('/admin/backup/history', setAuthHeader(token))
+        return data
+    } catch (error) {
+        return { error: error.response.data }
+    }
+}
+
 const handleNetworkError = (error) => {
     return error
 }

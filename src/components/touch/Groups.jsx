@@ -44,7 +44,7 @@ const Groups = ({ user, selectGroup, currentlySelectedGroup }) => {
               cancel
             </button>
             <button className="groups__new-group-modal__controls__create">
-              create
+              createcreateBackup
             </button>
           </div>
         </div>

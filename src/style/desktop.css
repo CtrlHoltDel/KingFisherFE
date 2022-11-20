@@ -818,4 +818,81 @@
   right: 0;
   height: 35px;
   width: 35px;
+}
+.desktop .admin {
+  flex: 1;
+  max-width: 800px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.desktop .admin__controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px;
+  background-color: #26a6fe;
+}
+.desktop .admin__controls button {
+  padding: 5px 15px;
+  background-color: rgba(0, 0, 0, 0.267);
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+.desktop .admin__controls button:hover {
+  cursor: pointer;
+  background-color: rgba(3, 3, 3, 0.699);
+}
+.desktop .admin__history {
+  flex: 1;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  overflow: auto;
+}
+.desktop .admin__history__row {
+  border: solid gray 1px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  flex-direction: column;
+  gap: 2px;
+}
+.desktop .admin__history__row__reference {
+  padding: 5px;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(235, 235, 235);
+}
+.desktop .admin__history__row__reference__username {
+  flex: 1;
+}
+.desktop .admin__history__row__reference__type {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.desktop .admin__history__row__reference__action {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+.desktop .admin__history__row__reference__action svg {
+  width: 20px;
+  height: 20px;
+}
+.desktop .admin__history__row__reference__date {
+  flex: 1;
+  color: rgb(90, 90, 90);
+}
+.desktop .admin__history__row__body {
+  padding: 5px;
+  color: rgb(54, 54, 54);
 }/*# sourceMappingURL=desktop.css.map */
