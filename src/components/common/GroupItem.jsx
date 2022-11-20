@@ -61,7 +61,7 @@ const GroupItem = ({ group, selectGroup, addUserToGroup, currentlySelectedGroup 
                 {group.users.length === 1 ? <div style={{ textAlign: "center" }}>Just You!</div> : 
                 group.users.map((user) => {
                   return (
-                    <div className="groups__list__item__general__admin__players__player">
+                    <div key={user.username}className="groups__list__item__general__admin__players__player">
                       <p className="groups__list__item__general__admin__players__player__username">
                         {user.username}
                       </p>
@@ -97,14 +97,14 @@ const GroupItem = ({ group, selectGroup, addUserToGroup, currentlySelectedGroup 
                 {userAddMessage && <p>{userAddMessage}</p>}
               </form>
               <p className="groups__list__item__general__admin__details">
-                Group created {dateFormat(group.created_time)} by{" "}
+                Group created {dateFormat(group.created_time)} by
                 {group.created_by}
               </p>
             </div>
           ) : (
             <div className="groups__list__item__general__non-admin">
               <p>
-                Group created {dateFormat(group.created_time)} by{" "}
+                Group created {dateFormat(group.created_time)} by
                 {group.created_by}
               </p>
             </div>

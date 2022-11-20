@@ -23,10 +23,8 @@ const Admin = () => {
             console.warn(error);
             return
         }
-        console.log(data)
-
+        
         setHistory(data.history)
-
     }
 
     getHistory()

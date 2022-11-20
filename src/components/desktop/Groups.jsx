@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import GroupItem from "../common/GroupItem";
 import { FaChevronCircleLeft } from "react-icons/fa";
-import { BsFillArrowDownSquareFill } from 'react-icons/bs'
+import { BsFillArrowDownSquareFill } from "react-icons/bs";
 
 import loadingSVG from "../../assets/primary-loading.svg";
 import { GiSadCrab } from "react-icons/gi";
@@ -71,7 +71,9 @@ const Groups = ({ toggleGroupsMenu }) => {
         </div>
       )}
       <div className="groups__new-group-container">
-        <p className="groups__new-group-container__error"><p>{groupError}</p></p>
+        <div className="groups__new-group-container__error">
+          <p>{groupError}</p>
+        </div>
         <form
           onSubmit={(e) => {
             e.preventDefault();

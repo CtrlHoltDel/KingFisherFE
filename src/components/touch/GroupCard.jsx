@@ -5,7 +5,6 @@ const GroupCard = ({ group, currentlySelectedGroup, selectGroup }) => {
 
   const toggleShowMore = () => setShowMore((curr) => !curr);
 
-
   return (
     <div className="groups__list__group-card">
       <div className="groups__list__group-card__main">

@@ -11,7 +11,11 @@ import { CiSettings } from "react-icons/ci";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
-const Navigation = ({ toggleGroupsMenu, toggleSettingsMenu, toggleAdminMenu }) => {
+const Navigation = ({
+  toggleGroupsMenu,
+  toggleSettingsMenu,
+  toggleAdminMenu,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleNav = () => setIsOpen((curr) => !curr);
 
@@ -60,13 +64,15 @@ const Navigation = ({ toggleGroupsMenu, toggleSettingsMenu, toggleAdminMenu }) =
           </div>
           <div className="user">
             {user.sysadmin && (
-              <button onClick={toggleAdminMenu}>
-                <GrUserAdmin />
-              </button>
+              <>
+                <button onClick={toggleAdminMenu}>
+                  <GrUserAdmin />
+                </button>
+                <button onClick={toggleSettingsMenu}>
+                  <CiSettings />
+                </button>
+              </>
             )}
-            <button onClick={toggleSettingsMenu}>
-              <CiSettings />
-            </button>
             <button onClick={logoutUser}>
               <BiLogOutCircle />
             </button>

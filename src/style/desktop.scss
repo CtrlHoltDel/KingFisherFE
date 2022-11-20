@@ -188,6 +188,8 @@ $light-gray: rgb(146, 146, 146);
                                 border-radius: 2px 0 0 2px;
                                 display: flex;
                                 align-items: center;
+                                overflow: hidden;
+                                white-space: nowrap;
                             }
 
                             button {
