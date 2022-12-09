@@ -828,21 +828,60 @@
 }
 .desktop .admin__controls {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 10px;
-  padding: 15px;
   background-color: #26a6fe;
+  align-items: center;
+  padding-right: 10px;
 }
-.desktop .admin__controls button {
+.desktop .admin__controls__tabs {
+  display: flex;
+}
+.desktop .admin__controls__tabs button {
+  border: none;
+  background-color: transparent;
+  padding: 20px;
+  color: white;
+  border-left: rgba(248, 248, 248, 0.363) 1px solid;
+}
+.desktop .admin__controls__tabs button:last-child {
+  border-right: rgba(248, 248, 248, 0.363) 1px solid;
+}
+.desktop .admin__controls__tabs button:hover {
+  background-color: rgba(0, 0, 0, 0.048);
+  cursor: pointer;
+}
+.desktop .admin__controls__downloads {
+  display: flex;
+  gap: 10px;
+}
+.desktop .admin__controls__downloads button {
   padding: 5px 15px;
   background-color: rgba(0, 0, 0, 0.267);
   color: white;
   border: none;
   border-radius: 4px;
 }
-.desktop .admin__controls button:hover {
+.desktop .admin__controls__downloads button:hover {
   cursor: pointer;
   background-color: rgba(3, 3, 3, 0.699);
+}
+.desktop .admin__query-controls {
+  padding: 8px 0;
+  border-bottom: solid rgb(221, 221, 221) 1px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.desktop .admin__query-controls button {
+  padding: 4px 20px;
+  border-radius: 3px;
+  border: none;
+  background-color: rgb(221, 221, 221);
+}
+.desktop .admin__query-controls button:hover {
+  cursor: pointer;
+  opacity: 80%;
 }
 .desktop .admin__history {
   flex: 1;
@@ -895,4 +934,55 @@
 .desktop .admin__history__row__body {
   padding: 5px;
   color: rgb(54, 54, 54);
+}
+.desktop .admin__groups {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.desktop .admin__groups__card {
+  border-bottom: solid rgb(224, 224, 224) 1px;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.desktop .admin__groups__card .detail {
+  font-size: 12px;
+  color: rgb(99, 99, 99);
+}
+.desktop .admin__groups__card__user-count {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.desktop .admin__groups__card__user-count svg {
+  fill: rgb(0, 94, 0);
+  height: 18px;
+  width: 18px;
+}
+.desktop .admin__users {
+  display: flex;
+  flex-direction: column;
+}
+.desktop .admin__users__card {
+  display: flex;
+  padding: 5px 15px;
+  border-bottom: solid rgb(224, 224, 224) 1px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+.desktop .admin__users__card__detail {
+  color: gray;
+  font-size: 13px;
+}
+.desktop .admin__users__card__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.desktop .admin__users__card__info span {
+  color: rgb(2, 2, 102);
 }/*# sourceMappingURL=desktop.css.map */

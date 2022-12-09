@@ -149,21 +149,40 @@ export const APIGetBackup = async (token) => {
     }
 }
 
-export const APIGetHistory = async (token) => {
+export const APIGetHistory = async (token, type) => {
     try {
-        const { data } = await api.get('/admin/history', setAuthHeader(token))
+        const { data } = await api.get(`/admin/history${type ? `?type=${type}` : ''}`, setAuthHeader(token))
         return data
     } catch (error) {
         return { error: error.response.data }
     }
 }
 
-export const APIGetHistoryBackup = async (token) => {
+export const APIGetHistoryBackup = async (token, type) => {
     try {
         const { data } = await api.get('/admin/backup/history', setAuthHeader(token))
         return data
     } catch (error) {
         return { error: error.response.data }
+    }
+}
+
+export const APIGetGroupsAdmin = async (token) => {
+    try {
+        const { data } = await api.get('/admin/groups', setAuthHeader(token))
+        return data
+    } catch (error) {
+        return { error: error.response.data }
+    }
+}
+
+export const APIGetUsersAdmin = async (token) => {
+    try {
+        const { data } = await api.get('/admin/users', setAuthHeader(token))
+        return data
+    } catch (error) {
+        return { error: error.response.data}
+        
     }
 }
 
