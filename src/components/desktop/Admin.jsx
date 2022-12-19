@@ -5,30 +5,25 @@ import { useContext } from "react";
 import {
   APIGetBackup,
   APIGetGroupsAdmin,
-  APIGetHistory,
   APIGetHistoryBackup,
   APIGetUsersAdmin,
 } from "../../api/actions";
 import { UserContext } from "../../context/UserContext";
 import { fileDownload } from "../../utils/downloadFile";
-import { GrAdd, GrDocumentUpdate } from "react-icons/gr";
-import { IoMdCreate } from "react-icons/io";
-import { BiBook, BiUserCircle } from "react-icons/bi";
+import { BiUserCircle } from "react-icons/bi";
 import { dateFormat } from "../../utils/dataFormat";
+import ArchivedNotes from "./AdminTabs/ArchivedNotes";
+import History from "./AdminTabs/History";
 
-const BUTTON_TYPES = ["all", "note", "auth", "group", "player"];
-const TABS = ["history", "groups", "users"];
+const TABS = ["history", "groups", "users", "archived"];
 
 const Admin = () => {
   const { user } = useContext(UserContext);
 
   const [currentTab, setCurrentTab] = useState("history");
 
-  const [history, setHistory] = useState([]);
   const [groups, setGroups] = useState([]);
   const [users, setUsers] = useState([]);
-
-  const [query, setQuery] = useState("");
 
   const handleClickDownloadBackup = async () => {
     const data = await APIGetBackup(user.token);
@@ -41,17 +36,6 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    const getHistory = async () => {
-      const { data, error } = await APIGetHistory(user.token, query);
-
-      if (error) {
-        console.warn(error);
-        return;
-      }
-
-      setHistory(data.history);
-    };
-
     const getGroups = async () => {
       const { data, error } = await APIGetGroupsAdmin(user.token);
 
@@ -70,22 +54,12 @@ const Admin = () => {
         console.warn(error);
         return;
       }
-
-      console.log(data);
       setUsers(data.users);
     };
 
     getUsers();
-    getHistory();
     getGroups();
-  }, [user.token, query]);
-
-  const iconForAction = (action) => {
-    if (action === "update") return <GrDocumentUpdate />;
-    if (action === "create") return <IoMdCreate />;
-    if (action === "archive") return <BiBook />;
-    if (action === "add") return <GrAdd />;
-  };
+  }, [user.token]);
 
   return (
     <div className="admin">
@@ -107,46 +81,7 @@ const Admin = () => {
           <button onClick={downloadAllHistory}>Download all history</button>
         </div>
       </div>
-      {currentTab === "history" && (
-        <>
-          <div className="admin__query-controls">
-            {BUTTON_TYPES.map((label) => (
-              <button
-                key={label}
-                onClick={() => setQuery(label === "all" ? "" : label)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-          <div className="admin__history">
-            {history.map((history, index) => {
-              return (
-                <div className="admin__history__row" key={index}>
-                  <div className="admin__history__row__reference">
-                    <div className="admin__history__row__reference__username">
-                      <p>{history.username}</p>
-                    </div>
-                    <div className="admin__history__row__reference__type">
-                      <p>{history.type}</p>
-                    </div>
-                    <div className="admin__history__row__reference__date">
-                      <p>{dateFormat(history.time_stamp)}</p>
-                    </div>
-                    <div className="admin__history__row__reference__action">
-                      <p>{history.action}</p>
-                      {iconForAction(history.action)}
-                    </div>
-                  </div>
-                  <div className="admin__history__row__body">
-                    {history.detail}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
+      {currentTab === "history" && <History token={user.token}/>}
       {currentTab === "groups" && (
         <div className="admin__groups">
           {groups.map((group) => (
@@ -183,6 +118,7 @@ const Admin = () => {
           ))}
         </div>
       )}
+      {currentTab === "archived" && <ArchivedNotes token={user.token}/>}
     </div>
   );
 };

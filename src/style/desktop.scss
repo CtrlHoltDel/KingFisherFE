@@ -1050,8 +1050,27 @@ $light-gray: rgb(146, 146, 146);
             gap: 5px;
             display: flex;
             flex-direction: column;
-            padding: 15px;
+            padding: 5px 15px;
             overflow: auto;
+
+            &__controls {
+                display: flex;
+                gap: 5px;
+                justify-content: center;
+
+                button {
+                    padding: 4px 20px;
+                    border-radius: 3px;
+                    border: none;
+                    background-color: rgb(221, 221, 221);
+                }
+
+                button:enabled:hover {
+                    cursor: pointer;
+                    background-color: $primary-color;
+                    color: white;
+                }
+            }
             &__row {
                 border: solid gray 1px;
                 border-radius: 2px;
@@ -1137,33 +1156,47 @@ $light-gray: rgb(146, 146, 146);
             }
         }
 
-         &__users {
+        &__users {
+        display: flex;
+        flex-direction: column;
+
+        &__card {
             display: flex;
-            flex-direction: column;
+            padding: 5px 15px;
+            border-bottom: solid rgb(224, 224, 224) 1px;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+            &__detail {
+                color: gray;
+                font-size: 13px;
+            }
 
-            &__card {
+            &__info {
                 display: flex;
-                padding: 5px 15px;
-                border-bottom: solid rgb(224, 224, 224) 1px;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 15px;
-                &__detail {
-                    color: gray;
-                    font-size: 13px;
-                }
+                flex-direction: column;
+                align-items: flex-end;
 
-                &__info {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-end;
-
-                    span {
-                        color: rgb(2, 2, 102);
-                    }
+                span {
+                    color: rgb(2, 2, 102);
                 }
             }
-         }
+        }
+        }
+
+        &__archived {
+            height: 100%;
+            overflow: auto;
+            &__card {
+                padding: 10px 20px;
+                border-bottom: $gray-border;
+
+                &__detail {
+                    color: gray;
+                    font-size: 12px;
+                }
+            }
+        }
     }
 }
 

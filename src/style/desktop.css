@@ -888,8 +888,24 @@
   gap: 5px;
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 5px 15px;
   overflow: auto;
+}
+.desktop .admin__history__controls {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+.desktop .admin__history__controls button {
+  padding: 4px 20px;
+  border-radius: 3px;
+  border: none;
+  background-color: rgb(221, 221, 221);
+}
+.desktop .admin__history__controls button:enabled:hover {
+  cursor: pointer;
+  background-color: #26a6fe;
+  color: white;
 }
 .desktop .admin__history__row {
   border: solid gray 1px;
@@ -985,4 +1001,16 @@
 }
 .desktop .admin__users__card__info span {
   color: rgb(2, 2, 102);
+}
+.desktop .admin__archived {
+  height: 100%;
+  overflow: auto;
+}
+.desktop .admin__archived__card {
+  padding: 10px 20px;
+  border-bottom: solid rgb(146, 146, 146) 1px;
+}
+.desktop .admin__archived__card__detail {
+  color: gray;
+  font-size: 12px;
 }/*# sourceMappingURL=desktop.css.map */

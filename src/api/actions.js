@@ -149,9 +149,9 @@ export const APIGetBackup = async (token) => {
     }
 }
 
-export const APIGetHistory = async (token, type) => {
+export const APIGetHistory = async (token, type, page, limit) => {
     try {
-        const { data } = await api.get(`/admin/history${type ? `?type=${type}` : ''}`, setAuthHeader(token))
+        const { data } = await api.get(`/admin/history`, { ...setAuthHeader(token), params: { type, page, limit }})
         return data
     } catch (error) {
         return { error: error.response.data }
@@ -183,6 +183,15 @@ export const APIGetUsersAdmin = async (token) => {
     } catch (error) {
         return { error: error.response.data}
         
+    }
+}
+
+export const APIGetArchivedNotes = async (token) => {
+    try {
+        const { data } = await api.get(`/admin/notes?archived=true`, setAuthHeader(token));
+        return { success: data }
+    } catch (error) {
+        return { error: error.response.data }
     }
 }
 
